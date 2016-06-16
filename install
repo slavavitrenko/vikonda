@@ -1,7 +1,7 @@
 #!/usr/bin/php
 
 <?php
-if($argv[1]){
+if(isset($argv[1])){
 		switch ($argv[1]) {
 		case 'q':
 		exit();
@@ -119,24 +119,24 @@ function reinstall(){
 function write_to_db($sql=null, $settings=null){
 
 	if($sql && $settings){
-		$conn = mysql_connect('localhost', $settings->user, $settings->password);
+		$conn = mysqli_connect('localhost', $settings->user, $settings->password);
 		if(! $conn )
 		{
-		  $status = 'Не могу соединиться с  БД: ' . mysql_error();
+		  $status = 'Не могу соединиться с  БД: ' . mysqli_error();
 		}
 
-		mysql_select_db($settings->db);
+		mysqli_select_db($conn, $settings->db);
 
 		echo "Работаемс...";
-		mysql_query("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'", $conn);
+		mysqli_query($conn, "SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
 		foreach (remove_comments($sql) as $command){
 			if($command !== '' && $command != "\n\n\n" && $command != "\n\n"){
 				echo ".";
-				$status = mysql_query($command, $conn) ? 'Успешно установлено' : 'Ошибка БД: "' . mysql_error() . '"';
+				$status = mysqli_query($conn, $command) ? 'Успешно установлено' : 'Ошибка БД: "' . mysqli_error() . '"';
 			}
 		}
 
-		mysql_close($conn);
+		mysqli_close($conn);
 
 		return $status;
 	}
@@ -148,22 +148,23 @@ function write_to_db($sql=null, $settings=null){
 function clean_db($settings){
 
 	if($settings){
-		$conn = mysql_connect('localhost', $settings->user, $settings->password);
+		$conn = mysqli_connect('localhost', $settings->user, $settings->password);
+
 		if(! $conn )
 		{
-		  $status = 'Не могу соединиться с БД: ' . mysql_error();
+		  $status = 'Не могу соединиться с БД: ' . mysqli_error();
 		}
 
-		mysql_select_db($settings->db);
+		mysqli_select_db($conn, $settings->db);
 
-		$result = mysql_query("show tables");
-		while($table = mysql_fetch_array($result)) {
-			$tablename=$table[0];
-			$q=mysql_query("DROP TABLE $tablename");
+		$result = mysqli_query($conn, "show tables");
+		while($table = mysqli_fetch_array($result, $conn ? true : false)) {
+			$tablename=$table['Tables_in_win'];
+			$q=mysqli_query($conn, "DROP TABLE $tablename");
 			$status = "таблица $tablename была очищена";
 		}
 
-		mysql_close($conn);
+		mysqli_close($conn);
 
 		return $status;
 	}
@@ -202,10 +203,10 @@ function read_input($line=''){
 <?=strtoupper($line)?>
 
 =====================================================
-'c' - изменить настройки бд                        ||
-'i' - установка                                    ||
-'r' - переустановка                                ||
-'q' - выход                                        ||
+||	'c' - изменить настройки бд                    ||
+||	'i' - установка                                ||
+||	'r' - переустановка                            ||
+||	'q' - выход                                    ||
 =====================================================
 <?php
 	$command = readline('Введите команду: ');
