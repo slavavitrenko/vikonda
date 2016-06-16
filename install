@@ -71,7 +71,6 @@ function change_settings(){
 }
 
 function install(){
-	if (change_settings()){
 		$settings = read_settings();
 		$dbfile = readline('Имя файла импорта (db.sql): ');
 		if(!$dbfile or $dbfile == ''){
@@ -89,9 +88,6 @@ function install(){
 		else{
 			return read_input('Нет такого файла');
 		}
-	}
-	else {
-		return read_input('Что то пошло не так..');
 	}
 }
 
