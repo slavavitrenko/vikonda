@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 16 2016 г., 17:33
+-- Время создания: Июн 16 2016 г., 17:39
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -32,19 +32,6 @@ CREATE TABLE `categories` (
   `parent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Дамп данных таблицы `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `parent`) VALUES
-(7, 'Витрина', 0),
-(8, 'Окна', 7),
-(9, 'Двери', 7),
-(11, 'Слайдеры', 0),
-(12, 'Верхний', 11),
-(13, 'Нижний', 11),
-(14, 'Подвал', 11);
-
 -- --------------------------------------------------------
 
 --
@@ -55,23 +42,6 @@ CREATE TABLE `migration` (
   `version` varchar(180) NOT NULL,
   `apply_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `migration`
---
-
-INSERT INTO `migration` (`version`, `apply_time`) VALUES
-('m000000_000000_base', 1465997177),
-('m140209_132017_init', 1465997178),
-('m140403_174025_create_account_table', 1465997178),
-('m140504_113157_update_tables', 1465997178),
-('m140504_130429_create_token_table', 1465997178),
-('m140830_171933_fix_ip_field', 1465997178),
-('m140830_172703_change_account_table_name', 1465997178),
-('m141222_110026_update_ip_field', 1465997179),
-('m141222_135246_alter_username_length', 1465997179),
-('m150614_103145_update_social_account_table', 1465997179),
-('m150623_212711_fix_username_notnull', 1465997179);
 
 -- --------------------------------------------------------
 
@@ -84,17 +54,6 @@ CREATE TABLE `partners` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Дамп данных таблицы `partners`
---
-
-INSERT INTO `partners` (`id`, `name`) VALUES
-(5, 'Владимир Переяславский'),
-(6, 'Князь Киевский'),
-(7, 'Святополк'),
-(8, 'Фридрих II'),
-(9, 'Петр I');
-
 -- --------------------------------------------------------
 
 --
@@ -106,20 +65,6 @@ CREATE TABLE `partners_regions` (
   `partner_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `partners_regions`
---
-
-INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
-(22, 7, 4),
-(23, 6, 3),
-(24, 6, 4),
-(25, 6, 5),
-(26, 6, 6),
-(27, 8, 6),
-(28, 9, 8),
-(30, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -134,18 +79,6 @@ CREATE TABLE `pictures` (
   `created_at` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Дамп данных таблицы `pictures`
---
-
-INSERT INTO `pictures` (`id`, `path`, `product_id`, `created_at`) VALUES
-(17, '122026_Papel-de-Pare11_2016-06-16_10:03:40.jpg', 11, 1466071420),
-(18, 'ubuntu_linux_debian_11_2016-06-16_10:03:40.jpg', 11, 1466071420),
-(19, 'WallpapersxlKubuntuU11_2016-06-16_10:03:40.jpg', 11, 1466071420),
-(20, '122026_Papel-de-Pare12_2016-06-16_10:03:55.jpg', 12, 1466071435),
-(21, 'ubuntu_linux_debian_12_2016-06-16_10:03:55.jpg', 12, 1466071435),
-(22, 'WallpapersxlKubuntuU12_2016-06-16_10:03:55.jpg', 12, 1466071435);
-
 -- --------------------------------------------------------
 
 --
@@ -159,14 +92,6 @@ CREATE TABLE `products` (
   `description` text NOT NULL,
   `created_at` int(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `products`
---
-
-INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `created_at`) VALUES
-(11, 8, 'Окно', '<p>Окна</p>', 1466071420),
-(12, 9, 'Дверь', '<p>Дверь</p>', 1466071434);
 
 -- --------------------------------------------------------
 
@@ -185,13 +110,6 @@ CREATE TABLE `profile` (
   `bio` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Дамп данных таблицы `profile`
---
-
-INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -202,17 +120,6 @@ CREATE TABLE `regions` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `regions`
---
-
-INSERT INTO `regions` (`id`, `name`) VALUES
-(3, 'Переяслав'),
-(4, 'Хмельницкий'),
-(5, 'Киев'),
-(6, 'Пруссия'),
-(8, 'Киевская Русь');
 
 -- --------------------------------------------------------
 
@@ -266,13 +173,6 @@ CREATE TABLE `user` (
   `flags` int(11) NOT NULL DEFAULT '0',
   `type` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'partner'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Дамп данных таблицы `user`
---
-
-INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
-(1, 'admin', 'slavavitrenko@gmail.com', '$2y$10$QC1BrGH0msJ6ZXKNdQjZPOSlyVgOGcDROa7ZvthAheIbDuvEKzS5q', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466001094, 0, 'admin');
 
 --
 -- Индексы сохранённых таблиц
@@ -367,32 +267,32 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `partners`
 --
 ALTER TABLE `partners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
 ALTER TABLE `partners_regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `social_account`
 --
@@ -402,7 +302,7 @@ ALTER TABLE `social_account`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
