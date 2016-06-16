@@ -16,7 +16,7 @@ use kartik\file\FileInput;
     ]); ?>
 
     <?= $form->field($model, 'category_id')->widget(Select2::className(), [
-    	'data' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
+    	'data' => ArrayHelper::map(Categories::find()->where(['<>', 'parent', '0'])->all(), 'id', 'name', 'parentName'),
     	'options' => ['placeholder' => Yii::t('app', 'Choose...')],
     ])->label(Yii::t('app', 'Category')) ?>
 

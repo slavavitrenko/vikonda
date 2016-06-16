@@ -16,14 +16,6 @@ class Categories extends \yii\db\ActiveRecord
         return 'categories';
     }
 
-    public function fields(){
-        return [
-            'id',
-            'label' => 'name',
-            'child',
-        ];
-    }
-
     public function rules()
     {
         return [
@@ -61,6 +53,20 @@ class Categories extends \yii\db\ActiveRecord
 
     public function getProducts(){
         return $this->hasMany(Products::className(), ['category_id' => 'id']);
+    }
+
+    public function beforeDelete(){
+        parent::beforeDelete();
+        if($this->child){
+            foreach($this->child as $child){
+                $child->delete();
+            }
+        }
+        if($this->products){
+            foreach($this->products as $product){
+                $product->delete();
+            }
+        }
     }
 
 }

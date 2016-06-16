@@ -10,6 +10,10 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+// Image manipulation
+use yii\imagine\Image;
+use Imagine\Image\Box;
+
 // saving images
 use yii\web\UploadedFile;
 use app\models\Pictures;
@@ -122,7 +126,12 @@ class ProductsController extends Controller
                 $imageModel = new Pictures;
                 $imageModel->product_id = $model_id;
                 $imageModel->path = $filename . $model_id . '_' . $date . '.' . $image->extension;
-                $imageModel->save();
+                $imageModel->save(false);
+                $filename = Yii::getAlias('@webroot') . '/uploads/products/' . $filename . $model_id . '_' . $date . '.' . $image->extension;
+                $imagine = Image::getImagine()
+                ->open($filename)
+                ->thumbnail(new Box(1024, 1024))
+                ->save($filename, ['quality' => 90]);
             }
         }
     }

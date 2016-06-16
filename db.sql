@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 16 2016 г., 17:33
+-- Время создания: Июн 16 2016 г., 20:50
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -37,13 +37,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `parent`) VALUES
-(7, 'Витрина', 0),
-(8, 'Окна', 7),
-(9, 'Двери', 7),
-(11, 'Слайдеры', 0),
-(12, 'Верхний', 11),
-(13, 'Нижний', 11),
-(14, 'Подвал', 11);
+(18, 'Окна', 19),
+(19, 'Витрина', 0),
+(20, 'Двери', 19),
+(21, 'Слайдеры', 0),
+(22, 'Верхний слайдер', 21),
+(23, 'Нижний слайдер', 21);
 
 -- --------------------------------------------------------
 
@@ -139,12 +138,60 @@ CREATE TABLE `pictures` (
 --
 
 INSERT INTO `pictures` (`id`, `path`, `product_id`, `created_at`) VALUES
-(17, '122026_Papel-de-Pare11_2016-06-16_10:03:40.jpg', 11, 1466071420),
-(18, 'ubuntu_linux_debian_11_2016-06-16_10:03:40.jpg', 11, 1466071420),
-(19, 'WallpapersxlKubuntuU11_2016-06-16_10:03:40.jpg', 11, 1466071420),
-(20, '122026_Papel-de-Pare12_2016-06-16_10:03:55.jpg', 12, 1466071435),
-(21, 'ubuntu_linux_debian_12_2016-06-16_10:03:55.jpg', 12, 1466071435),
-(22, 'WallpapersxlKubuntuU12_2016-06-16_10:03:55.jpg', 12, 1466071435);
+(4, '122026_Papel-de-Pare2_2016-06-16_05:26:54.jpg', 2, 0),
+(5, 'ubuntu_linux_debian_2_2016-06-16_05:26:54.jpg', 2, 0),
+(6, 'WallpapersxlKubuntuU2_2016-06-16_05:26:54.jpg', 2, 0),
+(7, '122026_Papel-de-Pare3_2016-06-16_05:27:21.jpg', 3, 0),
+(8, 'ubuntu_linux_debian_3_2016-06-16_05:27:21.jpg', 3, 0),
+(9, 'WallpapersxlKubuntuU3_2016-06-16_05:27:22.jpg', 3, 0),
+(10, '122026_Papel-de-Pare4_2016-06-16_05:27:55.jpg', 4, 0),
+(11, 'ubuntu_linux_debian_4_2016-06-16_05:27:55.jpg', 4, 0),
+(12, 'WallpapersxlKubuntuU4_2016-06-16_05:27:55.jpg', 4, 0),
+(13, '122026_Papel-de-Pare5_2016-06-16_05:28:21.jpg', 5, 0),
+(14, 'ubuntu_linux_debian_5_2016-06-16_05:28:21.jpg', 5, 0),
+(15, 'WallpapersxlKubuntuU5_2016-06-16_05:28:21.jpg', 5, 0),
+(16, '122026_Papel-de-Pare6_2016-06-16_05:31:02.jpg', 6, 0),
+(17, 'ubuntu_linux_debian_6_2016-06-16_05:31:02.jpg', 6, 0),
+(18, 'WallpapersxlKubuntuU6_2016-06-16_05:31:02.jpg', 6, 0),
+(19, '122026_Papel-de-Pare7_2016-06-16_05:31:36.jpg', 7, 0),
+(20, 'ubuntu_linux_debian_7_2016-06-16_05:31:36.jpg', 7, 0),
+(21, 'WallpapersxlKubuntuU7_2016-06-16_05:31:37.jpg', 7, 0),
+(22, '122026_Papel-de-Pare8_2016-06-16_05:32:46.jpg', 8, 0),
+(23, 'ubuntu_linux_debian_8_2016-06-16_05:32:46.jpg', 8, 0),
+(24, 'WallpapersxlKubuntuU8_2016-06-16_05:32:46.jpg', 8, 0),
+(25, '122026_Papel-de-Pare9_2016-06-16_05:33:11.jpg', 9, 0),
+(26, 'ubuntu_linux_debian_9_2016-06-16_05:33:11.jpg', 9, 0),
+(27, 'WallpapersxlKubuntuU9_2016-06-16_05:33:11.jpg', 9, 0),
+(28, '122026_Papel-de-Pare10_2016-06-16_05:33:40.jpg', 10, 0),
+(29, 'ubuntu_linux_debian_10_2016-06-16_05:33:40.jpg', 10, 0),
+(30, 'WallpapersxlKubuntuU10_2016-06-16_05:33:41.jpg', 10, 0),
+(31, '122026_Papel-de-Pare11_2016-06-16_05:34:27.jpg', 11, 0),
+(32, 'ubuntu_linux_debian_11_2016-06-16_05:34:27.jpg', 11, 0),
+(33, 'WallpapersxlKubuntuU11_2016-06-16_05:34:28.jpg', 11, 0),
+(34, '122026_Papel-de-Pare12_2016-06-16_05:45:53.jpg', 12, 0),
+(35, 'ubuntu_linux_debian_12_2016-06-16_05:45:53.jpg', 12, 0),
+(36, 'WallpapersxlKubuntuU12_2016-06-16_05:45:54.jpg', 12, 0),
+(37, '122026_Papel-de-Pare13_2016-06-16_05:46:32.jpg', 13, 0),
+(38, 'ubuntu_linux_debian_13_2016-06-16_05:46:32.jpg', 13, 0),
+(39, 'WallpapersxlKubuntuU13_2016-06-16_05:46:32.jpg', 13, 0),
+(40, '122026_Papel-de-Pare14_2016-06-16_05:46:50.jpg', 14, 0),
+(41, 'ubuntu_linux_debian_14_2016-06-16_05:46:51.jpg', 14, 0),
+(42, 'WallpapersxlKubuntuU14_2016-06-16_05:46:51.jpg', 14, 0),
+(43, '122026_Papel-de-Pare15_2016-06-16_05:47:13.jpg', 15, 0),
+(44, 'ubuntu_linux_debian_15_2016-06-16_05:47:13.jpg', 15, 0),
+(45, 'WallpapersxlKubuntuU15_2016-06-16_05:47:13.jpg', 15, 0),
+(46, '122026_Papel-de-Pare16_2016-06-16_05:48:12.jpg', 16, 0),
+(47, 'ubuntu_linux_debian_16_2016-06-16_05:48:12.jpg', 16, 0),
+(48, 'WallpapersxlKubuntuU16_2016-06-16_05:48:12.jpg', 16, 0),
+(49, '122026_Papel-de-Pare17_2016-06-16_05:49:02.jpg', 17, 0),
+(50, 'ubuntu_linux_debian_17_2016-06-16_05:49:02.jpg', 17, 0),
+(51, 'WallpapersxlKubuntuU17_2016-06-16_05:49:02.jpg', 17, 0),
+(52, '122026_Papel-de-Pare18_2016-06-16_05:49:23.jpg', 18, 0),
+(53, 'ubuntu_linux_debian_18_2016-06-16_05:49:23.jpg', 18, 0),
+(54, 'WallpapersxlKubuntuU18_2016-06-16_05:49:23.jpg', 18, 0),
+(55, '122026_Papel-de-Pare19_2016-06-16_05:50:14.jpg', 19, 0),
+(56, 'ubuntu_linux_debian_19_2016-06-16_05:50:14.jpg', 19, 0),
+(57, 'WallpapersxlKubuntuU19_2016-06-16_05:50:15.jpg', 19, 0);
 
 -- --------------------------------------------------------
 
@@ -165,8 +212,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `created_at`) VALUES
-(11, 8, 'Окно', '<p>Окна</p>', 1466071420),
-(12, 9, 'Дверь', '<p>Дверь</p>', 1466071434);
+(12, 18, 'Окно 1', '<h2>Окно 1</h2>', 1466099153),
+(13, 18, 'Окно 2', '<h2>Окно 2</h2>', 1466099192),
+(14, 20, 'Дверь 1', '<h2>Дверь 1</h2>', 1466099210),
+(15, 20, 'Дверь 2', '<h2>Дверь 2</h2>', 1466099233),
+(16, 23, 'Элемент нижнего слайдера 1', '<h2>Элемент нижнего слайдера 1</h2>', 1466099292),
+(17, 23, 'Элемент нижнего слайдера 2', '<h2>Элемент нижнего слайдера 2</h2>', 1466099342),
+(18, 22, 'Элемент верхнего слайдера 1', '<h2>Элемент верхнего слайдера 1</h2>', 1466099363),
+(19, 22, 'Элемент верхнего слайдера 2', '<h2>Элемент верхнего слайдера 2</h2>', 1466099414);
 
 -- --------------------------------------------------------
 
@@ -367,7 +420,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT для таблицы `partners`
 --
@@ -382,12 +435,12 @@ ALTER TABLE `partners_regions`
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT для таблицы `regions`
 --
