@@ -42,9 +42,9 @@ class Categories extends \yii\db\ActiveRecord
         ];
     }
 
-    // public function getName(){
-        // return $this->parentCategory ? $this->parentCategory->name . ' -> ' . $this->name : $this->name;
-    // }
+    public function getName(){
+        return $this->parentCategory ? $this->parentCategory->name . ' -> ' . $this->name : $this->name;
+    }
 
     public function getChild(){
         return $this->hasMany(Categories::className(), ['parent' => 'id']);
