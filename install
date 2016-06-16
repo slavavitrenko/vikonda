@@ -71,6 +71,7 @@ function change_settings(){
 }
 
 function install(){
+	if (change_settings()){
 		$settings = read_settings();
 		$dbfile = readline('Имя файла импорта (db.sql): ');
 		if(!$dbfile or $dbfile == ''){
@@ -88,10 +89,13 @@ function install(){
 		else{
 			return read_input('Нет такого файла');
 		}
+	}
+	else {
+		return read_input('Что то пошло не так..');
+	}
 }
 
 function reinstall(){
-	if (change_settings()){
 		$settings = read_settings();
 		$dbfile = readline('Имя файла БД (db.sql): ');
 		if(!$dbfile or $dbfile == ''){
@@ -110,10 +114,6 @@ function reinstall(){
 		else{
 			return read_input('Такого файла здесь нет');
 		}
-	}
-	else {
-		return read_input('Кажется, что-то пошло не так..');
-	}
 }
 
 function write_to_db($sql=null, $settings=null){
