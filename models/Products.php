@@ -49,7 +49,7 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category_id' => Yii::t('app', 'Category ID'),
+            'category_id' => Yii::t('app', 'Category'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -73,4 +73,5 @@ class Products extends \yii\db\ActiveRecord
         }
         return parent::beforeDelete();
     }
+
 }

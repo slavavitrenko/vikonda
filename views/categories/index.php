@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $dataProvider,
             'columns' => [
                 'name',
-                ['class' => 'yii\grid\ActionColumn'],
+                ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
             ],
         ]); ?>
     <?php Pjax::end(); ?>

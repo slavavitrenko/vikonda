@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'parent')->widget(Select2::className(), [
-    	'data' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
+    	'data' => ArrayHelper::map(Categories::find()->where(['parent' => '0'])->all(), 'id', 'name'),
     	'options' => ['placeholder' => Yii::t('app', 'Root category')],
     	'pluginOptions' => ['allowClear' => true]
     ])->label(Yii::t('app', 'Parent category')) ?>

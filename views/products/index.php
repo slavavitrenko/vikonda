@@ -27,14 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'name',
             [
-                'attribute' => 'category.name',
+                'attribute' => 'category_id',
                 'filter' => Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'category_id',
-                        'data' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
+                        'data' => ArrayHelper::map(Categories::find()->all(), 'id', 'name', 'parentName'),
                         'options' => ['placeholder' => Yii::t('app', 'Choose...')],
                         'pluginOptions' => ['allowClear' => true]
-                    ])
+                    ]),
+                'value' => function($model){return $model->category->getName();}
             ],
             [
                 'attribute' => 'created_at',

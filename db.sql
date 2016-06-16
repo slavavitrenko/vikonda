@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 16 2016 г., 14:56
+-- Время создания: Июн 16 2016 г., 17:33
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -37,10 +37,13 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `parent`) VALUES
-(7, 'Все', 0),
+(7, 'Витрина', 0),
 (8, 'Окна', 7),
 (9, 'Двери', 7),
-(10, '67k8', 9);
+(11, 'Слайдеры', 0),
+(12, 'Верхний', 11),
+(13, 'Нижний', 11),
+(14, 'Подвал', 11);
 
 -- --------------------------------------------------------
 
@@ -69,6 +72,54 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m141222_135246_alter_username_length', 1465997179),
 ('m150614_103145_update_social_account_table', 1465997179),
 ('m150623_212711_fix_username_notnull', 1465997179);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `partners`
+--
+
+CREATE TABLE `partners` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `partners`
+--
+
+INSERT INTO `partners` (`id`, `name`) VALUES
+(5, 'Владимир Переяславский'),
+(6, 'Князь Киевский'),
+(7, 'Святополк'),
+(8, 'Фридрих II'),
+(9, 'Петр I');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `partners_regions`
+--
+
+CREATE TABLE `partners_regions` (
+  `id` int(11) NOT NULL,
+  `partner_id` int(11) NOT NULL,
+  `region_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `partners_regions`
+--
+
+INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
+(22, 7, 4),
+(23, 6, 3),
+(24, 6, 4),
+(25, 6, 5),
+(26, 6, 6),
+(27, 8, 6),
+(28, 9, 8),
+(30, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -115,7 +166,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `created_at`) VALUES
 (11, 8, 'Окно', '<p>Окна</p>', 1466071420),
-(12, 9, 'Двери', '<p>Дверь</p>', 1466071434);
+(12, 9, 'Дверь', '<p>Дверь</p>', 1466071434);
 
 -- --------------------------------------------------------
 
@@ -140,6 +191,28 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `regions`
+--
+
+CREATE TABLE `regions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `regions`
+--
+
+INSERT INTO `regions` (`id`, `name`) VALUES
+(3, 'Переяслав'),
+(4, 'Хмельницкий'),
+(5, 'Киев'),
+(6, 'Пруссия'),
+(8, 'Киевская Русь');
 
 -- --------------------------------------------------------
 
@@ -220,6 +293,21 @@ ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Индексы таблицы `partners`
+--
+ALTER TABLE `partners`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`(191));
+
+--
+-- Индексы таблицы `partners_regions`
+--
+ALTER TABLE `partners_regions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `partner_id` (`partner_id`),
+  ADD KEY `region_id` (`region_id`);
+
+--
 -- Индексы таблицы `pictures`
 --
 ALTER TABLE `pictures`
@@ -239,6 +327,13 @@ ALTER TABLE `products`
 --
 ALTER TABLE `profile`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- Индексы таблицы `regions`
+--
+ALTER TABLE `regions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`(191));
 
 --
 -- Индексы таблицы `social_account`
@@ -272,7 +367,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT для таблицы `partners`
+--
+ALTER TABLE `partners`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT для таблицы `partners_regions`
+--
+ALTER TABLE `partners_regions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --
@@ -283,6 +388,11 @@ ALTER TABLE `pictures`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT для таблицы `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `social_account`
 --

@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\Url;
+use app\models\Products;
 
 class Categories extends \yii\db\ActiveRecord
 {
@@ -42,12 +43,24 @@ class Categories extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getName(){
+        return $this->parentCategory ? $this->parentCategory->name . ' -> ' . $this->name : $this->name;
+    }
+
     public function getChild(){
         return $this->hasMany(Categories::className(), ['parent' => 'id']);
     }
 
     public function getParentCategory(){
         return $this->hasOne(Categories::className(), ['id' => 'parent']);
+    }
+
+    public function getParentName(){
+        return $this->parentCategory ? $this->parentCategory->name : Yii::t('app', 'Root category');
+    }
+
+    public function getProducts(){
+        return $this->hasMany(Products::className(), ['category_id' => 'id']);
     }
 
 }
