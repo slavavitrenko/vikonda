@@ -1,15 +1,242 @@
 #!/usr/bin/php
 
- <?php if($argv[1]) { if(isset($argv[1])) { 	 switch ($argv[1]) 	 { 	 case 'q': 	 echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 	 exit(); 	 break; 	 case 'c': if(change_settings()) 	 { 	 	 read_input('Настройки изменены'); 	 } 	 break; 	 case 'r': reinstall(); 	 break; 	 case 'i': install(); 	 break; 	 default: read_input('Выберите из списка ниже: '); 	 break; 	 } } } function read_settings() { return json_decode(file_get_contents(__DIR__ . '/config/db.json')); } function write_settings($db=null, $user=null, $password=null) { if($db && $user && $password) { 	 $config = [ 'db' => $db, 'user' => $user, 'password' => $password, ]; 	 $file = fopen('config/db.json', 'w'); 	 fwrite($file, json_encode($config)); 	 fclose($file); 	 return true; } else { 	 fclose($file); 	 return false; } } function change_settings() { $db = readline('Имя базы данных: '); $user = readline('Пользователь БД: (' . $db . ')'); $password = readline('Пароль: '); if($user == '') { 	 $user = $db; } $check = write_settings($db, $user, $password); if($check) { 	 echo "\nУспешно установлено\n"; 	 return true; } else { 	 read_input('Не установлено, есть ошибки'); } } function install() { if (change_settings()) { 	 $settings = read_settings(); 	 $dbfile = readline('Имя файла импорта (db.sql): '); 	 if(!$dbfile or $dbfile == '') 	 { 	 $dbfile = 'db.sql'; 	 } 	 if($sql = @file_get_contents(__DIR__ . '/' . $dbfile)) 	 { 	 $dbstatus = write_to_db($sql, $settings); 	 if(true === $dbstatus) 	 { 	 	 return read_input('Успешно установлено'); 	 } 	 else 	 { 	 	 read_input($dbstatus); 	 } 	 } 	 else 	 { 	 return read_input('Нет такого файла'); 	 } } else { 	 return read_input('Что то пошло не так..'); } } function reinstall() { if (change_settings()) { 	 $settings = read_settings(); 	 $dbfile = readline('Имя файла БД (db.sql): '); 	 if(!$dbfile or $dbfile == '') 	 { 	 $dbfile = 'db.sql'; 	 } 	 if($sql = @file_get_contents(__DIR__ . '/' . $dbfile)) 	 { 	 $statusclean = clean_db($settings); 	 $dbstatus = write_to_db($sql, $settings); 	 if(true === $dbstatus) 	 { 	 	 return read_input('Успешно установлено'); 	 } 	 else 	 { 	 	 read_input($dbstatus); 	 } 	 } 	 else 	 { 	 return read_input('Такого файла здесь нет'); 	 } } else { 	 return read_input('Кажется, что-то пошло не так..'); } } function write_to_db($sql=null, $settings=null) { if($sql && $settings) { 	 $conn = mysql_connect('localhost', $settings->user, $settings->password); 	 if(! $conn ) 	 { 	 $status = 'Не могу соединиться с БД: ' . mysql_error(); 	 } 	 mysql_select_db($settings->db); 	 echo "Работаемс..."; 	 mysql_query("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'", $conn); 	 foreach (remove_comments($sql) as $command) 	 { 	 if($command !== '' && $command != "\n\n\n" && $command != "\n\n") 	 { 	 	 echo "."; 	 	 $status = mysql_query($command, $conn) ? 'Успешно установлено' : 'Ошибка БД: "' . mysql_error() . '"'; 	 } 	 } 	 mysql_close($conn); 	 return $status; } else { 	 return 'Ошибка ввода'; } } function clean_db($settings) { if($settings) { 	 $conn = mysql_connect('localhost', $settings->user, $settings->password); 	 if(! $conn ) 	 { 	 $status = 'Не могу соединиться с БД: ' . mysql_error(); 	 } 	 mysql_select_db($settings->db); 	 $result = mysql_query("show tables"); 	 while($table = mysql_fetch_array($result)) 	 { 	 $tablename=$table[0]; 	 $q=mysql_query("DROP TABLE $tablename"); 	 $status = "таблица $tablename была очищена"; 	 } 	 mysql_close($conn); 	 return $status; } else { 	 return 'Введенные данные не верны'; } } function remove_comments(&$output) { $lines = explode("\n", $output); $output = ""; $linecount = count($lines); foreach($lines as $line) { 	 if(!preg_match("/^\/\*/", $line) && !preg_match('/^--/', $line) && !preg_match('/^SET/', $line)) 	 { 	 $output .= $line . "\n"; 	 } } unset($lines); return explode('; 	 ', $output); } function read_input($line='') {
- 	echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; ?>
+<?php
+if($argv[1]){
+		switch ($argv[1]) {
+		case 'q':
+		exit();
+		break;
+
+		case 'c':
+		if(change_settings()){
+			read_input('Настройки изменены');
+		}
+		break;
+
+		case 'r':
+		reinstall();
+		break;
+
+		case 'i':
+		install();
+		break;
+
+		default:
+		read_input('Выберите из списка ниже: ');
+		break;
+	}
+}
+
+function read_settings(){
+	return json_decode(file_get_contents(__DIR__ . '/config/db.json'));
+}
+
+function write_settings($db=null, $user=null, $password=null){
+	if($db && $user && $password){
+		$config = [
+			'db' => $db,
+			'user' => $user,
+			'password' => $password,
+		];
+
+		$file = fopen('config/db.json', 'w');
+		fwrite($file, json_encode($config));
+		fclose($file);
+		return true;
+	}
+	else{
+		fclose($file);
+		return false;
+	}
+}
+
+function change_settings(){
+	$db = readline('Имя базы данных: ');
+	$user = readline('Пользователь БД: (' . $db . ')');
+	$password = readline('Пароль: ');
+	if($user == ''){
+		$user = $db;
+	}
+
+	$check = write_settings($db, $user, $password);
+	if($check){
+		echo 'Успешно установлено';
+		echo '
+';
+		return true;
+	}
+	else{
+		read_input('Не установлено, есть ошибки');
+	}
+}
+
+function install(){
+	if (change_settings()){
+		$settings = read_settings();
+		$dbfile = readline('Имя файла импорта (db.sql): ');
+		if(!$dbfile or $dbfile == ''){
+			$dbfile = 'db.sql';
+		}
+		if($sql = @file_get_contents(__DIR__ . '/' . $dbfile)){
+			$dbstatus = write_to_db($sql, $settings);
+			if(true === $dbstatus){
+				return read_input('Успешно установлено');
+			}
+			else {
+				read_input($dbstatus);
+			}
+		}
+		else{
+			return read_input('Нет такого файла');
+		}
+	}
+	else {
+		return read_input('Что то пошло не так..');
+	}
+}
+
+function reinstall(){
+	if (change_settings()){
+		$settings = read_settings();
+		$dbfile = readline('Имя файла БД (db.sql): ');
+		if(!$dbfile or $dbfile == ''){
+			$dbfile = 'db.sql';
+		}
+		if($sql = @file_get_contents(__DIR__ . '/' . $dbfile)){
+			$statusclean = clean_db($settings);
+			$dbstatus = write_to_db($sql, $settings);
+			if(true === $dbstatus){
+				return read_input('Успешно установлено');
+			}
+			else {
+				read_input($dbstatus);
+			}
+		}
+		else{
+			return read_input('Такого файла здесь нет');
+		}
+	}
+	else {
+		return read_input('Кажется, что-то пошло не так..');
+	}
+}
+
+function write_to_db($sql=null, $settings=null){
+
+	if($sql && $settings){
+		$conn = mysql_connect('localhost', $settings->user, $settings->password);
+		if(! $conn )
+		{
+		  $status = 'Не могу соединиться с  БД: ' . mysql_error();
+		}
+
+		mysql_select_db($settings->db);
+
+		echo "Работаемс...";
+		mysql_query("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'", $conn);
+		foreach (remove_comments($sql) as $command){
+			if($command !== '' && $command != "\n\n\n" && $command != "\n\n"){
+				echo ".";
+				$status = mysql_query($command, $conn) ? 'Успешно установлено' : 'Ошибка БД: "' . mysql_error() . '"';
+			}
+		}
+
+		mysql_close($conn);
+
+		return $status;
+	}
+	else {
+		return 'Ошибка ввода';
+	}
+}
+
+function clean_db($settings){
+
+	if($settings){
+		$conn = mysql_connect('localhost', $settings->user, $settings->password);
+		if(! $conn )
+		{
+		  $status = 'Не могу соединиться с БД: ' . mysql_error();
+		}
+
+		mysql_select_db($settings->db);
+
+		$result = mysql_query("show tables");
+		while($table = mysql_fetch_array($result)) {
+			$tablename=$table[0];
+			$q=mysql_query("DROP TABLE $tablename");
+			$status = "таблица $tablename была очищена";
+		}
+
+		mysql_close($conn);
+
+		return $status;
+	}
+	else {
+		return 'Введенные данные не верны';
+	}
+
+}
+
+function remove_comments(&$output)
+{
+   $lines = explode("\n", $output);
+   $output = "";
+
+   $linecount = count($lines);
+
+   foreach($lines as $line)
+   {
+      if(!preg_match("/^\/\*/", $line) && !preg_match('/^--/', $line) && !preg_match('/^SET/', $line))
+      {
+         $output .= $line . "\n";
+      }
+
+   }
+
+   unset($lines);
+   return explode(';', $output);
+}
+
+function read_input($line=''){
+
+?>
+
+
 =====================================================
-<?=strtoupper($line) . "\n"?>
+<?=strtoupper($line)?>
+
 =====================================================
-||
-||	'c' - изменить настройки бд
-||	'i' - установка
-||	'r' - переустановка
-||	'q' - выход
-|| 
+'c' - изменить настройки бд                        ||
+'i' - установка                                    ||
+'r' - переустановка                                ||
+'q' - выход                                        ||
 =====================================================
- <?php $command = readline('Введите команду: '); switch ($command) { 	 case 'q': 	 echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; 	 exit(); 	 break; 	 case 'c': if(change_settings()) 	 { 	 read_input("\nНастройки успешно изменены\n"); 	 } 	 break; 	 case 'r': reinstall(); 	 break; 	 case 'i': install(); 	 break; 	 default: read_input("Разрешены только эти команды: \n"); 	 break; } } read_input("Выберите действие из списка ниже: \n");
+<?php
+	$command = readline('Введите команду: ');
+	switch ($command) {
+		case 'q':
+		exit();
+		break;
+
+		case 'c':
+		if(change_settings()){
+			read_input('Настройки успешно изменены');
+		}
+		break;
+
+		case 'r':
+		reinstall();
+		break;
+
+		case 'i':
+		install();
+		break;
+
+		default:
+		read_input('Разрешены только эти команды: ');
+		break;
+	}
+}
+
+read_input('Выберите действие из списка ниже: ');
