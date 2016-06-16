@@ -23,7 +23,14 @@ class Categories extends \yii\db\ActiveRecord
             [['parent'], 'integer'],
             [['parent'], 'default', 'value' => '0'],
             [['name'], 'string', 'max' => 255],
+            ['name', 'validateExist']
         ];
+    }
+
+    public function validateExist($attribute, $params){
+        if(Categories::find()->where(['name' => $this->name])->andWhere(['parent' => $this->parent])->asArray()->one()){
+            $this->addError('name', Yii::t('app', 'Category already exist'));
+        }
     }
 
     public function attributeLabels()
@@ -35,9 +42,9 @@ class Categories extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getName(){
-        return $this->parentCategory ? $this->parentCategory->name . ' -> ' . $this->name : $this->name;
-    }
+    // public function getName(){
+        // return $this->parentCategory ? $this->parentCategory->name . ' -> ' . $this->name : $this->name;
+    // }
 
     public function getChild(){
         return $this->hasMany(Categories::className(), ['parent' => 'id']);
@@ -67,6 +74,7 @@ class Categories extends \yii\db\ActiveRecord
                 $product->delete();
             }
         }
+        return true;
     }
 
 }
