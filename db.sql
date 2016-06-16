@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 16 2016 г., 21:43
+-- Время создания: Июн 16 2016 г., 22:23
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -138,60 +138,30 @@ CREATE TABLE `pictures` (
 --
 
 INSERT INTO `pictures` (`id`, `path`, `product_id`, `created_at`) VALUES
-(4, '122026_Papel-de-Pare2_2016-06-16_05:26:54.jpg', 2, 0),
-(5, 'ubuntu_linux_debian_2_2016-06-16_05:26:54.jpg', 2, 0),
-(6, 'WallpapersxlKubuntuU2_2016-06-16_05:26:54.jpg', 2, 0),
-(7, '122026_Papel-de-Pare3_2016-06-16_05:27:21.jpg', 3, 0),
-(8, 'ubuntu_linux_debian_3_2016-06-16_05:27:21.jpg', 3, 0),
-(9, 'WallpapersxlKubuntuU3_2016-06-16_05:27:22.jpg', 3, 0),
-(10, '122026_Papel-de-Pare4_2016-06-16_05:27:55.jpg', 4, 0),
-(11, 'ubuntu_linux_debian_4_2016-06-16_05:27:55.jpg', 4, 0),
-(12, 'WallpapersxlKubuntuU4_2016-06-16_05:27:55.jpg', 4, 0),
-(13, '122026_Papel-de-Pare5_2016-06-16_05:28:21.jpg', 5, 0),
-(14, 'ubuntu_linux_debian_5_2016-06-16_05:28:21.jpg', 5, 0),
-(15, 'WallpapersxlKubuntuU5_2016-06-16_05:28:21.jpg', 5, 0),
-(16, '122026_Papel-de-Pare6_2016-06-16_05:31:02.jpg', 6, 0),
-(17, 'ubuntu_linux_debian_6_2016-06-16_05:31:02.jpg', 6, 0),
-(18, 'WallpapersxlKubuntuU6_2016-06-16_05:31:02.jpg', 6, 0),
-(19, '122026_Papel-de-Pare7_2016-06-16_05:31:36.jpg', 7, 0),
-(20, 'ubuntu_linux_debian_7_2016-06-16_05:31:36.jpg', 7, 0),
-(21, 'WallpapersxlKubuntuU7_2016-06-16_05:31:37.jpg', 7, 0),
-(22, '122026_Papel-de-Pare8_2016-06-16_05:32:46.jpg', 8, 0),
-(23, 'ubuntu_linux_debian_8_2016-06-16_05:32:46.jpg', 8, 0),
-(24, 'WallpapersxlKubuntuU8_2016-06-16_05:32:46.jpg', 8, 0),
-(25, '122026_Papel-de-Pare9_2016-06-16_05:33:11.jpg', 9, 0),
-(26, 'ubuntu_linux_debian_9_2016-06-16_05:33:11.jpg', 9, 0),
-(27, 'WallpapersxlKubuntuU9_2016-06-16_05:33:11.jpg', 9, 0),
-(28, '122026_Papel-de-Pare10_2016-06-16_05:33:40.jpg', 10, 0),
-(29, 'ubuntu_linux_debian_10_2016-06-16_05:33:40.jpg', 10, 0),
-(30, 'WallpapersxlKubuntuU10_2016-06-16_05:33:41.jpg', 10, 0),
-(31, '122026_Papel-de-Pare11_2016-06-16_05:34:27.jpg', 11, 0),
-(32, 'ubuntu_linux_debian_11_2016-06-16_05:34:27.jpg', 11, 0),
-(33, 'WallpapersxlKubuntuU11_2016-06-16_05:34:28.jpg', 11, 0),
-(34, '122026_Papel-de-Pare12_2016-06-16_05:45:53.jpg', 12, 0),
-(35, 'ubuntu_linux_debian_12_2016-06-16_05:45:53.jpg', 12, 0),
-(36, 'WallpapersxlKubuntuU12_2016-06-16_05:45:54.jpg', 12, 0),
-(37, '122026_Papel-de-Pare13_2016-06-16_05:46:32.jpg', 13, 0),
-(38, 'ubuntu_linux_debian_13_2016-06-16_05:46:32.jpg', 13, 0),
-(39, 'WallpapersxlKubuntuU13_2016-06-16_05:46:32.jpg', 13, 0),
-(40, '122026_Papel-de-Pare14_2016-06-16_05:46:50.jpg', 14, 0),
-(41, 'ubuntu_linux_debian_14_2016-06-16_05:46:51.jpg', 14, 0),
-(42, 'WallpapersxlKubuntuU14_2016-06-16_05:46:51.jpg', 14, 0),
-(43, '122026_Papel-de-Pare15_2016-06-16_05:47:13.jpg', 15, 0),
-(44, 'ubuntu_linux_debian_15_2016-06-16_05:47:13.jpg', 15, 0),
-(45, 'WallpapersxlKubuntuU15_2016-06-16_05:47:13.jpg', 15, 0),
-(46, '122026_Papel-de-Pare16_2016-06-16_05:48:12.jpg', 16, 0),
-(47, 'ubuntu_linux_debian_16_2016-06-16_05:48:12.jpg', 16, 0),
-(48, 'WallpapersxlKubuntuU16_2016-06-16_05:48:12.jpg', 16, 0),
-(49, '122026_Papel-de-Pare17_2016-06-16_05:49:02.jpg', 17, 0),
-(50, 'ubuntu_linux_debian_17_2016-06-16_05:49:02.jpg', 17, 0),
-(51, 'WallpapersxlKubuntuU17_2016-06-16_05:49:02.jpg', 17, 0),
-(52, '122026_Papel-de-Pare18_2016-06-16_05:49:23.jpg', 18, 0),
-(53, 'ubuntu_linux_debian_18_2016-06-16_05:49:23.jpg', 18, 0),
-(54, 'WallpapersxlKubuntuU18_2016-06-16_05:49:23.jpg', 18, 0),
-(55, '122026_Papel-de-Pare19_2016-06-16_05:50:14.jpg', 19, 0),
-(56, 'ubuntu_linux_debian_19_2016-06-16_05:50:14.jpg', 19, 0),
-(57, 'WallpapersxlKubuntuU19_2016-06-16_05:50:15.jpg', 19, 0);
+(58, '122026_Papel-de-Pare12_2016-06-16_07:22:15.jpg', 12, 0),
+(59, 'ubuntu_linux_debian_12_2016-06-16_07:22:15.jpg', 12, 0),
+(60, 'WallpapersxlKubuntuU12_2016-06-16_07:22:15.jpg', 12, 0),
+(61, '122026_Papel-de-Pare13_2016-06-16_07:22:21.jpg', 13, 0),
+(62, 'ubuntu_linux_debian_13_2016-06-16_07:22:21.jpg', 13, 0),
+(63, 'WallpapersxlKubuntuU13_2016-06-16_07:22:21.jpg', 13, 0),
+(64, '122026_Papel-de-Pare14_2016-06-16_07:22:57.jpg', 14, 0),
+(65, 'ubuntu_linux_debian_14_2016-06-16_07:22:57.jpg', 14, 0),
+(66, 'WallpapersxlKubuntuU14_2016-06-16_07:22:58.jpg', 14, 0),
+(67, '122026_Papel-de-Pare15_2016-06-16_07:23:03.jpg', 15, 0),
+(68, 'ubuntu_linux_debian_15_2016-06-16_07:23:04.jpg', 15, 0),
+(69, 'WallpapersxlKubuntuU15_2016-06-16_07:23:04.jpg', 15, 0),
+(70, '122026_Papel-de-Pare16_2016-06-16_07:23:17.jpg', 16, 0),
+(71, 'ubuntu_linux_debian_16_2016-06-16_07:23:18.jpg', 16, 0),
+(72, 'WallpapersxlKubuntuU16_2016-06-16_07:23:18.jpg', 16, 0),
+(73, '122026_Papel-de-Pare17_2016-06-16_07:23:24.jpg', 17, 0),
+(74, 'ubuntu_linux_debian_17_2016-06-16_07:23:24.jpg', 17, 0),
+(75, 'WallpapersxlKubuntuU17_2016-06-16_07:23:24.jpg', 17, 0),
+(76, '122026_Papel-de-Pare18_2016-06-16_07:23:29.jpg', 18, 0),
+(77, 'ubuntu_linux_debian_18_2016-06-16_07:23:30.jpg', 18, 0),
+(78, 'WallpapersxlKubuntuU18_2016-06-16_07:23:30.jpg', 18, 0),
+(79, '122026_Papel-de-Pare19_2016-06-16_07:23:35.jpg', 19, 0),
+(80, 'ubuntu_linux_debian_19_2016-06-16_07:23:36.jpg', 19, 0),
+(81, 'WallpapersxlKubuntuU19_2016-06-16_07:23:36.jpg', 19, 0);
 
 -- --------------------------------------------------------
 
@@ -435,7 +405,7 @@ ALTER TABLE `partners_regions`
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
