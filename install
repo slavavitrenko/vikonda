@@ -122,7 +122,7 @@ function write_to_db($sql=null, $settings=null){
 		$conn = mysqli_connect('localhost', $settings->user, $settings->password);
 		if(! $conn )
 		{
-		  $status = 'Не могу соединиться с  БД: ' . mysqli_error();
+		  $status = 'Не могу соединиться с  БД: ' . mysqli_error($conn);
 		}
 
 		mysqli_select_db($conn, $settings->db);
@@ -132,7 +132,7 @@ function write_to_db($sql=null, $settings=null){
 		foreach (remove_comments($sql) as $command){
 			if($command !== '' && $command != "\n\n\n" && $command != "\n\n"){
 				echo ".";
-				$status = mysqli_query($conn, $command) ? 'Успешно установлено' : 'Ошибка БД: "' . mysqli_error() . '"';
+				$status = mysqli_query($conn, $command) ? 'Успешно установлено' : 'Ошибка БД: "' . mysqli_error($conn) . '"';
 			}
 		}
 
@@ -152,15 +152,18 @@ function clean_db($settings){
 
 		if(! $conn )
 		{
-		  $status = 'Не могу соединиться с БД: ' . mysqli_error();
+		  $status = 'Не могу соединиться с БД: ' . mysqli_error($conn);
 		}
 
 		mysqli_select_db($conn, $settings->db);
 
 		$result = mysqli_query($conn, "show tables");
 		while($table = mysqli_fetch_array($result, $conn ? true : false)) {
-			$tablename=$table['Tables_in_win'];
-			$q=mysqli_query($conn, "DROP TABLE $tablename");
+			
+			foreach($table as $tablename){
+				$q=mysqli_query($conn, "DROP TABLE $tablename;");
+			}
+
 			$status = "таблица $tablename была очищена";
 		}
 
@@ -203,10 +206,10 @@ function read_input($line=''){
 <?=strtoupper($line)?>
 
 =====================================================
-||	'c' - изменить настройки бд                    ||
-||	'i' - установка                                ||
-||	'r' - переустановка                            ||
-||	'q' - выход                                    ||
+||    'c' - изменить настройки бд                  ||
+||    'i' - установка                              ||
+||    'r' - переустановка                          ||
+||    'q' - выход                                  ||
 =====================================================
 <?php
 	$command = readline('Введите команду: ');
