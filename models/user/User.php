@@ -5,6 +5,8 @@ use Yii;
 
 class User extends \dektrium\user\models\User {
 	
+    public $type;
+    
 	public function scenarios()
     {
         $scenarios = parent::scenarios();
