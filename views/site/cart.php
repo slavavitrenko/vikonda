@@ -21,7 +21,6 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 	<div class="col-sm-9">
 		<?php if(count($order->products) >= 1) { ?>
 			<?php \yii\widgets\Pjax::begin(['id' => 'order-container']); ?>
-			<p><?=Html::a('< ' . Yii::t('app', 'Go back'), ['/products/index'], ['class' => 'btn btn-sm btn-primary', 'onclick' => 'history.back()']); ?></p>
 			<table class="table table-bordered table-striped orders-table">
 				<th><?=Yii::t('app', 'Name'); ?></th>
 				<th><?=Yii::t('app', 'Count'); ?></th>
