@@ -20,16 +20,19 @@ class Categories extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['parent'], 'integer'],
+            [['parent', 'visible'], 'integer'],
             [['parent'], 'default', 'value' => '0'],
             [['name'], 'string', 'max' => 255],
-            ['name', 'validateExist']
+            [['name'], 'validateExist'],
+            [['visible'], 'default', 'value' => 1]
         ];
     }
 
     public function validateExist($attribute, $params){
-        if(Categories::find()->where(['name' => $this->name])->andWhere(['parent' => $this->parent])->asArray()->one()){
-            $this->addError('name', Yii::t('app', 'Category already exist'));
+        if($this->isNewRecord){
+            if(Categories::find()->where(['name' => $this->name])->andWhere(['parent' => $this->parent])->asArray()->one()){
+                $this->addError('name', Yii::t('app', 'Category already exist'));
+            }
         }
     }
 
@@ -39,6 +42,7 @@ class Categories extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'parent' => Yii::t('app', 'Parent'),
+            'visible' => Yii::t('app', 'Visible'),
         ];
     }
 
@@ -75,6 +79,16 @@ class Categories extends \yii\db\ActiveRecord
             }
         }
         return true;
+    }
+
+    public function afterSave($insert, $changerAttributes){
+        if($childs = $this->child){
+            foreach($childs as $child){
+                $child->visible = $this->visible;
+                $child->save();
+            }
+        }
+        return parent::afterSave($insert, $changerAttributes);
     }
 
 }

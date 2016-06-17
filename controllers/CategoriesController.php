@@ -40,7 +40,6 @@ class CategoriesController extends Controller
         parent::init();
         $this->layout = '@app/views/layouts/dashboard';
     }
- 
 
     public function actionIndex()
     {
@@ -56,6 +55,8 @@ class CategoriesController extends Controller
     public function actionCreate()
     {
         $model = new Categories();
+
+        $model->visible = 1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);

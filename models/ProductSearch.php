@@ -39,7 +39,7 @@ class ProductSearch extends Products
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $formName=null)
     {
         $query = Products::find();
 
@@ -49,7 +49,7 @@ class ProductSearch extends Products
             'query' => $query,
         ]);
 
-        $this->load($params);
+        $this->load($params, $formName);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -68,8 +68,8 @@ class ProductSearch extends Products
 
         $query->orFilterWhere(['categories.parent' => $this->category_id]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'products.name', $this->name])
+            ->andFilterWhere(['like', 'products.description', $this->description]);
 
         return $dataProvider;
     }

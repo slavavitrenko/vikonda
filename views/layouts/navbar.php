@@ -21,6 +21,12 @@ if(!Yii::$app->user->isGuest){
 		];
 	}
 }
+
+$items[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
+.
+(Yii::$app->cart->isEmpty() ? '' : Yii::$app->cart->order->productsCount)
+, 'url' => '#'];
+
 $items[] = Yii::$app->user->getIsGuest() ?
 	['label' => Yii::t('app', 'Login'), 'url' => ['/user/login']]
 	:
@@ -37,6 +43,7 @@ $items[] = Yii::$app->user->getIsGuest() ?
 	]);
 	echo Nav::widget([
 		'activateParents' => true,
+		'encodeLabels' => false,
 		'options' => ['class' => 'navbar-nav navbar-right'],
 		'items' => $items
 	]);

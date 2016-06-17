@@ -22,7 +22,8 @@ use app\models\Pictures;
 class ProductsController extends Controller
 {
 
-    public function init(){
+    public function init()
+    {
         parent::init();
         $this->layout = '@app/views/layouts/dashboard';
     }
@@ -33,11 +34,15 @@ class ProductsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    'add-in-cart' => ['post'],
+                    'set-count' => ['post'],
+                    'delete-from-cart' => ['post'],
                     'delete' => ['POST'],
                 ],
             ],
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['create', 'update', 'delete'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -56,10 +61,14 @@ class ProductsController extends Controller
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        $data = [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ];
+        return
+        !Yii::$app->user->isGuest ? $this->render('index', $data)
+        :
+        $this->render('list', $data);
     }
 
     public function actionView($id)
@@ -118,7 +127,8 @@ class ProductsController extends Controller
         }
     }
 
-    protected function saveImages($images, $model_id){
+    protected function saveImages($images, $model_id)
+    {
         foreach($images as $image){
             $date = date('Y-m-d_h:i:s');
             $filename = mb_substr(str_replace(["]", "[", "(", ")", " ", "\t", "\n"], '', $image->baseName), 0, 20);
@@ -135,4 +145,33 @@ class ProductsController extends Controller
             }
         }
     }
+
+    // Взаимодействие с корзиной
+    public function actionAddInCart()
+    {
+        $postData = Yii::$app->request->post();
+        return json_encode([
+            'success' => Yii::$app->cart->add($postData['product_id'], $postData['count']),
+            'cartStatus' => Yii::$app->cart->status
+        ]);
+    }
+ 
+    public function actionSetCount()
+    {
+        $postData = Yii::$app->request->post();
+        return json_encode([
+            'success' => Yii::$app->cart->setCount($postData['product_id'], $postData['count']),
+            'cartStatus' => Yii::$app->cart->status
+        ]);
+    }
+ 
+    public function actionDeleteFromCart()
+    {
+        $postData = Yii::$app->request->post();
+        return json_encode([
+            'success' => Yii::$app->cart->delete($postData['product_id']),
+            'cartStatus' => Yii::$app->cart->status
+        ]);
+    }
+
 }

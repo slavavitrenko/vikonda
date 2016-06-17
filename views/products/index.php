@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]),
                 'value' => function($model){return $model->category->getName();}
             ],
+            'price',
             [
                 'attribute' => 'created_at',
                 'filter' => false,

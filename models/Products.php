@@ -33,12 +33,13 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'name', 'description'], 'required'],
+            [['category_id', 'name', 'description', 'price'], 'required'],
             [['category_id', 'created_at'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 255],
             ['created_at', 'default', 'value' => time()],
             [['images'], 'file', 'maxFiles' => 10, 'skipOnEmpty' => true, 'extensions' => 'gif, jpg, png'],
+            ['price', 'number']
         ];
     }
 
@@ -54,6 +55,7 @@ class Products extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
             'images' => Yii::t('app', 'Images'),
+            'price' => Yii::t('app', 'Price')
         ];
     }
 

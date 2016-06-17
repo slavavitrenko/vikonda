@@ -35,9 +35,9 @@ $config = [
         'request' => [
             'cookieValidationKey' => 'zUTf69AJbhsqFeeHg9tO-YXBoJoiFv7i',
         ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
+        // 'cache' => [
+        //     'class' => 'yii\caching\FileCache',
+        // ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -68,6 +68,9 @@ $config = [
                 ],
             ],
         ],
+        'cart' => [
+            'class' => 'app\components\Cart'
+        ]
     ],
     'modules' => [
         'redactor' => 'yii\redactor\RedactorModule',
@@ -94,11 +97,13 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs' => ['127.0.0.1', '192.168.0.*', '93.78.238.18']
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1', '192.168.0.*', '93.78.238.18'],
     ];
 }
 
