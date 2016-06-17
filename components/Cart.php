@@ -21,7 +21,7 @@ class Cart extends \yii\base\Component
 		$link->product_id = $productId;
 		$link->order_id = $this->order->id;
 		$link->count += $count;
-		return $link->save();
+		return $link->save() ? true : $link->errors;
 	}
 
 	public function createOrder()
@@ -49,6 +49,11 @@ class Cart extends \yii\base\Component
 		if ($this->_order == null) {
 			$this->_order = Orders::findOne(['id' => $this->getOrderId()]);
 		}
+		if(!$this->_order){
+			$session = Yii::$app->session;
+			unset($session[self::SESSION_KEY]);
+			$this->_order = Orders::findOne(['id' => $this->getOrderId()]);
+		}
 		return $this->_order;
 	}
 
@@ -67,8 +72,11 @@ class Cart extends \yii\base\Component
 		if (!$link) {
 			return false;
 		}
-		$link->count = $count;
-		return $link->save();
+		if($count >= 1){
+			$link->count = $count;
+			return $link->save();
+		}
+		return true;
 	}
 
 	public function isEmpty()
@@ -82,11 +90,12 @@ class Cart extends \yii\base\Component
 	public function getStatus()
 	{
 	    if ($this->isEmpty()) {
-	        return Yii::t('app', 'В корзине пусто');
+	        return '';
 	    }
-	    return Yii::t('app', 'В корзине {productsCount, number} {productsCount, plural, one{товар} few{товара} many{товаров} other{товара}} на сумму {amount} грн.', [
+	    return Yii::t('app', 'Products in cart: {productsCount} ({amount} {currency}.)', [
 	        'productsCount' => $this->order->productsCount,
-	        'amount' => $this->order->amount
+	        'amount' => $this->order->amount,
+	        'currency' => 'грн'
 	    ]);
 	}
 

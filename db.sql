@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.4
+-- version 4.6.1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 17 2016 г., 14:52
--- Версия сервера: 5.5.44-MariaDB
--- Версия PHP: 5.4.16
+-- Время создания: Июн 17 2016 г., 17:22
+-- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
+-- Версия PHP: 7.0.4-7ubuntu2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `c1vikonda`
+-- База данных: `win`
 --
 
 -- --------------------------------------------------------
@@ -26,12 +26,12 @@ SET time_zone = "+00:00";
 -- Структура таблицы `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `parent` int(11) NOT NULL,
   `visible` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `categories`
@@ -51,7 +51,7 @@ INSERT INTO `categories` (`id`, `name`, `parent`, `visible`) VALUES
 -- Структура таблицы `migration`
 --
 
-CREATE TABLE IF NOT EXISTS `migration` (
+CREATE TABLE `migration` (
   `version` varchar(180) NOT NULL,
   `apply_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -79,13 +79,13 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 -- Структура таблицы `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -93,13 +93,13 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- Структура таблицы `orders_products`
 --
 
-CREATE TABLE IF NOT EXISTS `orders_products` (
+CREATE TABLE `orders_products` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
-  `price` decimal(7,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `price` decimal(7,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -107,10 +107,10 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
 -- Структура таблицы `partners`
 --
 
-CREATE TABLE IF NOT EXISTS `partners` (
+CREATE TABLE `partners` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `partners`
@@ -129,11 +129,11 @@ INSERT INTO `partners` (`id`, `name`) VALUES
 -- Структура таблицы `partners_regions`
 --
 
-CREATE TABLE IF NOT EXISTS `partners_regions` (
+CREATE TABLE `partners_regions` (
   `id` int(11) NOT NULL,
   `partner_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `partners_regions`
@@ -155,12 +155,12 @@ INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
 -- Структура таблицы `pictures`
 --
 
-CREATE TABLE IF NOT EXISTS `pictures` (
+CREATE TABLE `pictures` (
   `id` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
   `created_at` int(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `pictures`
@@ -198,28 +198,28 @@ INSERT INTO `pictures` (`id`, `path`, `product_id`, `created_at`) VALUES
 -- Структура таблицы `products`
 --
 
-CREATE TABLE IF NOT EXISTS `products` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `description` text NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `products`
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `created_at`) VALUES
-(12, 19, 'Окно 1', 123.00, '<h2>Окно 1</h2>', 1466099153),
-(13, 19, 'Окно 2', 236.79, '<h2>Окно 2</h2>', 1466099192),
-(14, 20, 'Дверь 1', 325.74, '<h2>Дверь 1</h2>', 1466099210),
-(15, 20, 'Дверь 2', 231.34, '<h2>Дверь 2</h2>', 1466099233),
-(16, 23, 'Элемент нижнего слайдера 1', 343.20, '<h2>Элемент нижнего слайдера 1</h2>', 1466099292),
-(17, 23, 'Элемент нижнего слайдера 2', 1000.00, '<h2>Элемент нижнего слайдера 2</h2>', 1466099342),
-(18, 22, 'Элемент верхнего слайдера 1', 122.98, '<h2>Элемент верхнего слайдера 1</h2>', 1466099363),
-(19, 22, 'Элемент верхнего слайдера 2', 213.54, '<h2>Элемент верхнего слайдера 2</h2>', 1466099414);
+(12, 19, 'Окно 1', '123.00', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099153),
+(13, 19, 'Окно 2', '236.79', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099192),
+(14, 20, 'Дверь 1', '325.74', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099210),
+(15, 20, 'Дверь 2', '231.34', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099233),
+(16, 23, 'Элемент нижнего слайдера 1', '343.20', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099292),
+(17, 23, 'Элемент нижнего слайдера 2', '1000.00', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099342),
+(18, 22, 'Элемент верхнего слайдера 1', '122.98', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099363),
+(19, 22, 'Элемент верхнего слайдера 2', '213.54', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099414);
 
 -- --------------------------------------------------------
 
@@ -227,7 +227,7 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `cr
 -- Структура таблицы `profile`
 --
 
-CREATE TABLE IF NOT EXISTS `profile` (
+CREATE TABLE `profile` (
   `user_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `public_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -251,10 +251,10 @@ INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gra
 -- Структура таблицы `regions`
 --
 
-CREATE TABLE IF NOT EXISTS `regions` (
+CREATE TABLE `regions` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `regions`
@@ -273,7 +273,7 @@ INSERT INTO `regions` (`id`, `name`) VALUES
 -- Структура таблицы `social_account`
 --
 
-CREATE TABLE IF NOT EXISTS `social_account` (
+CREATE TABLE `social_account` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `provider` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `social_account` (
 -- Структура таблицы `token`
 --
 
-CREATE TABLE IF NOT EXISTS `token` (
+CREATE TABLE `token` (
   `user_id` int(11) NOT NULL,
   `code` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) NOT NULL,
@@ -304,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `token` (
 -- Структура таблицы `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updated_at` int(11) NOT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
   `type` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'partner'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `user`
@@ -436,42 +436,42 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT для таблицы `partners`
 --
 ALTER TABLE `partners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
 ALTER TABLE `partners_regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT для таблицы `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `social_account`
 --
@@ -481,7 +481,7 @@ ALTER TABLE `social_account`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

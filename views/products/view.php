@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Products */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->category->name, 'url' => ['/products/index', 'ProductSearch[category_id]' => $model->category_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="products-view">

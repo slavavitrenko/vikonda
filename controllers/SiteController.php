@@ -32,6 +32,7 @@ class SiteController extends Controller
             ],
         ];
     }
+    
     public function actions()
     {
         return [
@@ -44,9 +45,31 @@ class SiteController extends Controller
             ],
         ];
     }
+
     public function actionIndex()
     {
         return $this->redirect(['/products/index']);
         return $this->render('index');
     }
+
+    public function actionCart(){
+        return $this->render(
+            'cart',
+            [
+                'order' => Yii::$app->cart->order
+            ]);
+    }
+
+    public function actionSetCount($product_id=null, $count=1)
+    {
+        if($product_id){Yii::$app->cart->setCount($product_id, $count);}
+        return $this->actionCart();
+    }
+ 
+    public function actionDeleteFromCart($product_id=null)
+    {
+        if($product_id){Yii::$app->cart->delete($product_id);}
+        return $this->actionCart();
+    }
+
 }

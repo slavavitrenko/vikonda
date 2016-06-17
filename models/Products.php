@@ -67,6 +67,10 @@ class Products extends \yii\db\ActiveRecord
         return $this->hasMany(Pictures::className(), ['product_id' => 'id']);
     }
 
+    public function getPicCount(){
+        return Pictures::find()->select('id')->where(['product_id' => $this->id])->count();
+    }
+
     public function beforeDelete(){
         if($this->pictures){
             foreach($this->pictures as $picture){

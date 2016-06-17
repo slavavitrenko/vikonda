@@ -17,7 +17,7 @@ class OrdersProducts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'product_id', 'count', 'price'], 'required'],
+            [['order_id', 'product_id', 'count'], 'required'],
             [['order_id', 'product_id', 'count'], 'integer'],
             [['price'], 'number'],
         ];

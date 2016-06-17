@@ -103,3 +103,12 @@ label.control-label {
 .form-group .btn-group {
   margin-left: 0!important;
 }
+
+.btn-no-border {
+    border-radius: 0;
+    width: 50%;
+}
+
+.btn-group {
+    width: 100%;
+}

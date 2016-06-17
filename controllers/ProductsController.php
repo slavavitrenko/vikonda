@@ -34,9 +34,6 @@ class ProductsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'add-in-cart' => ['post'],
-                    'set-count' => ['post'],
-                    'delete-from-cart' => ['post'],
                     'delete' => ['POST'],
                 ],
             ],
@@ -149,29 +146,12 @@ class ProductsController extends Controller
     // Взаимодействие с корзиной
     public function actionAddInCart()
     {
+        Yii::$app->response->format = 'json';
         $postData = Yii::$app->request->post();
-        return json_encode([
-            'success' => Yii::$app->cart->add($postData['product_id'], $postData['count']),
+        return [
+            'success' => Yii::$app->cart->add($postData['product_id'], isset($postData['count']) ? $postData['count'] : 1),
             'cartStatus' => Yii::$app->cart->status
-        ]);
-    }
- 
-    public function actionSetCount()
-    {
-        $postData = Yii::$app->request->post();
-        return json_encode([
-            'success' => Yii::$app->cart->setCount($postData['product_id'], $postData['count']),
-            'cartStatus' => Yii::$app->cart->status
-        ]);
-    }
- 
-    public function actionDeleteFromCart()
-    {
-        $postData = Yii::$app->request->post();
-        return json_encode([
-            'success' => Yii::$app->cart->delete($postData['product_id']),
-            'cartStatus' => Yii::$app->cart->status
-        ]);
+        ];
     }
 
 }

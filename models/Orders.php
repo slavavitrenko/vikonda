@@ -57,4 +57,14 @@ class Orders extends \yii\db\ActiveRecord
         return parent::beforeDelete();
     }
 
+    public function getAmount(){
+        $totalAmount = 0;
+        if($products = $this->products){
+            foreach($products as $product){
+                $totalAmount += $product->getPrice() * $product->count;
+            } 
+        }
+        return $totalAmount;
+    }
+
 }

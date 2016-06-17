@@ -66,6 +66,10 @@ class ProductSearch extends Products
             'created_at' => $this->created_at,
         ]);
 
+        if(Yii::$app->user->isGuest){
+            $query->andFilterWhere(['categories.visible' => '1']);
+        }
+
         $query->orFilterWhere(['categories.parent' => $this->category_id]);
 
         $query->andFilterWhere(['like', 'products.name', $this->name])

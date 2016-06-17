@@ -24,8 +24,8 @@ if(!Yii::$app->user->isGuest){
 
 $items[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
 .
-(Yii::$app->cart->isEmpty() ? '' : Yii::$app->cart->order->productsCount)
-, 'url' => '#'];
+Yii::$app->cart->status
+, 'url' => ['/site/cart'], 'linkOptions' => ['style' => 'color:yellow']];
 
 $items[] = Yii::$app->user->getIsGuest() ?
 	['label' => Yii::t('app', 'Login'), 'url' => ['/user/login']]
@@ -41,11 +41,14 @@ $items[] = Yii::$app->user->getIsGuest() ?
 			'class' => 'navbar-inverse navbar-fixed-top',
 		],
 	]);
+
+	\yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1]);
 	echo Nav::widget([
 		'activateParents' => true,
 		'encodeLabels' => false,
 		'options' => ['class' => 'navbar-nav navbar-right'],
 		'items' => $items
 	]);
+	\yii\widgets\Pjax::end();
 	NavBar::end();
 ?>
