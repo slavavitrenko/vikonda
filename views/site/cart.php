@@ -5,6 +5,9 @@ use yii\helpers\Url;
 
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
+use app\models\Regions;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 
 
 $this->title = Yii::t('app', 'Cart');
@@ -54,9 +57,14 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 			<?php $form = ActiveForm::begin(); ?>
 			<?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
 			<?=$form->field($model, 'email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
+			<?=$form->field($model, 'region_id')->widget(Select2::className(), [
+					'data' => ArrayHelper::map(Regions::find()->all(), 'id', 'name'),
+					'options' => ['placeholder' => Yii::t('app', 'Choose...')],
+					'pluginOptions' => ['allowClear' => false]
+				]); ?>
 
 			<div class="form-group">
-				<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-lg' : 'btn btn-primary btn-block btn-lg']) ?>
+				<?= Html::submitButton(Yii::t('app', 'Send') , ['class' => 'btn btn-primary btn-block btn-lg']) ?>
 			</div>
 			<?php ActiveForm::end(); ?>
 

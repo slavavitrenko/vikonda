@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 18 2016 г., 10:11
+-- Время создания: Июн 18 2016 г., 10:43
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -83,6 +83,7 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `region_id` int(11) DEFAULT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -351,7 +352,8 @@ ALTER TABLE `migration`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `phone` (`phone`),
-  ADD KEY `email` (`email`);
+  ADD KEY `email` (`email`),
+  ADD KEY `region_id` (`region_id`);
 
 --
 -- Индексы таблицы `orders_products`
@@ -441,12 +443,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
 --
 -- AUTO_INCREMENT для таблицы `partners`
 --

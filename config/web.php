@@ -12,12 +12,12 @@ $config = [
             'class' => 'yii\web\AssetManager',
             // 'appendTimestamp' => true,
             'bundles' => [
-                // 'yii\bootstrap\BootstrapAsset' => [
-                //     'sourcePath' => null,
-                //     'basePath' => '@webroot',
-                //     'baseUrl' => '@web',
-                //     'css' => ['css/theme.css'],
-                // ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'css' => ['css/theme.css'],
+                ],
             ],
         ],
         'i18n' => [

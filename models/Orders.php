@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\OrdersProducts;
+use app\models\Regions;
 
 
 class Orders extends \yii\db\ActiveRecord
@@ -17,14 +18,15 @@ class Orders extends \yii\db\ActiveRecord
     public function scenarios(){
         return [
             'create' => ['updated_at', 'created_at'],
-            'order' => ['phone', 'email', 'updated_at', 'created_at'],
+            'order' => ['region_id', 'phone', 'email', 'updated_at', 'created_at'],
         ];
     }
 
     public function rules()
     {
         return [
-            [['phone'], 'required'],
+            [['phone', 'region_id'], 'required'],
+            [['region_id'], 'default', 'value' => 0],
             [['phone'], 'string', 'max' => 13],
             [['email'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'default', 'value' => time()],
@@ -37,6 +39,7 @@ class Orders extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'phone' => Yii::t('app', 'Phone'),
             'email' => Yii::t('app', 'Email'),
+            'region_id' => Yii::t('app', 'Region'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Created At'),
         ];
@@ -73,6 +76,10 @@ class Orders extends \yii\db\ActiveRecord
             } 
         }
         return $totalAmount;
+    }
+
+    public function getRegion(){
+        return $this->hasOne(Regions::className(), ['id' => 'region_id']);
     }
 
 }
