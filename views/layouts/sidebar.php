@@ -7,7 +7,12 @@ $items = [];
 
 if(!Yii::$app->user->isGuest){
 	if(Yii::$app->user->identity->type == 'admin'){
-		$items[] = ['label' => Yii::t('app', 'Orders'), 'url' => ['/orders/index'], 'active' => Yii::$app->controller->id == 'orders'];
+		$items[] = ['label' => Yii::t('app', 'Orders')
+		.
+		(($count = \app\models\Orders::find()->where(['<>', 'region_id', '0'])->count()) >= 1 ?
+			(' <span class="badge">' . $count . '</span>')
+			:
+			''), 'url' => ['/orders/index'], 'active' => Yii::$app->controller->id == 'orders'];
 		$items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
 		$items[] = ['label' => Yii::t('app', 'Regions'), 'url' => ['/regions/index'], 'active' => Yii::$app->controller->id == 'regions'];
 		$items[] = ['label' => Yii::t('app', 'Products'), 'url' => ['/products/index'], 'active' => Yii::$app->controller->id == 'products'];
@@ -20,6 +25,7 @@ if(!Yii::$app->user->isGuest){
 
 <?=Nav::widget([
 	'activateParents' => true,
+	'encodeLabels' => false,
 	'options' => [
 		'class' => 'nav nav-pills nav-stacked',
 	],

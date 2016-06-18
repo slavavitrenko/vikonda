@@ -54,6 +54,14 @@ class OrdersController extends Controller
         $searchModel = new OrdersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        if(!Yii::$app->request->get('sort')){
+            if($orders = Orders::find()->where(['<', 'created_at', time() - 7200])->andWhere(['region_id' => null])->all()){
+                foreach($orders as $order){
+                    $order->delete();
+                }
+            }
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

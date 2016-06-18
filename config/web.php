@@ -35,9 +35,9 @@ $config = [
         'request' => [
             'cookieValidationKey' => 'zUTf69AJbhsqFeeHg9tO-YXBoJoiFv7i',
         ],
-        // 'cache' => [
-        //     'class' => 'yii\caching\FileCache',
-        // ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
