@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
+
 
 $this->title = Yii::t('app', 'Cart');
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,6 +17,7 @@ $js = '
 ';
 
 $this->registerJs($js, \yii\web\View::POS_READY);
+
 
 ?>
 
@@ -39,8 +43,23 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 						</td>
 					</tr>
 				<?php endforeach; ?>
+					<tr>
+						<td></td>
+						<td></td>
+						<td><span class='lead'><?=Yii::t('app', 'Total amount')?>:</span> <span class='pull-right lead'><?=Yii::$app->cart->order->amount; ?> грн.</span></td>
+					</tr>
 			</table>
 			<?php \yii\widgets\Pjax::end(); ?>
+
+			<?php $form = ActiveForm::begin(); ?>
+			<?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
+			<?=$form->field($model, 'email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
+
+			<div class="form-group">
+				<?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-lg' : 'btn btn-primary btn-block btn-lg']) ?>
+			</div>
+			<?php ActiveForm::end(); ?>
+
 		<?php } else{ ?>
 			<h2><?=Yii::t('app', 'Not enough products')?></h2>
 			<p><?=Html::a(Yii::t('app', 'Get searching?'), ['/products/index'], ['class' => 'btn btn-lg btn-success']);?></p>

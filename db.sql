@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 17 2016 г., 17:22
+-- Время создания: Июн 18 2016 г., 10:11
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -325,7 +325,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
-(1, 'admin', 'slavavitrenko@gmail.com', '$2y$10$QC1BrGH0msJ6ZXKNdQjZPOSlyVgOGcDROa7ZvthAheIbDuvEKzS5q', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466001094, 0, 'admin');
+(1, 'admin', 'email@email.ru', '$2y$10$tv4cRT23luXR6ZZIveDN4uDO.D4XS250QfQK3wDMgG6U2mALYRfhy', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466233255, 0, 'admin');
 
 --
 -- Индексы сохранённых таблиц
@@ -441,12 +441,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
 --
 -- AUTO_INCREMENT для таблицы `partners`
 --
@@ -485,6 +485,12 @@ ALTER TABLE `user`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `orders_products`
+--
+ALTER TABLE `orders_products`
+  ADD CONSTRAINT `orders_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `profile`

@@ -26,7 +26,7 @@ class Cart extends \yii\base\Component
 
 	public function createOrder()
 	{
-		$order = new Orders();
+		$order = new Orders(['scenario' => 'create']);
 		if ($order->save()) {
 			$this->_order = $order;
 			return true;

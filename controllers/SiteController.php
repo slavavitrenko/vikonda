@@ -53,10 +53,19 @@ class SiteController extends Controller
     }
 
     public function actionCart(){
+        $model = Yii::$app->cart->order;
+        $model->scenario = 'order';
+        if($model->load(Yii::$app->request->post()) && $model->save()){
+            Yii::$app->cart->clean();
+            if($model->email != ''){Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Your order succesfully accepted. Check your email'));}
+            else{Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Your order succesfully accepted. We call you after few minutes'));}
+            return $this->refresh();
+        }
         return $this->render(
             'cart',
             [
-                'order' => Yii::$app->cart->order
+                'order' => Yii::$app->cart->order,
+                'model' => $model,
             ]);
     }
 

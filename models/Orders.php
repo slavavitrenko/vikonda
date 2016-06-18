@@ -14,9 +14,17 @@ class Orders extends \yii\db\ActiveRecord
         return 'orders';
     }
 
+    public function scenarios(){
+        return [
+            'create' => ['updated_at', 'created_at'],
+            'order' => ['phone', 'email', 'updated_at', 'created_at'],
+        ];
+    }
+
     public function rules()
     {
         return [
+            [['phone'], 'required'],
             [['phone'], 'string', 'max' => 13],
             [['email'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'default', 'value' => time()],
