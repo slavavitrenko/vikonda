@@ -2,11 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\ArrayHelper;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Orders */
+// print_r($model->allProducts);
+// die();
 
-$this->title = $model->id;
+
+$this->title = $model->phone;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Orders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -27,12 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            // 'id',
             'phone',
             'email:email',
-            'region_id',
-            'updated_at',
-            'created_at',
+            'region.name',
+            [
+                'attribute' => 'created_at',
+                'value' => Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]),
+            ],
+            [   
+                'attribute' => '',
+                'format' => 'raw',
+                'value' => implode('<br>', array_values(ArrayHelper::map($model->products, 'id', 'amountName'))),
+            ],
         ],
     ]) ?>
 

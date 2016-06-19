@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
+            'amount',
             'phone',
             'email:email',
             [
@@ -41,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
             ],
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{delete}'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

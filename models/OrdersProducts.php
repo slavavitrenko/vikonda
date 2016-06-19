@@ -38,6 +38,10 @@ class OrdersProducts extends \yii\db\ActiveRecord
         return $this->hasOne(Products::className(), ['id' => 'product_id']);
     }
 
+    public function getAmountName(){
+        return '<span class="lead">' . $this->product->name . ' - ' . $this->count . 'шт.</span>';
+    }
+
     public function getPrice(){
         return $this->product->price;
     }

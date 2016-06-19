@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\OrdersProducts;
+use app\models\Products;
 use app\models\Regions;
 
 
@@ -42,6 +43,7 @@ class Orders extends \yii\db\ActiveRecord
             'region_id' => Yii::t('app', 'Region'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Created At'),
+            'amount' => Yii::t('app', 'Amount')
         ];
     }
 
