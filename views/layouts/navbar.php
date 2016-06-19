@@ -43,7 +43,7 @@ $items[] = Yii::$app->user->getIsGuest() ?
 		],
 	]);
 
-	\yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1]);
+	\yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1, 'linkSelector' => false]);
 	echo Nav::widget([
 		'activateParents' => true,
 		'encodeLabels' => false,
