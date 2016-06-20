@@ -62,6 +62,11 @@ class ProductsController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ];
+        if(!Yii::$app->user->isGuest){
+            if(Yii::$app->user->identity->type == 'partner'){
+                return $this->redirect(['/orders/index']);
+            }
+        }
         return
         !Yii::$app->user->isGuest ? $this->render('index', $data)
         :

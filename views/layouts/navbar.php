@@ -13,7 +13,7 @@ if(!Yii::$app->user->isGuest){
 		$items[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/products/index'],
 		'items' => [
 			['label' => Yii::t('app', 'Orders'), 'url' => ['/orders/index'], 'active' => Yii::$app->controller->id == 'orders'],
-			['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'],
+			// ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'],
 			['label' => Yii::t('app', 'Regions'), 'url' => ['/regions/index'], 'active' => Yii::$app->controller->id == 'regions'],
 			['label' => Yii::t('app', 'Products'), 'url' => ['/products/index'], 'active' => Yii::$app->controller->id == 'products'],
 			['label' => Yii::t('app', 'Categories'), 'url' => ['/categories/index'], 'active' => Yii::$app->controller->id == 'categories'],

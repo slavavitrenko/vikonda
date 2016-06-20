@@ -13,7 +13,7 @@ if(!Yii::$app->user->isGuest){
 			(' <span class="badge">' . $count . '</span>')
 			:
 			''), 'url' => ['/orders/index'], 'active' => Yii::$app->controller->id == 'orders'];
-		$items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
+		// $items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
 		$items[] = ['label' => Yii::t('app', 'Regions'), 'url' => ['/regions/index'], 'active' => Yii::$app->controller->id == 'regions'];
 		$items[] = ['label' => Yii::t('app', 'Products'), 'url' => ['/products/index'], 'active' => Yii::$app->controller->id == 'products'];
 		$items[] = ['label' => Yii::t('app', 'Categories'), 'url' => ['/categories/index'], 'active' => Yii::$app->controller->id == 'categories'];

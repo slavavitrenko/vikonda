@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Orders;
+use yii\helpers\ArrayHelper;
 
 /**
  * OrdersSearch represents the model behind the search form about `app\models\Orders`.
@@ -66,6 +67,10 @@ class OrdersSearch extends Orders
             'id' => $this->id,
             'region_id' => $this->region_id,
         ]);
+
+        if(Yii::$app->user->identity->type == 'partner'){
+            $query->andFilterWhere(['regions.id' => array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id'))]);
+        }
 
         $query->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email]);

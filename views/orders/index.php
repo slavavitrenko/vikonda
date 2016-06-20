@@ -22,7 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
-            'amount',
+            [
+                'attribute' => 'amount',
+                'value' => function($model){return $model->amount . ' грн.';}
+            ],
             'phone',
             'email:email',
             [

@@ -31,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'manager' => Yii::t('app', 'Manager'),
                     'partner' => Yii::t('app', 'Partner')
                 ],
-                ['class' => 'form-control', 'prompt' => Yii::t('app', 'Choose...')])
+                ['class' => 'form-control', 'prompt' => Yii::t('app', 'Choose...')]),
+            'value' => function($model){return Yii::t('app', ucfirst($model->type));}
         ],
         // [
         //     'attribute' => 'registration_ip',
