@@ -37,7 +37,7 @@ class OrdersController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function () {
-                            return in_array(Yii::$app->user->identity->type, ['admin', 'partner']);
+                            return in_array(Yii::$app->user->identity->type, ['admin', 'manager', 'partner']);
                         },
                     ],
                 ],

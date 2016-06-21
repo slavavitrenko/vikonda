@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 20 2016 г., 12:29
+-- Время создания: Июн 21 2016 г., 11:47
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -88,15 +88,6 @@ CREATE TABLE `orders` (
   `created_at` int(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `orders`
---
-
-INSERT INTO `orders` (`id`, `phone`, `email`, `region_id`, `updated_at`, `created_at`) VALUES
-(5, NULL, NULL, NULL, 1466413312, 1466413312),
-(6, NULL, NULL, NULL, 1466413546, 1466413546),
-(8, NULL, NULL, NULL, 1466414716, 1466414716);
-
 -- --------------------------------------------------------
 
 --
@@ -122,6 +113,17 @@ CREATE TABLE `partners_regions` (
   `partner_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `partners_regions`
+--
+
+INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
+(1, 15, 3),
+(2, 15, 4),
+(3, 15, 5),
+(4, 15, 6),
+(5, 15, 8);
 
 -- --------------------------------------------------------
 
@@ -301,7 +303,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
 (1, 'admin', 'email@email.ru', '$2y$10$tv4cRT23luXR6ZZIveDN4uDO.D4XS250QfQK3wDMgG6U2mALYRfhy', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466233255, 0, 'admin'),
-(15, 'partner', 'partner@gmail.com', '$2y$10$hJPwCNIZ/.4uBufeuCULC.fit1NTxj3CpnXCLo8/d6fsU6QhGAxMq', 'oIGeMehDyd4lj1N0_-TfBZOlUxOye-Zs', 1466412498, NULL, NULL, '127.0.0.1', 1466412499, 1466414791, 0, 'admin');
+(15, 'partner', 'partner@gmail.com', '$2y$10$hJPwCNIZ/.4uBufeuCULC.fit1NTxj3CpnXCLo8/d6fsU6QhGAxMq', 'oIGeMehDyd4lj1N0_-TfBZOlUxOye-Zs', 1466412498, NULL, NULL, '127.0.0.1', 1466412499, 1466498740, 0, 'partner');
 
 --
 -- Индексы сохранённых таблиц
@@ -416,12 +418,12 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
 ALTER TABLE `partners_regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --

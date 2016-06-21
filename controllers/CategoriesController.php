@@ -28,7 +28,7 @@ class CategoriesController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function () {
-                            return Yii::$app->user->identity->type == 'admin';
+                            return in_array(Yii::$app->user->identity->type, ['admin', 'manager']);
                         },
                     ],
                 ],
