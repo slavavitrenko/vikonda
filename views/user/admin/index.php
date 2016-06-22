@@ -26,13 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'email:email',
         [
             'attribute' => 'type',
+            'format' => 'html',
             'filter' => Html::activeDropdownList($searchModel, 'type',[
                     'admin' => Yii::t('app', 'Admin'),
                     'manager' => Yii::t('app', 'Manager'),
                     'partner' => Yii::t('app', 'Partner')
                 ],
                 ['class' => 'form-control', 'prompt' => Yii::t('app', 'Choose...')]),
-            'value' => function($model){return Yii::t('app', ucfirst($model->type));}
+            'value' => function($model){return Html::tag('span', Yii::t('app', ucfirst($model->type)), ['class' => 'lead']);}
         ],
         // [
         //     'attribute' => 'registration_ip',
