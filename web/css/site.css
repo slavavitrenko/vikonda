@@ -112,3 +112,8 @@ label.control-label {
 .btn-group {
     width: 100%;
 }
+
+div.required label:first-child:not(.btn):after {
+    content: ' *';
+    color: red;
+}

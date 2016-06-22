@@ -53,7 +53,7 @@ return [
 	'Your order succesfully accepted. Check your email' => 'Ваш заказ успешно принят в обработку. Детали заказа были отправлены на ваш email',
 	'Your order succesfully accepted. We call you after few minutes' => 'Ваш заказ успешно принят в обработку. Мы перезвоним вам через пару минут',
 	'Send' => 'Отправить',
-	'Region' => 'Ваш регион',
+	'Region' => 'Регион',
 	'Orders' => 'Заказы',
 	'' => '',
 	'' => '',

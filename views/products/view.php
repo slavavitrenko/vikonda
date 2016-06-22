@@ -28,21 +28,21 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     <?php endif; ?>
 <?php endif; ?>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'category.name',
-            'name',
-            'description:html',
-            [
-                'attribute' => 'created_at',
-                'value' => Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at])
-            ],
-        ],
-    ]) ?>
-
     <div class="row">
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'category.name',
+                'name',
+                'description:html',
+                [
+                    'attribute' => 'created_at',
+                    'value' => Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at])
+                ],
+            ],
+        ]) ?>
+
         <?php if($model->pictures) : ?>
             <?php foreach($model->pictures as $picture) : ?>
                 <?=Html::img($picture->src, ['class' => 'well col-sm-4']);?>

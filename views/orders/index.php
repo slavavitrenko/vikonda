@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'email:email',
             [
+                'visible' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']),
                 'attribute' => 'region_id',
                 'filter' => Select2::widget([
                         'model' => $searchModel,
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['placeholder' => Yii::t('app', 'Choose...')],
                         'pluginOptions' => ['allowClear' => true]
                     ]),
-                'value' => 'region.name'
+                'value' => 'region.name',
             ],
             // 'updated_at',
             [

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -18,7 +19,7 @@ class OrdersController extends Controller
 
     public function init(){
         parent::init();
-        $this->layout = '@app/views/layouts/dashboard';
+        $this->layout = in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '@app/views/layouts/dashboard' : '@app/views/layouts/main';
     }
 
     public function behaviors()
@@ -75,14 +76,27 @@ class OrdersController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if(
+            !in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
+            && !in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
+            ){
+            throw new NotFoundHttpException(Yii::t('app', 'Not ofund'));
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if(
+            in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
+            or in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
+            ){
+            $model->delete();
+        }
 
         return $this->redirect(['index']);
     }
