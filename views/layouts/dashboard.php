@@ -36,7 +36,7 @@ AppAsset::register($this);
 			<div class="col-sm-3">
 				<?=$this->render('@app/views/layouts/sidebar'); ?>
 			</div>
-			<div class="col-sm-9">
+			<div class="col-sm-9" id='main-layout'>
 				<?= \app\widgets\Alert::widget(); ?>
 				<?= $content ?>
 			</div>

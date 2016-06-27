@@ -14,6 +14,9 @@ use yii\filters\AccessControl;
 class RegionsController extends Controller
 {
 
+    use \app\traits\AjaxTrait;
+    
+
     public function init(){
         parent::init();
         $this->layout = '@app/views/layouts/dashboard';
