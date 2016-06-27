@@ -39,11 +39,6 @@ class CategoriesController extends Controller
         ];
     }
 
-    public function init(){
-        parent::init();
-        $this->layout = '@app/views/layouts/dashboard';
-    }
-
     public function actionIndex()
     {
         $searchModel = new CategoriesSearch();

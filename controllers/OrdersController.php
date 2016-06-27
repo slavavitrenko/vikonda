@@ -18,12 +18,7 @@ class OrdersController extends Controller
 {
 
     use \app\traits\AjaxTrait;
-    
 
-    public function init(){
-        parent::init();
-        $this->layout = in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '@app/views/layouts/dashboard' : '@app/views/layouts/main';
-    }
 
     public function behaviors()
     {

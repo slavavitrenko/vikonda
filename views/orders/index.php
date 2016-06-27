@@ -13,11 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="orders-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => false,
         'columns' => [
             // ['class' => 'yii\grid\SerialColumn'],
 

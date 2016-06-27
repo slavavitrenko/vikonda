@@ -10,6 +10,12 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+
+    public function init(){
+        parent::init();
+        $this->layout = '@app/views/layouts/thin';
+    }
+
     public function behaviors()
     {
         return [
