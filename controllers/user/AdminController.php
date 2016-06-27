@@ -25,9 +25,4 @@ class AdminController extends \dektrium\user\controllers\AdminController{
 		];
 	}
 
-	public function init(){
-		parent::init();
-		$this->layout = '@app/views/layouts/dashboard';
-	}
-
 }
