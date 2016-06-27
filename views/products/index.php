@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="products-index">
 
     <h1>
-        <?= Html::encode($this->title) ?>
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::encode($this->title) ?>
     </h1>
 
 <?php Pjax::begin(); ?>    <?= GridView::widget([

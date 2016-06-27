@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 22 2016 г., 11:24
+-- Время создания: Июн 27 2016 г., 12:40
 -- Версия сервера: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.4-7ubuntu2.1
 
@@ -44,6 +44,27 @@ INSERT INTO `categories` (`id`, `name`, `parent`, `visible`) VALUES
 (21, 'Слайдеры', 0, 0),
 (22, 'Верхний слайдер', 21, 0),
 (23, 'Нижний слайдер', 21, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `door_types`
+--
+
+CREATE TABLE `door_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `picture` text NOT NULL,
+  `price` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `door_types`
+--
+
+INSERT INTO `door_types` (`id`, `name`, `description`, `picture`, `price`) VALUES
+(1, 'tf', 'rtynrty', 'uploads/door_types/ubuntu_linux_debian_1_2016-06-27_09:39:19.jpg', '56.00');
 
 -- --------------------------------------------------------
 
@@ -93,9 +114,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `region_id`, `updated_at`, `created_at`) VALUES
-(13, '+380663564463', '', 6, 1466499242, 1466499242),
-(17, '+380663564463', '', 3, 1466583235, 1466583235),
-(18, NULL, NULL, NULL, 1466583245, 1466583245);
+(23, '+380663564463', '', 6, 1467018829, 1467018829),
+(24, NULL, NULL, NULL, 1467018837, 1467018837);
 
 -- --------------------------------------------------------
 
@@ -116,12 +136,8 @@ CREATE TABLE `orders_products` (
 --
 
 INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`) VALUES
-(7, 13, 12, 2, NULL),
-(8, 13, 13, 2, NULL),
-(9, 13, 14, 4, NULL),
-(10, 13, 15, 2, NULL),
-(11, 17, 12, 2, NULL),
-(12, 17, 13, 4, NULL);
+(16, 23, 12, 2, NULL),
+(17, 23, 13, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -140,7 +156,17 @@ CREATE TABLE `partners_regions` (
 --
 
 INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
-(7, 15, 4);
+(7, 15, 4),
+(8, 16, 3),
+(9, 16, 4),
+(10, 16, 5),
+(11, 16, 6),
+(12, 16, 8),
+(13, 17, 3),
+(14, 17, 4),
+(15, 17, 5),
+(16, 17, 6),
+(17, 17, 8);
 
 -- --------------------------------------------------------
 
@@ -237,7 +263,7 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(17, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -320,7 +346,86 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
 (1, 'admin', 'email@email.ru', '$2y$10$tv4cRT23luXR6ZZIveDN4uDO.D4XS250QfQK3wDMgG6U2mALYRfhy', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466233255, 0, 'admin'),
-(15, 'partner', 'partner@gmail.com', '$2y$10$hJPwCNIZ/.4uBufeuCULC.fit1NTxj3CpnXCLo8/d6fsU6QhGAxMq', 'oIGeMehDyd4lj1N0_-TfBZOlUxOye-Zs', 1466412498, NULL, NULL, '127.0.0.1', 1466412499, 1466499346, 0, 'partner');
+(17, 'partner', 'partner@gmail.com', '$2y$10$RyRU3WhOweyloMBJyPUBk.kyOHVCgMH1KqYDB0D3qGAwExQ8xmJba', '-kKKUXbOqTZxW6ebtFwNb11MTtzsPejF', 1466584192, NULL, NULL, '127.0.0.1', 1466584193, 1466584193, 0, 'partner');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `window_furniture`
+--
+
+CREATE TABLE `window_furniture` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `window_furniture`
+--
+
+INSERT INTO `window_furniture` (`id`, `name`, `price`) VALUES
+(1, 'rftyn', '76.00');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `window_glazes`
+--
+
+CREATE TABLE `window_glazes` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `window_glazes`
+--
+
+INSERT INTO `window_glazes` (`id`, `name`, `price`) VALUES
+(2, 'r5tj54', '76.00');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `window_profiles`
+--
+
+CREATE TABLE `window_profiles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `picture` text NOT NULL,
+  `price` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `window_profiles`
+--
+
+INSERT INTO `window_profiles` (`id`, `name`, `picture`, `price`) VALUES
+(3, 'енгь', 'uploads/window_profiles/WallpapersxlKubuntuU_2016-06-27_09:22:08.jpg', '56.00');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `window_types`
+--
+
+CREATE TABLE `window_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `picture` text NOT NULL,
+  `price` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `window_types`
+--
+
+INSERT INTO `window_types` (`id`, `name`, `description`, `picture`, `price`) VALUES
+(18, 'tyuyt', 'ytumyt', 'uploads/window_types/WallpapersxlKubuntuU_2016-06-27_09:11:47.jpg', '67.00');
 
 --
 -- Индексы сохранённых таблиц
@@ -332,6 +437,13 @@ INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `con
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent` (`parent`),
+  ADD KEY `name` (`name`(191));
+
+--
+-- Индексы таблицы `door_types`
+--
+ALTER TABLE `door_types`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `name` (`name`(191));
 
 --
@@ -418,6 +530,33 @@ ALTER TABLE `user`
   ADD KEY `type` (`type`);
 
 --
+-- Индексы таблицы `window_furniture`
+--
+ALTER TABLE `window_furniture`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `window_glazes`
+--
+ALTER TABLE `window_glazes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`(191));
+
+--
+-- Индексы таблицы `window_profiles`
+--
+ALTER TABLE `window_profiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`(191));
+
+--
+-- Индексы таблицы `window_types`
+--
+ALTER TABLE `window_types`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`(191));
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -427,20 +566,25 @@ ALTER TABLE `user`
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
+-- AUTO_INCREMENT для таблицы `door_types`
+--
+ALTER TABLE `door_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
 ALTER TABLE `partners_regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --
@@ -465,7 +609,27 @@ ALTER TABLE `social_account`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT для таблицы `window_furniture`
+--
+ALTER TABLE `window_furniture`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT для таблицы `window_glazes`
+--
+ALTER TABLE `window_glazes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `window_profiles`
+--
+ALTER TABLE `window_profiles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `window_types`
+--
+ALTER TABLE `window_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

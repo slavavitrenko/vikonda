@@ -29,8 +29,8 @@ class User extends \dektrium\user\models\User {
         $rules['typeRequired'] = ['type', 'required'];
         $rules['typeLength']   = ['type', 'match', 'pattern' => '/^(admin|manager|partner)$/', 'message' => Yii::t('app', 'Chosed wrong acount type')];
 
-        // $rules['regionsRequired'] = ['regions', 'required', 'when' => function($model){return $model->type == 'partner'; },
-        //     'whenClient' => 'function(attribute, value){ return $("input[name=\'User[type]\']:checked").val() == "partner";}'];
+        $rules['regionsRequired'] = ['regions', 'required', 'when' => function($model){return $model->type == 'partner'; },
+            'whenClient' => 'function(attribute, value){ return $("input[name=\'User[type]\']:checked").val() == "partner";}'];
         $rules['reigonsSafe'] = ['regions' ,'safe'];
 
         return $rules;
@@ -44,7 +44,7 @@ class User extends \dektrium\user\models\User {
     }
 
     public function getRegions(){
-        return $this->hasMany(Regions::className(), ['id' => 'region_id'])->viaTable('partners_regions', ['partner_id' => 'id']);
+        return $this->_regions ? $this->_regions : $this->hasMany(Regions::className(), ['id' => 'region_id'])->viaTable('partners_regions', ['partner_id' => 'id']);
     }
 
     public function setRegions($regions){
