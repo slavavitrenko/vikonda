@@ -117,3 +117,7 @@ div.required label:first-child:not(.btn):after {
     content: ' *';
     color: red;
 }
+
+.kv-sidenav .nav a {
+    padding-left: 20%;
+}
