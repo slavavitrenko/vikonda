@@ -89,7 +89,7 @@ if(!Yii::$app->user->isGuest){
 		$items[] = ['label' => Yii::t('app', 'Orders')
 		.
 		(($count = \app\models\Orders::find()->where(['<>', 'region_id', '0'])->count()) >= 1 ?
-			(' <span class="badge">' . $count . '</span>')
+			(' <span class="badge pull-right">' . $count . '</span>')
 			:
 			''), 'url' => ['/orders/index'], 'active' => Yii::$app->controller->id == 'orders'];
 		// $items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
