@@ -38,7 +38,7 @@ $(document).on("click", "a", function(e){
         ){
         e.preventDefault();
         getContent(location.protocol + "//" + location.host + $(this).attr("href"), true);
-        $("#main-navbar .active").removeClass("active");
+        $("#main-navbar li.active").removeClass("active");
         $(this).parent().addClass("active");
         $(this).parent().parent().parent().addClass("active");
         // $("body").removeClass("sidebar-open");

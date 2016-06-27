@@ -85,7 +85,8 @@ $config = [
                 'UserSearch' => 'app\models\user\UserSearch',
             ],
             'controllerMap' => [
-                'admin' => 'app\controllers\user\AdminController'
+                'admin' => 'app\controllers\user\AdminController',
+                'security' => 'app\controllers\user\SecurityController',
             ]
         ],
     ],
