@@ -4,27 +4,15 @@ namespace app\models;
 
 use Yii;
 
-/**
- * This is the model class for table "window_profiles".
- *
- * @property integer $id
- * @property string $name
- * @property string $picture
- * @property string $price
- */
+
 class WindowProfiles extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+
     public static function tableName()
     {
         return 'window_profiles';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -35,9 +23,14 @@ class WindowProfiles extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+    public function fields(){
+        return [
+            'label' => function($model){ return $model->name; },
+            'value' => function($model){ return $model->id; },
+            'price',
+        ];
+    }
+
     public function attributeLabels()
     {
         return [

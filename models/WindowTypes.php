@@ -24,6 +24,17 @@ class WindowTypes extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields(){
+        return [
+            'label' => function($model){  return $model->name; },
+            'value' => function($model){  return $model->id; },
+            'price',
+            'picture' => function($model){
+                return '/' . $model->picture;
+            }
+        ];
+    }
+
     public function attributeLabels()
     {
         return [

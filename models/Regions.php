@@ -17,8 +17,16 @@ class Regions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'percent'], 'required'],
+            [['percent'], 'number'],
             [['name'], 'string', 'max' => 255],
+        ];
+    }
+
+    public function fields(){
+        return [
+        'label' => function($model){ return $model->name; },
+        'value' => function($model){ return $model->id; },
         ];
     }
 
@@ -27,6 +35,7 @@ class Regions extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Region'),
+            'percent' => Yii::t('app', 'Percent')
         ];
     }
 

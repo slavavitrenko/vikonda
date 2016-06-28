@@ -4,26 +4,15 @@ namespace app\models;
 
 use Yii;
 
-/**
- * This is the model class for table "window_glazes".
- *
- * @property integer $id
- * @property string $name
- * @property string $price
- */
+
 class WindowGlazes extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+
     public static function tableName()
     {
         return 'window_glazes';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -33,9 +22,14 @@ class WindowGlazes extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+    public function fields(){
+        return [
+            'label' => function($model){  return $model->name; },
+            'value' => function($model){  return $model->id; },
+            'price'
+        ];
+    }
+
     public function attributeLabels()
     {
         return [

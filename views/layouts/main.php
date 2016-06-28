@@ -29,12 +29,14 @@ AppAsset::register($this);
 
 	<?php
 	if(!Yii::$app->user->isGuest){
-		if(in_array(Yii::$app->user->identity->type, ['admin', 'manager', 'partner'])){
+		if(in_array(Yii::$app->user->identity->type, ['admin', 'manager'])){
 			echo $this->render('wide', ['content' => $content]);
+		} else {
+			echo $this->render('thin', ['content' => $content]);
 		}
 	} else {
 		echo $this->render('thin', ['content' => $content]);
-		} ?>
+	} ?>
 </div>
 
 <footer class="footer">

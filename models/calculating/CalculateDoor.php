@@ -1,0 +1,78 @@
+<?php
+
+namespace app\models\calculating;
+
+use Yii;
+use app\models\Regions;
+use app\models\DoorTypes;
+use app\models\Settings;
+
+
+class CalculateDoor extends \yii\db\ActiveRecord
+{
+
+    public static function tableName()
+    {
+        return 'calculate_door';
+    }
+
+    public function rules()
+    {
+        return [
+            [['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'calculate_type', 'sum', 'created_at'], 'required'],
+            [['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'created_at'], 'integer'],
+            [['sum'], 'number'],
+            [['calculate_type'], 'string', 'max' => 25],
+            [['calculate_type'], 'match', 'pattern' => '/^(calculate|order)$/', 'message' => Yii::t('app', 'Calculate type must be "order" or "calculate"')],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'type_id' => Yii::t('app', 'Door Type'),
+            'width' => Yii::t('app', 'Door Width'),
+            'height' => Yii::t('app', 'Door Height'),
+            'box' => Yii::t('app', 'Door Box'),
+            'jamb' => Yii::t('app', 'Door Jamb'),
+            'locker' => Yii::t('app', 'Door Locker'),
+            'region_id' => Yii::t('app', 'Region'),
+            'calculate_type' => Yii::t('app', 'Door Calculate Type'),
+            'sum' => Yii::t('app', 'Sum'),
+            'created_at' => Yii::t('app', 'Created At'),
+        ];
+    }
+
+    public function getType(){
+        return $this->hasOne(DoorTypes::className(), ['id' => 'type_id']);
+    }
+
+    public function getRegion(){
+        return $this->hasOne(Regions::className(), ['id' => 'region_id']);
+    }
+
+    public function beforeValidate(){
+        $this->created_at = time();
+        $this->sum = $this->calculate();
+        return parent::beforeValidate();
+    }
+
+    //=========================================//
+    // ================= TODO ================ //
+    //=========================================//
+    private function calculate(){
+        $price = 0;
+        $price += ($this->height * $this->width)/100 * $this->type->price;
+        if($this->box){
+            $price += round(Settings::get('box_price') * (( $this->width * 2 + $this->width * 2 )/100), 0);
+        }
+        if($this->locker){
+            $price += Settings::get('locker_price');
+        }
+        if($this->jamb){
+            $price += Settings::get('jamb_price') * (( $this->width * 2 + $this->width * 2 )/100);
+        }
+        return Settings::get('round') ? round($price + 0.49, 0) : $price;
+    }
+}

@@ -10,10 +10,13 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
+// Image manipulation
+use yii\imagine\Image;
+use Imagine\Image\Box;
+
 
 class WindowTypesController extends Controller
 {
-
 
     public function behaviors()
     {
@@ -69,7 +72,7 @@ class WindowTypesController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->picture = $this->saveFile(UploadedFile::getInstance($model, 'picture'), $model->id);
-            unlink($oldPicture);
+            @unlink($oldPicture);
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
 
@@ -93,6 +96,14 @@ class WindowTypesController extends Controller
             $filename = mb_substr(str_replace(["]", "[", "(", ")", " ", "\t", "\n"], '', $image->baseName), 0, 20);
 
             if($image->saveAs('uploads/window_types/' . $filename . $model_id . '_' . $date . '.' . $image->extension)) {
+
+                // Обрезка картинки
+                $fullname = Yii::getAlias('@webroot') . '/uploads/window_types/' . $filename . $model_id . '_' . $date . '.' . $image->extension;
+                $imagine = Image::getImagine()
+                ->open($fullname)
+                ->thumbnail(new Box(300, 300))
+                ->save($fullname, ['quality' => 90]);
+
                 return 'uploads/window_types/' . $filename . $model_id . '_' . $date . '.' . $image->extension;
             }
             return false;

@@ -63,15 +63,19 @@ class OrdersSearch extends Orders
         $query->joinWith('region');
 
         // grid filtering conditions
+
+        if(Yii::$app->user->identity->type == 'partner'){
+            $query
+            ->andFilterWhere(['orders.partner_id' => Yii::$app->user->identity->id])
+            ->orFilterWhere(['orders.partner_id' => '0'])
+            ->andFilterWhere(['regions.id' => array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id'))]);
+        }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'region_id' => $this->region_id,
         ]);
-
-        if(Yii::$app->user->identity->type == 'partner'){
-            $query->andFilterWhere(['regions.id' => array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id'))]);
-        }
-
+        
         $query->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email]);
 

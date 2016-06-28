@@ -17,7 +17,7 @@ if(!Yii::$app->user->isGuest){
 $items[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
 .
 Yii::$app->cart->status
-, 'url' => ['/site/cart'], 'linkOptions' => ['style' => 'color:yellow', 'data-pjax' => 0]];
+, 'url' => ['/site/cart'], 'linkOptions' => ['style' => 'color:yellow', 'class' => Yii::$app->user->isGuest ? '' : ' hidden', 'data-pjax' => 0]];
 
 $items[] = Yii::$app->user->getIsGuest() ?
 	['label' => Yii::t('app', 'Login'), 'url' => ['/user/login']]

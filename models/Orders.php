@@ -6,6 +6,7 @@ use Yii;
 use app\models\OrdersProducts;
 use app\models\Products;
 use app\models\Regions;
+use app\models\user\User;
 
 
 class Orders extends \yii\db\ActiveRecord
@@ -27,6 +28,7 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             [['phone', 'region_id'], 'required'],
+            [['partner_id'], 'default', 'value' => 0],
             [['region_id'], 'default', 'value' => 0],
             [['phone'], 'string', 'max' => 13],
             [['email'], 'string', 'max' => 255],
@@ -43,7 +45,8 @@ class Orders extends \yii\db\ActiveRecord
             'region_id' => Yii::t('app', 'Region'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Created At'),
-            'amount' => Yii::t('app', 'Amount')
+            'amount' => Yii::t('app', 'Amount'),
+            'partner_id' => Yii::t('app', 'Status'),
         ];
     }
 
@@ -59,6 +62,10 @@ class Orders extends \yii\db\ActiveRecord
             }
         }
         return $totalCount;
+    }
+
+    public function getPartner(){
+        return $this->hasOne(User::className(), ['id' => 'partner_id']);
     }
 
     public function beforeDelete(){

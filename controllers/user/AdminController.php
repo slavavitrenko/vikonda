@@ -26,15 +26,4 @@ class AdminController extends \dektrium\user\controllers\AdminController
 		];
 	}
 
-    protected function performAjaxValidation($model)
-    {
-        if (Yii::$app->request->isAjax && !Yii::$app->request->isPjax) {
-            if ($model->load(Yii::$app->request->post())) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                echo json_encode(ActiveForm::validate($model));
-                Yii::$app->end();
-            }
-        }
-    }
-
 }
