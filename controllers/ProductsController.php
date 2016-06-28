@@ -22,7 +22,6 @@ use app\models\Pictures;
 class ProductsController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
 
     public function behaviors()
     {

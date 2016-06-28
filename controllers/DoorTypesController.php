@@ -14,7 +14,7 @@ use yii\web\UploadedFile;
 class DoorTypesController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
+    // use \app\traits\AjaxTrait;
 
     public function behaviors()
     {

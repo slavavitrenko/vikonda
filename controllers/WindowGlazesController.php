@@ -15,8 +15,6 @@ use yii\filters\VerbFilter;
 class WindowGlazesController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
-
     /**
      * @inheritdoc
      */

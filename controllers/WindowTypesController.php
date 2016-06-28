@@ -14,8 +14,6 @@ use yii\web\UploadedFile;
 class WindowTypesController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
-
 
     public function behaviors()
     {

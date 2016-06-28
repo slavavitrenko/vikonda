@@ -6,7 +6,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -28,20 +27,14 @@ AppAsset::register($this);
 
 <?=$this->render('@app/views/layouts/navbar'); ?>
 
-	<div class="container">
-		<div class="row">
-				<?= Breadcrumbs::widget([
-					'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-				]) ?>
-			<div class="col-sm-3">
-				<?=$this->render('@app/views/layouts/sidebar'); ?>
-			</div>
-			<div class="col-sm-9" id='main-layout'>
-				<?= \app\widgets\Alert::widget(); ?>
-				<?= $content ?>
-			</div>
-		</div>
-	</div>
+	<?php
+	if(!Yii::$app->user->isGuest){
+		if(in_array(Yii::$app->user->identity->type, ['admin', 'manager', 'partner'])){
+			echo $this->render('wide', ['content' => $content]);
+		}
+	} else {
+		echo $this->render('thin', ['content' => $content]);
+		} ?>
 </div>
 
 <footer class="footer">

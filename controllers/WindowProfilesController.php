@@ -14,8 +14,6 @@ use yii\web\UploadedFile;
 class WindowProfilesController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
-
     public function behaviors()
     {
         return [

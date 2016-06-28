@@ -17,8 +17,6 @@ use yii\helpers\ArrayHelper;
 class OrdersController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
-
 
     public function behaviors()
     {

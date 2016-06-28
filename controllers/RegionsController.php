@@ -14,8 +14,6 @@ use yii\filters\AccessControl;
 class RegionsController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
-
     public function behaviors()
     {
         return [

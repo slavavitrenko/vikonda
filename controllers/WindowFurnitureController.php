@@ -14,8 +14,6 @@ use yii\filters\VerbFilter;
  */
 class WindowFurnitureController extends Controller
 {
-
-    use \app\traits\AjaxTrait;
     
     /**
      * @inheritdoc

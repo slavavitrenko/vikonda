@@ -14,7 +14,7 @@ use yii\filters\AccessControl;
 class CategoriesController extends Controller
 {
 
-    use \app\traits\AjaxTrait;
+    // use \app\traits\AjaxTrait;
     
     public function behaviors(){
         return [

@@ -9,8 +9,6 @@ use Yii;
 class AdminController extends \dektrium\user\controllers\AdminController
 {
 
-    use \app\traits\AjaxTrait;
-
 	public function behaviors(){
 		return [
             'access' => [
