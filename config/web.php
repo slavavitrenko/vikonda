@@ -8,18 +8,18 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
-        'assetManager' => [
-            'class' => 'yii\web\AssetManager',
-            'appendTimestamp' => true,
-            'bundles' => [
-                'yii\bootstrap\BootstrapAsset' => [
-                    'sourcePath' => null,
-                    'basePath' => '@webroot',
-                    'baseUrl' => '@web',
-                    'css' => ['css/theme.css'],
-                ],
-            ],
-        ],
+        // 'assetManager' => [
+        //     'class' => 'yii\web\AssetManager',
+        //     'appendTimestamp' => true,
+        //     'bundles' => [
+        //         'yii\bootstrap\BootstrapAsset' => [
+        //             'sourcePath' => null,
+        //             'basePath' => '@webroot',
+        //             'baseUrl' => '@web',
+        //             'css' => ['css/theme.css'],
+        //         ],
+        //     ],
+        // ],
         'i18n' => [
             'translations' => [
                 'app' => [

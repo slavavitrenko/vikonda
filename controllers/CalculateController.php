@@ -19,35 +19,35 @@ class CalculateController extends Controller
 	}
 
 	public function actionWindow($calculate_id = null){
+		
+		Yii::$app->response->format = 'json';
+
 		if($calculate_id){
 			$model = $this->findWindow($calculate_id);
 			$model->calculate_type = 'order';
-			Yii::$app->response->format = 'json';
 			$model->save(false);
 			return $model;
 		}
 		$model = new CalculateWindow;
 		$model->load(Yii::$app->request->post(), '');
-		// ============================================================================= //
-		// ======= Внимание!! Заменить validate() на save() после тестирования ========= //
-		// ============================================================================= //
-		return $model->save() ? ['sum' => $model->sum, 'calculate_id' => $model->id] : ['errors' => array_values($model->errors)];
+		
+		return $model->save() ? $model : ['errors' => array_values($model->errors)];
 	}
 
 	public function actionDoor($calculate_id = null){
+			
+		Yii::$app->response->format= 'json';
+
 		if($calculate_id){
 			$model = $this->findDoor($calculate_id);
 			$model->calculate_type = 'order';
-			Yii::$app->response->format= 'json';
 			$model->save(false);
 			return $model;
 		}
 		$model = new CalculateDoor;
 		$model->load(Yii::$app->request->post(), '');
-		// ============================================================================= //
-		// ======= Внимание!! Заменить validate() на save() после тестирования ========= //
-		// ============================================================================= //
-		return $model->save() ? ['sum' => $model->sum, 'calculate_id' => $model->id] : ['errors' => array_values($model->errors)];
+
+		return $model->save() ? $model : ['errors' => array_values($model->errors)];
 	}
 
     protected function findDoor($id)

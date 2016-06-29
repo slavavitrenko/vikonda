@@ -22,7 +22,7 @@ class CalculateWindow extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'camers', 'furniture_id', 'region_id', 'calculate_type', 'sum', 'created_at'], 'required'],
+			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'camers', 'furniture_id', 'region_id', 'sum', 'created_at'], 'required'],
 			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'camers', 'furniture_id', 'region_id', 'created_at'], 'integer'],
 			[['sum'], 'number'],
 			[['calculate_type'], 'string', 'max' => 25],

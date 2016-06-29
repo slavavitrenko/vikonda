@@ -19,7 +19,7 @@ class CalculateDoor extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'calculate_type', 'sum', 'created_at'], 'required'],
+			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'sum', 'created_at'], 'required'],
 			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'created_at'], 'integer'],
 			[['sum'], 'number'],
 			[['calculate_type'], 'string', 'max' => 25],
