@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use app\models\Partners;
+use app\models\user\User;
 
 
 class Regions extends \yii\db\ActiveRecord
@@ -35,11 +35,12 @@ class Regions extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Region'),
-            'percent' => Yii::t('app', 'Percent')
+            'percent' => Yii::t('app', 'Percent'),
+            'partners' => Yii::t('app', 'Partners'),
         ];
     }
 
     public function getPartners(){
-        return $this->hasMany(Partners::className(), ['id' => 'partner_id'])->viaTable('partners_regions', ['region_id' => 'id']);
+        return $this->hasMany(User::className(), ['id' => 'partner_id'])->viaTable('partners_regions', ['region_id' => 'id']);
     }
 }

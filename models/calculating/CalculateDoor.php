@@ -58,9 +58,9 @@ class CalculateDoor extends \yii\db\ActiveRecord
         return parent::beforeValidate();
     }
 
-    //=========================================//
-    // ================= TODO ================ //
-    //=========================================//
+    //==================================================================//
+    // =============== Сделать нормальное рассчитывание =============== //
+    //==================================================================//
     private function calculate(){
         $price = 0;
         $price += ($this->height * $this->width)/100 * $this->type->price;
@@ -73,6 +73,34 @@ class CalculateDoor extends \yii\db\ActiveRecord
         if($this->jamb){
             $price += Settings::get('jamb_price') * (( $this->width * 2 + $this->width * 2 )/100);
         }
-        return Settings::get('round') ? round($price + 0.49, 0) : $price;
+
+        // Накидываем процент региона
+        $price += ($this->region->percent / 100) * $price;
+
+        $this->send_email();
+
+        // Возвращаем округленную стоимость (округленную до целых гривен или нет, в зависимости от настроек)
+        return Settings::get('round') ? round($price + 0.49, 0) : round($price, 2);
     }
+
+    private function send_email(){
+        $pid = pcntl_fork();
+        if(!$pid){
+        Yii::$app->mailer->compose()
+            ->setTo(Settings::get('admin_email'))
+            ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
+            ->setTextBody(Yii::t('app', 'New calculate window has submitted'))
+            ->send();
+            // exit();
+        }
+        else {
+            Yii::$app->mailer->compose()
+                ->setTo(Settings::get('admin_email'))
+                ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
+                ->setTextBody(Yii::t('app', 'New calculate window has submitted'))
+                ->send();
+                return;
+        }
+    }
+
 }

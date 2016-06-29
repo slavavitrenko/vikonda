@@ -6,7 +6,7 @@ $items = [];
 
 
 if(!Yii::$app->user->isGuest){
-	if(Yii::$app->user->identity->type == 'admin'){
+	if(in_array(Yii::$app->user->identity->type, ['admin', 'manager'])){
 		$items[] = ['label' => Yii::t('app', 'Orders')
 		.
 		(($count = \app\models\Orders::find()->where(['<>', 'region_id', '0'])->count()) >= 1 ?
@@ -15,7 +15,7 @@ if(!Yii::$app->user->isGuest){
 			''), 'url' => ['/orders/index'], 'active' => Yii::$app->controller->id == 'orders'];
 		// $items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
 		$items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
-			['label' => Yii::t('app', 'All users'), 'url' => ['/user/admin/index'], 'active' => Yii::$app->controller->id == 'admin'],	
+			['label' => Yii::t('app', 'All users'), 'url' => ['/user/admin/index'], 'active' => Yii::$app->controller->id == 'admin', 'visible' => Yii::$app->user->identity->type == 'admin'],	
 			['label' => Yii::t('app', 'Regions'), 'url' => ['/regions/index'], 'active' => Yii::$app->controller->id == 'regions'],
 			['label' => Yii::t('app', 'Categories'), 'url' => ['/categories/index'], 'active' => Yii::$app->controller->id == 'categories'],
 			['label' => Yii::t('app', 'Products'), 'url' => ['/products/index'], 'active' => Yii::$app->controller->id == 'products'],

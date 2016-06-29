@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 $this->title = Yii::t('app', 'Update Settings');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
@@ -10,8 +11,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-
 	<?php $form = ActiveForm::begin(); ?>
+
+	<?=$form->field($model, 'admin_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 
 	<?= $form->field($model, 'box_price') ?>
 

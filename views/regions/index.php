@@ -3,9 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\RegionsSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use yii\helpers\ArrayHelper;
+
 
 $this->title = Yii::t('app', 'Regions');
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,6 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'name',
             'percent',
+            [
+                'attribute' => 'partners',
+                'format' => 'raw',
+                'value' => function($model){return implode(', ', array_values(ArrayHelper::map($model->partners, 'id', 'username')));}
+            ],
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
         ],
     ]); ?>
