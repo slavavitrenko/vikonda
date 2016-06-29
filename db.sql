@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 29 2016 г., 11:39
+-- Время создания: Июн 29 2016 г., 15:48
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -38,7 +38,18 @@ CREATE TABLE IF NOT EXISTS `calculate_door` (
   `calculate_type` varchar(25) NOT NULL,
   `sum` decimal(10,2) NOT NULL,
   `created_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `calculate_door`
+--
+
+INSERT INTO `calculate_door` (`id`, `type_id`, `width`, `height`, `box`, `jamb`, `locker`, `region_id`, `calculate_type`, `sum`, `created_at`) VALUES
+(51, 2, 60, 200, 1, 1, 1, 3, 'calculate', 5662.60, 1467196699),
+(52, 2, 60, 200, 1, 1, 1, 3, 'order', 5662.60, 1467196886),
+(53, 2, 60, 200, 1, 1, 1, 3, 'order', 5662.60, 1467197719),
+(54, 2, 60, 200, 1, 1, 1, 3, 'calculate', 5662.60, 1467204106),
+(55, 2, 60, 200, 1, 1, 1, 3, 'calculate', 5662.60, 1467204114);
 
 -- --------------------------------------------------------
 
@@ -59,7 +70,26 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `calculate_type` varchar(25) NOT NULL,
   `sum` decimal(10,2) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `calculate_window`
+--
+
+INSERT INTO `calculate_window` (`id`, `type_id`, `width`, `height`, `profile_id`, `glaze_id`, `camers`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `created_at`) VALUES
+(38, 1, 2000, 1500, 1, 1, 2, 1, 3, 'order', 2975.46, 1467196457),
+(39, 1, 2000, 1500, 1, 1, 2, 1, 3, 'order', 2975.46, 1467196701),
+(40, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467197721),
+(41, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203645),
+(42, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203688),
+(43, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203716),
+(44, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203748),
+(45, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203790),
+(46, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203805),
+(47, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203933),
+(48, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467203942),
+(49, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467204109),
+(50, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2975.46, 1467204115);
 
 -- --------------------------------------------------------
 
@@ -150,16 +180,21 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
-(23, '+380663564463', '', 6, 17, 1467018829, 1467018829),
+(23, '+380663564463', '', 6, 0, 1467018829, 1467018829),
 (29, '+380663564463', '', 5, 0, 1467106728, 1467106728),
-(31, '+380663564463', '', 5, 0, 1467106982, 1467106982);
+(31, '+380663564463', '', 5, 0, 1467106982, 1467106982),
+(42, '+380663564463', '', 5, 0, 1467190883, 1467190883),
+(44, '+380663564463', '', 4, 17, 1467191134, 1467191134),
+(46, '+380663564463', '', 6, 0, 1467194702, 1467194702),
+(48, '+380663564463', '', 5, 0, 1467194777, 1467194777),
+(50, NULL, NULL, NULL, 0, 1467204381, 1467204381);
 
 -- --------------------------------------------------------
 
@@ -173,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders_products`
@@ -187,7 +222,11 @@ INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`)
 (24, 29, 14, 2, NULL),
 (25, 29, 15, 2, NULL),
 (26, 31, 12, 2, NULL),
-(27, 31, 13, 3, NULL);
+(27, 31, 13, 3, NULL),
+(29, 42, 12, 3, NULL),
+(30, 44, 12, 2, NULL),
+(31, 46, 12, 2, NULL),
+(32, 48, 12, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,24 +238,18 @@ CREATE TABLE IF NOT EXISTS `partners_regions` (
   `id` int(11) NOT NULL,
   `partner_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `partners_regions`
 --
 
 INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
-(7, 15, 4),
-(8, 16, 3),
-(9, 16, 4),
-(10, 16, 5),
-(11, 16, 6),
-(12, 16, 8),
-(33, 17, 3),
-(34, 17, 4),
-(35, 17, 5),
-(36, 17, 6),
-(37, 17, 8);
+(40, 17, 3),
+(41, 17, 4),
+(42, 17, 5),
+(43, 17, 6),
+(44, 17, 8);
 
 -- --------------------------------------------------------
 
@@ -359,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`) VALUES
-(1, 25.60, 120.45, 10.45, 0, 'slavavitrenko@gmail.com');
+(1, 25.60, 120.45, 10.45, 1, 'slavavitrenko@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -420,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
 (1, 'admin', 'email@email.ru', '$2y$10$tv4cRT23luXR6ZZIveDN4uDO.D4XS250QfQK3wDMgG6U2mALYRfhy', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466233255, 0, 'admin'),
-(17, 'partner', 'partner@gmail.com', '$2y$10$UUR2l.Zzt.AnU3dNqL0sgeFNa7j7szcktDxH/ScPy6aYNz0FQVryq', '1nnKK1QMrYwo1GYNLsfNTehWQH48bBQq', 1466584192, NULL, NULL, '127.0.0.1', 1466584193, 1467180834, 0, 'partner'),
+(17, 'partner', 'partner@gmail.com', '$2y$10$s7Sh1pYxMn2ouD2kwiL/WuqQ4b/Vj89a7IL52MdQD3404miGs1a3.', '1nnKK1QMrYwo1GYNLsfNTehWQH48bBQq', 1466584192, NULL, NULL, '127.0.0.1', 1466584193, 1467194773, 0, 'partner'),
 (18, 'manager', 'manager@mail.ru', '$2y$10$59YaSCdFrzKNzjPI/ttICuMk07DEDaao8mGW/4FFmvlapADPlrmEi', '_udQ-MRSa3lHJ_nor6OQAE7iTffjp4pd', 1467181276, NULL, NULL, '93.78.238.18', 1467181276, 1467181276, 0, 'manager');
 
 -- --------------------------------------------------------
@@ -664,12 +697,12 @@ ALTER TABLE `window_types`
 -- AUTO_INCREMENT для таблицы `calculate_door`
 --
 ALTER TABLE `calculate_door`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -684,17 +717,17 @@ ALTER TABLE `door_types`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
 ALTER TABLE `partners_regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --

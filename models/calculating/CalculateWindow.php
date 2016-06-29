@@ -27,6 +27,21 @@ class CalculateWindow extends \yii\db\ActiveRecord
 			[['sum'], 'number'],
 			[['calculate_type'], 'string', 'max' => 25],
 			[['calculate_type'], 'match', 'pattern' => '/^(calculate|order)$/', 'message' => Yii::t('app', 'Calculate type must be "order" or "calculate"')],
+			[['calculate_type'], 'default', 'value' => 'calculate']
+		];
+	}
+
+	public function fields(){
+		return [
+			'calculate_id' => function($model){ return $model->id; },
+			'type_id' => function($model){ return $model->type->name; },
+			'width' => function($model){ return $model->width; },
+			'height' => function($model){ return $model->height; },
+			'profile_id' => function($model){ return $model->profile->name; },
+			'glaze_id' => function($model){ return $model->glaze->name; },
+			'camers',
+			'furniture_id' => function($model){ return $model->furniture->name; },
+			'sum' => function($model){ return round($model->sum, Settings::get('round') ? 0 : 2); }
 		];
 	}
 
@@ -49,7 +64,7 @@ class CalculateWindow extends \yii\db\ActiveRecord
 	}
 
 	public function getFurniture(){
-		return $this->hasOne(WindowFurniture::className(), ['id' => 'funrniture_id']);
+		return $this->hasOne(WindowFurniture::className(), ['id' => 'furniture_id']);
 	}
 
 	public function getGlaze(){
@@ -80,36 +95,35 @@ class CalculateWindow extends \yii\db\ActiveRecord
 	private function calculate(){
 		$price = 0;
 
-		// Высчитываем квадратуру
+		// Квадратура
 		$price += (($this->height * $this->width)/1000000) * $this->type->price;
+
+		// Фурнитура
+		$price += $this->furniture->price;
+
+		// Стеклопакет
+		$price += (($this->height * $this->width)/1000000) * $this->glaze->price;
+
+		// Профиль
+		$price += (($this->height + $this->width)/500) * $this->profile->price;
 
 		// Накидываем процент региона
 		$price += ($this->region->percent / 100) * $price;
 
-		$this->send_email();
+		if($this->calculate_type == 'order'){
+			$this->send_email();
+		}
 		
 		// Возвращаем округленную стоимость (округленную до целых гривен или нет, в зависимости от настроек)
 		return Settings::get('round') ?  round($price + 0.49, 0) : round($price, 2);
 	}
 
     private function send_email(){
-        $pid = pcntl_fork();
-        if(!$pid){
         Yii::$app->mailer->compose()
             ->setTo(Settings::get('admin_email'))
             ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
             ->setTextBody(Yii::t('app', 'New calculate window has submitted'))
             ->send();
-            // exit();
-        }
-        else {
-        	Yii::$app->mailer->compose()
-	            ->setTo(Settings::get('admin_email'))
-	            ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
-	            ->setTextBody(Yii::t('app', 'New calculate window has submitted'))
-	            ->send();
-	            return;
-        }
     }
 
 }

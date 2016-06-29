@@ -66,9 +66,9 @@ class OrdersSearch extends Orders
 
         if(Yii::$app->user->identity->type == 'partner'){
             $query
-            ->andFilterWhere(['orders.partner_id' => Yii::$app->user->identity->id])
-            ->orFilterWhere(['orders.partner_id' => '0'])
-            ->andFilterWhere(['regions.id' => array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id'))]);
+            ->andFilterWhere(['orders.partner_id' => '0'])
+            ->andFilterWhere(['regions.id' => array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id'))])
+            ->orFilterWhere(['orders.partner_id' => Yii::$app->user->identity->id]);
         }
 
         $query->andFilterWhere([

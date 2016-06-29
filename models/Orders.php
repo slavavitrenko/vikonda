@@ -64,6 +64,14 @@ class Orders extends \yii\db\ActiveRecord
         return $totalCount;
     }
 
+    public function getRegion(){
+        return $this->hasOne(Regions::className(), ['id' => 'region_id']);
+    }
+
+    public function getPartners(){
+        return $this->hasMany(User::className(), ['id' => 'partner_id'])->viaTable('partners_regions', ['region_id' => 'region_id']);
+    }
+
     public function getPartner(){
         return $this->hasOne(User::className(), ['id' => 'partner_id']);
     }
@@ -87,8 +95,21 @@ class Orders extends \yii\db\ActiveRecord
         return $totalAmount;
     }
 
-    public function getRegion(){
-        return $this->hasOne(Regions::className(), ['id' => 'region_id']);
+    public function afterSave($insert, $changedAttributes){
+        if(($partnerEmails = \yii\helpers\ArrayHelper::map($this->partners, 'id', 'email')) != false){
+            foreach($partnerEmails as $email){
+                $this->send_email($email);
+            }
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    private function send_email($email){
+        Yii::$app->mailer->compose()
+            ->setTo($email)
+            ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
+            ->setTextBody(Yii::t('app', 'New order in your region'))
+            ->send();
     }
 
 }

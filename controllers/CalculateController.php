@@ -7,6 +7,7 @@ use Yii;
 use yii\web\Controller;
 use app\models\calculating\CalculateWindow;
 use app\models\calculating\CalculateDoor;
+use yii\web\NotFoundHttpException;
 
 class CalculateController extends Controller
 {
@@ -17,21 +18,53 @@ class CalculateController extends Controller
 		$this->enableCsrfValidation = false;
 	}
 
-	public function actionWindow(){
+	public function actionWindow($calculate_id = null){
+		if($calculate_id){
+			$model = $this->findWindow($calculate_id);
+			$model->calculate_type = 'order';
+			Yii::$app->response->format = 'json';
+			$model->save(false);
+			return $model;
+		}
 		$model = new CalculateWindow;
 		$model->load(Yii::$app->request->post(), '');
 		// ============================================================================= //
 		// ======= Внимание!! Заменить validate() на save() после тестирования ========= //
 		// ============================================================================= //
-		return $model->validate() ? ['sum' => $model->sum] : ['errors' => array_values($model->errors)];
+		return $model->save() ? ['sum' => $model->sum, 'calculate_id' => $model->id] : ['errors' => array_values($model->errors)];
 	}
 
-	public function actionDoor(){
+	public function actionDoor($calculate_id = null){
+		if($calculate_id){
+			$model = $this->findDoor($calculate_id);
+			$model->calculate_type = 'order';
+			Yii::$app->response->format= 'json';
+			$model->save(false);
+			return $model;
+		}
 		$model = new CalculateDoor;
 		$model->load(Yii::$app->request->post(), '');
 		// ============================================================================= //
 		// ======= Внимание!! Заменить validate() на save() после тестирования ========= //
 		// ============================================================================= //
-		return $model->validate() ? ['sum' => $model->sum] : ['errors' => array_values($model->errors)];
+		return $model->save() ? ['sum' => $model->sum, 'calculate_id' => $model->id] : ['errors' => array_values($model->errors)];
 	}
+
+    protected function findDoor($id)
+    {
+        if (($model = CalculateDoor::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findWindow($id)
+    {
+        if (($model = CalculateWindow::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }

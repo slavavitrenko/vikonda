@@ -64,14 +64,17 @@ class OrdersController extends Controller
 	{
 		$model = $this->findModel($id);
 		if(
-			!in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
-			&& !in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
+			in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
+			&& in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
+			or in_array($model->partner_id, ['0', Yii::$app->user->identity->id])
 			){
-			throw new NotFoundHttpException(Yii::t('app', 'Not ofund'));
+			return $this->render('view', [
+				'model' => $model,
+			]);
 		}
-		return $this->render('view', [
-			'model' => $model,
-		]);
+		else {
+			throw new NotFoundHttpException(Yii::t('app', 'Not found'));
+		}
 	}
 
 	public function actionDelete($id)
