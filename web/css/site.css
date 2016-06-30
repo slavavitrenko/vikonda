@@ -119,5 +119,10 @@ div.required label:first-child:not(.btn):after {
 }
 
 .kv-sidenav .nav a {
-    padding-left: 20%!important;
+    /*padding-left: 20%!important;*/
+}
+
+#main-navbar > li > a {
+    color: white!important;
+    background-color: #4e4a4a;
 }

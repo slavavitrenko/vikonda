@@ -42,7 +42,7 @@ class WindowTypes extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'picture' => Yii::t('app', 'Picture'),
-            'price' => Yii::t('app', 'Price per meter'),
+            'price' => Yii::t('app', 'Price per quadmeter'),
         ];
     }
 

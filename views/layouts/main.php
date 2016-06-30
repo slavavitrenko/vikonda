@@ -8,6 +8,18 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
 
+$js = '
+var baseUrl = window.location.protocol + "//" + window.location.hostname + ":8093";
+var socket = io(baseUrl);
+
+socket.on("mess", function(){
+	window.location = window.location;
+});';
+
+if(!Yii::$app->user->isGuest){
+	$this->registerJs($js, \yii\web\View::POS_READY);
+}
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>

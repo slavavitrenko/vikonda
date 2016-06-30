@@ -62,59 +62,42 @@ class OrdersController extends Controller
 
 	public function actionView($id)
 	{
-		$model = $this->findModel($id);
-		if(
-			in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
-			&& in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
-			or in_array($model->partner_id, ['0', Yii::$app->user->identity->id])
-			){
 			return $this->render('view', [
-				'model' => $model,
+				'model' => $this->findModel($id),
 			]);
-		}
-		else {
-			throw new NotFoundHttpException(Yii::t('app', 'Not found'));
-		}
 	}
 
 	public function actionDelete($id)
 	{
-		$model = $this->findModel($id);
-		if(
-			in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
-			or in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
-			){
-			$model->delete();
-		}
+		$this->findModel($id)->delete();
 
 		return $this->redirect(['index']);
 	}
 
-	public function actionTake($id){
-		$model = $this->findModel($id);
-		if($model->partner_id == '0'){
-			$model->updateAttributes([
+	public function actionTake($id, $return_url=null){
+		$this->findModel($id)
+		->updateAttributes([
 					'partner_id' => Yii::$app->user->identity->id,
 			]);
 			Yii::$app->session->setFlash('success', Yii::t('app', 'You are succesfully taked item №{num}', ['num' => $id]));
-		}
-		return $this->goBack();
+        return $this->redirect($return_url ? $return_url : ['index']);
 	}
 
-	public function actionUntake($id){
-		$model = $this->findModel($id);
-		if($model->partner_id == Yii::$app->user->identity->id){
-			$model->updateAttributes([
+	public function actionUntake($id, $return_url=null){
+		$this->findModel($id)->updateAttributes([
 				'partner_id' => '0',
 			]);
 			Yii::$app->session->setFlash('warning', Yii::t('app', 'You are succesfully untaked item №{num}', ['num' => $id]));
-		}
-		return $this->goBack();
+        return $this->redirect($return_url ? $return_url : ['index']);
 	}
 
 	protected function findModel($id)
 	{
-		if (($model = Orders::findOne($id)) !== null) {
+		if (
+			($model = Orders::findOne($id)) !== null
+			&& in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
+			&& in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
+			or in_array($model->partner_id, ['0', Yii::$app->user->identity->id])) {
 			return $model;
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');

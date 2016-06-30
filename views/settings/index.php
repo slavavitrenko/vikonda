@@ -13,13 +13,18 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 
 	<?php $form = ActiveForm::begin(); ?>
 
+	<?=$form->field($model, 'site_url') ?>
+
 	<?=$form->field($model, 'admin_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
+
+	<?=$form->field($model, 'bot_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 
 	<?= $form->field($model, 'box_price') ?>
 
 	<?=$form->field($model, 'jamb_price') ?>
 
 	<?=$form->field($model, 'locker_price') ?>
+
 
 	<?= $form->field($model, 'round')->radioList([
 	        '1' => Yii::t('app', 'Yeap'),

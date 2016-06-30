@@ -35,7 +35,7 @@ class WindowGlazes extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
-            'price' => Yii::t('app', 'Price'),
+            'price' => Yii::t('app', 'Price per quadmeter'),
         ];
     }
 }

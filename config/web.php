@@ -8,18 +8,18 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
-        // 'assetManager' => [
-        //     'class' => 'yii\web\AssetManager',
-        //     'appendTimestamp' => true,
-        //     'bundles' => [
-        //         'yii\bootstrap\BootstrapAsset' => [
-        //             'sourcePath' => null,
-        //             'basePath' => '@webroot',
-        //             'baseUrl' => '@web',
-        //             'css' => ['css/theme.css'],
-        //         ],
-        //     ],
-        // ],
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'appendTimestamp' => true,
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'css' => ['css/theme.css'],
+                ],
+            ],
+        ],
         'i18n' => [
             'translations' => [
                 'app' => [
@@ -41,9 +41,22 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        // 'mailer' => [
+        //     'class' => 'yii\swiftmailer\Mailer',
+        //     'useFileTransport' => true,
+        // ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
+            'viewPath' => '@app/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'mxuser@ya.ru',
+                'password' => 'MjNhmjnh34',
+                'port' => '587',
+                'encryption' => 'TLS',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

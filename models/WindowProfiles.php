@@ -37,7 +37,7 @@ class WindowProfiles extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'picture' => Yii::t('app', 'Picture'),
-            'price' => Yii::t('app', 'Price'),
+            'price' => Yii::t('app', 'Price per meter'),
         ];
     }
 

@@ -9,6 +9,9 @@ use app\models\WindowTypes;
 use app\models\WindowGlazes;
 use app\models\Regions;
 use app\models\Settings;
+use yii\helpers\ArrayHelper;
+use app\models\user\User;
+use app\models\PartnersRegions;
 
 
 class CalculateWindow extends \yii\db\ActiveRecord
@@ -27,7 +30,8 @@ class CalculateWindow extends \yii\db\ActiveRecord
 			[['sum'], 'number'],
 			[['calculate_type'], 'string', 'max' => 25],
 			[['calculate_type'], 'match', 'pattern' => '/^(calculate|order)$/', 'message' => Yii::t('app', 'Calculate type must be "order" or "calculate"')],
-			[['calculate_type'], 'default', 'value' => 'calculate']
+			[['calculate_type'], 'default', 'value' => 'calculate'],
+			[['partner_id'], 'default', 'value' => '0'],
 		];
 	}
 
@@ -35,12 +39,13 @@ class CalculateWindow extends \yii\db\ActiveRecord
 		return [
 			'calculate_id' => function($model){ return $model->id; },
 			'type_id' => function($model){ return $model->type->name; },
-			'width' => function($model){ return $model->width; },
-			'height' => function($model){ return $model->height; },
+			'width' => function($model){ return $model->width . ' ' . Yii::t('app', 'см'); },
+			'height' => function($model){ return $model->height . ' ' . Yii::t('app', 'см'); },
 			'profile_id' => function($model){ return $model->profile->name; },
 			'glaze_id' => function($model){ return $model->glaze->name; },
 			'camers',
 			'furniture_id' => function($model){ return $model->furniture->name; },
+			'region_id' => function($model){ return $model->region->name; },
 			'sum' => function($model){ return round($model->sum, Settings::get('round') ? 0 : 2); }
 		];
 	}
@@ -60,12 +65,25 @@ class CalculateWindow extends \yii\db\ActiveRecord
 			'calculate_type' => Yii::t('app', 'Window Calculate Type'),
 			'sum' => Yii::t('app', 'Sum'),
 			'created_at' => Yii::t('app', 'Created At'),
+			'partner_id' => Yii::t('app', 'Partner'),
 		];
 	}
 
 	public function getFurniture(){
 		return $this->hasOne(WindowFurniture::className(), ['id' => 'furniture_id']);
 	}
+
+	public function getPartnersRegions(){
+		return $this->hasMany(PartnersRegions::className(), ['region_id' => 'region_id']);
+	}
+
+    public function getPartners(){
+        return $this->hasMany(User::className(), ['id' => 'partner_id'])->via('partnersRegions');
+    }
+
+    public function getPartner(){
+        return $this->hasOne(User::className(), ['id' => 'partner_id']);
+    }
 
 	public function getGlaze(){
 		return $this->hasOne(WindowGlazes::className(), ['id' => 'glaze_id']);
@@ -86,6 +104,7 @@ class CalculateWindow extends \yii\db\ActiveRecord
 	public function beforeValidate(){
 		$this->created_at = time();
 		$this->sum = $this->calculate();
+		$this->notify();
 		return parent::beforeValidate();
 	}
 
@@ -94,35 +113,36 @@ class CalculateWindow extends \yii\db\ActiveRecord
 	//==================================================================//
 	private function calculate(){
 		$price = 0;
-
 		// Квадратура
 		$price += (($this->height * $this->width)/1000000) * $this->type->price;
-
 		// Фурнитура
 		$price += $this->furniture->price;
-
 		// Стеклопакет
 		$price += (($this->height * $this->width)/1000000) * $this->glaze->price;
-
 		// Профиль
 		$price += (($this->height + $this->width)/500) * $this->profile->price;
-
 		// Накидываем процент региона
 		$price += ($this->region->percent / 100) * $price;
-
-		if($this->calculate_type == 'order'){
-			$this->send_email();
-		}
-		
 		// Возвращаем округленную стоимость (округленную до целых гривен или нет, в зависимости от настроек)
 		return Settings::get('round') ?  round($price + 0.49, 0) : round($price, 2);
 	}
 
-    private function send_email(){
-        Yii::$app->mailer->compose()
+    private function notify(){
+
+    	if($this->calculate_type == 'order'){
+    		if(($emails = array_values(ArrayHelper::map($this->partners, 'id', 'email'))) != false){
+    			foreach($emails as $email){
+			        \app\models\Notifications::notify($email, Yii::t('app', 'New order in your region - {link}', ['link' => \yii\helpers\Url::to(["/window-orders/view", 'id' => $this->id], true)]));
+    			}
+    		}
+    	}
+    }
+
+    private function send_email_to_admin(){
+    	Yii::$app->mailer->compose()
             ->setTo(Settings::get('admin_email'))
-            ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
-            ->setTextBody(Yii::t('app', 'New calculate window has submitted'))
+            ->setFrom([Settings::get('bot_email') => 'Bot'])
+            ->setTextBody(Yii::t('app', 'New calculate door has submitted'))
             ->send();
     }
 

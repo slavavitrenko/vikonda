@@ -18,14 +18,11 @@ class CalculateController extends Controller
 		$this->enableCsrfValidation = false;
 	}
 
-	public function actionWindow($calculate_id = null){
-		
-		Yii::$app->response->format = 'json';
-
-		if($calculate_id){
+	public function actionWindow(){
+		if(($calculate_id = Yii::$app->request->post('calculate_id')) != false){
 			$model = $this->findWindow($calculate_id);
 			$model->calculate_type = 'order';
-			$model->save(false);
+			$model->save();
 			return $model;
 		}
 		$model = new CalculateWindow;
@@ -34,14 +31,11 @@ class CalculateController extends Controller
 		return $model->save() ? $model : ['errors' => array_values($model->errors)];
 	}
 
-	public function actionDoor($calculate_id = null){
-			
-		Yii::$app->response->format= 'json';
-
-		if($calculate_id){
+	public function actionDoor(){
+		if(($calculate_id = Yii::$app->request->post('calculate_id')) != false){
 			$model = $this->findDoor($calculate_id);
 			$model->calculate_type = 'order';
-			$model->save(false);
+			$model->save();
 			return $model;
 		}
 		$model = new CalculateDoor;
@@ -52,7 +46,8 @@ class CalculateController extends Controller
 
     protected function findDoor($id)
     {
-        if (($model = CalculateDoor::findOne($id)) !== null) {
+    	// УБРАТЬ комментарии в функции во избежение повторных заказов одного и того же окна
+        if (($model = CalculateDoor::findOne($id)) !== null /* && $model->calculate_type != 'order'*/) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -61,7 +56,8 @@ class CalculateController extends Controller
 
     protected function findWindow($id)
     {
-        if (($model = CalculateWindow::findOne($id)) !== null) {
+    	// УБРАТЬ комментарии в функции во избежение повторных заказов одного и того же окна
+        if (($model = CalculateWindow::findOne($id)) !== null /* && $model->calculate_type != 'order'*/) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

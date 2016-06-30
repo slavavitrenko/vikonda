@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/socket.js',
         'js/main.js',
     ];
     public $depends = [

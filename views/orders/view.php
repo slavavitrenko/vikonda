@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\helpers\ArrayHelper;
 
@@ -24,6 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= $model->partner_id == '0' ?
+        Html::a(Yii::t('app', 'Take'), ['take', 'id' => $model->id, 'return_url' => Url::to(['/orders/view', 'id' => $model->id])], ['class' => 'btn btn-success', 'data-method' => 'post'])
+        :
+        Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $model->id, 'return_url' => Url::to(['/orders/view', 'id' => $model->id])], ['class' => 'btn btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]); ?>
     </p>
 
     <?= DetailView::widget([

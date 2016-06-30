@@ -7,6 +7,7 @@ use app\models\OrdersProducts;
 use app\models\Products;
 use app\models\Regions;
 use app\models\user\User;
+use app\models\PartnersRegions;
 
 
 class Orders extends \yii\db\ActiveRecord
@@ -68,8 +69,12 @@ class Orders extends \yii\db\ActiveRecord
         return $this->hasOne(Regions::className(), ['id' => 'region_id']);
     }
 
+    public function getPartnersRegions(){
+        return $this->hasMany(PartnersRegions::className(), ['region_id' => 'region_id']);
+    }
+
     public function getPartners(){
-        return $this->hasMany(User::className(), ['id' => 'partner_id'])->viaTable('partners_regions', ['region_id' => 'region_id']);
+        return $this->hasMany(User::className(), ['id' => 'partner_id'])->via('partnersRegions');
     }
 
     public function getPartner(){
@@ -105,10 +110,11 @@ class Orders extends \yii\db\ActiveRecord
     }
 
     private function send_email($email){
+
         Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
-            ->setTextBody(Yii::t('app', 'New order in your region'))
+            ->setTextBody(Yii::t('app', 'New order in your region - {link}', ['link' => \yii\helpers\Url::to(["/orders/index"], true)]))
             ->send();
     }
 

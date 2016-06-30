@@ -10,7 +10,7 @@ $items = [];
 
 if(!Yii::$app->user->isGuest){
 	if(Yii::$app->user->identity->type == 'admin'){
-		$items[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/orders/index']];
+		$items[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/orders/index'], 'active' => false];
 	}
 }
 

@@ -17,7 +17,7 @@ class Settings extends \yii\db\ActiveRecord
         return [
             [['box_price', 'locker_price', 'round', 'admin_email'], 'required'],
             [['box_price', 'locker_price', 'jamb_price'], 'number'],
-            [['admin_email'], 'string', 'max' => 255],
+            [['admin_email', 'bot_email', 'site_url'], 'string', 'max' => 255],
             [['round'], 'integer'],
         ];
     }
@@ -30,6 +30,8 @@ class Settings extends \yii\db\ActiveRecord
             'round' => Yii::t('app', 'Round Prices'),
             'jamb_price' => yii::t('app', 'Jamb Price'),
             'admin_email' => Yii::t('app', 'Notifications email'),
+            'bot_email' => Yii::t('app', 'Bot Email'),
+            'site_url' => Yii::t('app', 'Site Url'),
         ];
     }
 

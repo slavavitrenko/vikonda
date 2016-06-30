@@ -11,6 +11,19 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'components' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@app/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'mxuser@ya.ru',
+                'password' => 'MjNhmjnh34',
+                'port' => '587',
+                'encryption' => 'TLS',
+            ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

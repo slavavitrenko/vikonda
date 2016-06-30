@@ -3,31 +3,30 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use app\models\Regions;
 use yii\helpers\ArrayHelper;
-use kartik\select2\Select2;
+use app\models\DoorTypes;
+use app\models\Regions;
 
-$regions = in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? Regions::find()->all() : Regions::find()->where(['id' => array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id'))])->all();
 
-$this->title = Yii::t('app', 'Site Orders');
+$this->title = Yii::t('app', 'Door Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="orders-index">
+<div class="calculate-door-index">
 
     <?=$this->render('@app/views/orders/_menu', \app\components\OrdersCount::count()) ?>
 
-    <?php Pjax::begin(['id' => 'orders-container']); ?>
+    <?php Pjax::begin(['id' => 'doors-container']); ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'summary' => false,
+            'summary' => '',
             'columns' => [
                 // ['class' => 'yii\grid\SerialColumn'],
 
                 // 'id',
                 [
-                    'attribute' => 'amount',
-                    'value' => function($model){return $model->amount . ' ' . Yii::t('app', 'cur');}
+                    'attribute' => 'sum',
+                    'value' => function($model){return $model->sum . ' ' . Yii::t('app', 'cur');}
                 ],
                 [
                     'attribute' => 'partner_id',
@@ -37,26 +36,35 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->partner_id ? '<span class="label label-success">' . Yii::t("app", "Taked") . ' - ' . $model->partner->username . '</span>' : '<span class="label label-warning">' . Yii::t('app', 'Not taked') . '</span>';
                     }
                 ],
-                'phone',
-                'email:email',
                 [
-                    // 'visible' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']),
-                    'attribute' => 'region_id',
-                    'filter' => Select2::widget([
-                            'model' => $searchModel,
-                            'attribute' => 'region_id',
-                            'data' => ArrayHelper::map($regions, 'id', 'name'),
-                            'options' => ['placeholder' => Yii::t('app', 'Choose...')],
-                            'pluginOptions' => ['allowClear' => true]
-                        ]),
-                    'value' => 'region.name',
+                    'attribute' => 'type_id',
+                    'value' => function($model){ return $model->type->name; },
+                    'filter' => Html::activeDropdownList($searchModel, 'type_id', ArrayHelper::map(DoorTypes::find()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => ''/*Yii::t('app', 'Choose...')*/])
                 ],
-                // 'updated_at',
+                // 'width',
+                // 'height',
+                // [
+                //     'attribute' => 'box',
+                //     'value' => function($model){ return Yii::t('app', $model->box ? 'Yeap' : 'Nope'); },
+                // ],
+                // [
+                //     'attribute' => 'jamb',
+                //     'value' => function($model){ return Yii::t('app', $model->jamb ? 'Yeap' : 'Nope'); },
+                // ],
+                // [
+                //     'attribute' => 'locker',
+                //     'value' => function($model){ return Yii::t('app', $model->locker ? 'Yeap' : 'Nope'); },
+                // ],
+                [
+                    'attribute' => 'region_id',
+                    'value' => function($model){ return $model->region->name; },
+                    'filter' => Html::activeDropdownList($searchModel, 'region_id', ArrayHelper::map(Regions::find()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => ''/*Yii::t('app', 'Choose...')*/])
+                ],
+                // 'calculate_type',
                 [
                     'attribute' => 'created_at',
                     'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
                 ],
-
                 [
                     'class' => 'yii\grid\ActionColumn', 'template' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '{view} {delete}' : '{take} {view} {delete}',
                     'buttons' => [
