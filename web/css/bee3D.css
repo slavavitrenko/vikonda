@@ -94,10 +94,10 @@ body {
   width: 20px;
   height: 40px; }
   .bee3D--nav__prev {
-    background-image: url('assets/img/angle-left.svg');
+    background-image: url('/img/angle-left.svg');
     left: 3%; }
   .bee3D--nav__next {
-    background-image: url('assets/img/angle-right.svg');
+    background-image: url('/img/angle-right.svg');
     right: 3%; }
 
 .bee3D--effect__classic .bee3D--before {
