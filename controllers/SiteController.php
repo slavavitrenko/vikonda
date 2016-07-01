@@ -49,8 +49,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->redirect(['/products/index']);
-        return $this->render('index');
+        return $this->renderPartial('index');
     }
 
     public function actionCart(){
