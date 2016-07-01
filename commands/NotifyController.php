@@ -17,7 +17,7 @@ class NotifyController extends Controller
 			foreach($entries as $entry){
 				Yii::$app->mailer->compose()
 		            ->setTo($entry->email)
-		            ->setSubject('Новый заказ н сайте - ' . Settings::get('site_url'))
+		            ->setSubject('Новый заказ на сайте - ' . Settings::get('site_url'))
 		            ->setFrom([Settings::get('bot_email') => 'Bot'])
 		            ->setTextBody($entry->text)
 		            ->send();

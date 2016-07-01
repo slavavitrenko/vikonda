@@ -4,7 +4,6 @@ use kartik\sidenav\SideNav;
 
 $items = [];
 
-
 $items[] = ['label' => Yii::t('app', 'Orders').
 			($totalCount >= 1 ?
 				(' <span class="badge">' . $totalCount . '</span>&nbsp;&nbsp;&nbsp;')
@@ -34,7 +33,7 @@ $items[] = ['label' => Yii::t('app', 'Orders').
 				:
 				''), 'url' => ['/door-orders'], 'active' => in_array(Yii::$app->controller->id, ['door-orders'])],
 		],
-		'active' => /*in_array(Yii::$app->controller->id, ['orders', 'door-orders', 'window-orders'])*/ true];
+		'active' => in_array(Yii::$app->controller->id, ['orders', 'door-orders', 'window-orders'])];
 // $items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
 $items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
 	['label' => Yii::t('app', 'All users'), 'url' => ['/user/admin/index'], 'active' => Yii::$app->controller->id == 'admin', 'visible' => Yii::$app->user->identity->type == 'admin'],	
@@ -43,7 +42,7 @@ $items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
 	['label' => Yii::t('app', 'Products'), 'url' => ['/products/index'], 'active' => Yii::$app->controller->id == 'products'],
 	['label' => Yii::t('app', 'Basic Settings'), 'url' => ['/settings/index'], 'active' => Yii::$app->controller->id == 'settings'],
 ]
-, 'active' => true];
+, 'active' => in_array(Yii::$app->controller->id, ['admin', 'regions', 'categories', 'products', 'settings'])];
 
 $items[] = ['label' => Yii::t('app', 'Windows'), 'items' => [
 		['label' => Yii::t('app', 'Window types'), 'url' => ['/window-types'], 'active' => Yii::$app->controller->id == 'window-types'],
@@ -51,13 +50,13 @@ $items[] = ['label' => Yii::t('app', 'Windows'), 'items' => [
 		['label' => Yii::t('app', 'Glazes'), 'url' => ['/window-glazes'], 'active' => Yii::$app->controller->id == 'window-glazes'],
 		['label' => Yii::t('app', 'Furniture'), 'url' => ['/window-furniture'], 'active' => Yii::$app->controller->id == 'window-furniture'],
 ]
-, 'active' => true];
+, 'active' => in_array(Yii::$app->controller->id, ['window-types', 'window-profiles', 'window-glazes', 'window-furniture'])];
 
 $items[] = ['label' => Yii::t('app', 'Doors'), 'items' => [
 	['label' => Yii::t('app', 'Door Types'), 'url' => ['/door-types'], 'active' => Yii::$app->controller->id == 'door-types'],
 	['label' => Yii::t('app', 'Door Furnitures'), 'url' => ['/door-furniture'], 'active' => Yii::$app->controller->id == 'door-furniture'],
 ]
-, 'active' => true];
+, 'active' => in_array(Yii::$app->controller->id, ['door-types', 'door-furniture'])];
 
 ?>
 

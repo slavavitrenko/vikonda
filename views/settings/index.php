@@ -13,6 +13,20 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 
 	<?php $form = ActiveForm::begin(); ?>
 
+	<?= $form->field($model, 'round')->radioList([
+	        '1' => Yii::t('app', 'Yeap'),
+	        '0' => Yii::t('app', 'Nope'),
+	    ], [
+	        'id' => 'round-type',
+	        'class' => 'btn-group form-group',
+	        'data-toggle' => 'buttons',
+	        'unselect' => null, // remove hidden field
+	        'item' => function ($index, $label, $name, $checked, $value) {
+	            return '<label class="btn btn-success' . ($checked ? ' active' : '') . '">' .
+	                Html::radio($name, $checked, ['value' => $value, 'class' => 'project-status-btn']) . $label . '</label>';
+	        },
+	]) ?>
+
 	<?=$form->field($model, 'site_url') ?>
 
 	<?=$form->field($model, 'admin_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
@@ -35,21 +49,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
                 'plugins' => ['clips', 'fontcolor']
             ]
     ])?>
-
-
-	<?= $form->field($model, 'round')->radioList([
-	        '1' => Yii::t('app', 'Yeap'),
-	        '0' => Yii::t('app', 'Nope'),
-	    ], [
-	        'id' => 'round-type',
-	        'class' => 'btn-group form-group',
-	        'data-toggle' => 'buttons',
-	        'unselect' => null, // remove hidden field
-	        'item' => function ($index, $label, $name, $checked, $value) {
-	            return '<label class="btn btn-success' . ($checked ? ' active' : '') . '">' .
-	                Html::radio($name, $checked, ['value' => $value, 'class' => 'project-status-btn']) . $label . '</label>';
-	        },
-	]) ?>
 
 	<div class="form-group">
 		<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>

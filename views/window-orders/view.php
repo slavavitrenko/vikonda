@@ -36,6 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             // 'id',
             'sum',
+            'fio',
+            'phone',
+            'email',
             [
                 'attribute' => 'type_id',
                 'value' => $model->type->name

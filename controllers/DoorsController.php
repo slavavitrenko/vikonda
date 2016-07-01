@@ -7,6 +7,7 @@ use Yii;
 use yii\web\Controller;
 use app\models\DoorTypes;
 use app\models\DoorFurniture;
+use app\models\Regions;
 
 
 class DoorsController extends Controller

@@ -140,7 +140,7 @@ return [
 	'New order in your region - {link}' => 'В вашем регионе появился заказ на товар. Подробнее - {link}',
 	'New window order in your region - {link}' => 'В вашем регионе появился новый заказ на окно. Подробнее - {link}',
 	'New door order in your region - {link}' => 'В вашем регионе появился новый заказ на дверь. Подробнее - {link}',
-	'' => '',
+	'Bot Email' => 'Email бота',
 	'' => '',
 	'' => '',
 	'' => '',
