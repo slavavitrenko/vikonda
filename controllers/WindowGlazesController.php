@@ -8,6 +8,7 @@ use app\models\WindowGlazesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * WindowGlazesController implements the CRUD actions for WindowGlazes model.
@@ -25,6 +26,18 @@ class WindowGlazesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return in_array(Yii::$app->user->identity->type, ['admin', 'manager']);
+                        },
+                    ],
                 ],
             ],
         ];

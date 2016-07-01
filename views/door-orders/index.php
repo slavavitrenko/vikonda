@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
                 ],
                 [
-                    'class' => 'yii\grid\ActionColumn', 'template' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '{view} {delete}' : '{take} {view} {delete}',
+                    'class' => 'yii\grid\ActionColumn', 'template' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '{view} {delete}' : '{take} {view}',
                     'buttons' => [
                         'take' => function($url, $model, $key){
                             return $model->partner_id == '0' ?

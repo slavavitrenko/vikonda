@@ -99,7 +99,7 @@ $config = [
             ],
             'controllerMap' => [
                 'admin' => 'app\controllers\user\AdminController',
-                'security' => 'app\controllers\user\SecurityController',
+                // 'security' => 'app\controllers\user\SecurityController',
             ]
         ],
     ],

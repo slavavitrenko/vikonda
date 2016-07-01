@@ -46,8 +46,7 @@ class CalculateController extends Controller
 
     protected function findDoor($id)
     {
-    	// УБРАТЬ комментарии в функции во избежение повторных заказов одного и того же окна
-        if (($model = CalculateDoor::findOne($id)) !== null /* && $model->calculate_type != 'order'*/) {
+        if (($model = CalculateDoor::findOne($id)) !== null && $model->calculate_type != 'order') {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -56,8 +55,7 @@ class CalculateController extends Controller
 
     protected function findWindow($id)
     {
-    	// УБРАТЬ комментарии в функции во избежение повторных заказов одного и того же окна
-        if (($model = CalculateWindow::findOne($id)) !== null /* && $model->calculate_type != 'order'*/) {
+        if (($model = CalculateWindow::findOne($id)) !== null && $model->calculate_type != 'order') {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

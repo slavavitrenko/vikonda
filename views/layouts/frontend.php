@@ -23,24 +23,9 @@ FrontendAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-	<?php
-	if(!Yii::$app->user->isGuest){
-		if(in_array(Yii::$app->user->identity->type, ['admin', 'manager'])){
-			echo $this->render('wide', ['content' => $content]);
-		} else {
-			echo $this->render('thin', ['content' => $content]);
-		}
-	} else {
-		echo $this->render('thin', ['content' => $content]);
-	} ?>
-</div>
+<?=$this->render('navbar'); ?>
 
-<footer class="footer">
-	<div class="container">
-		<p class="pull-left">&copy; <?=Yii::$app->params['siteName']; ?> <?= date('Y') ?></p>
-	</div>
-</footer>
+<?=$content; ?>
 
 <?php $this->endBody() ?>
 </body>

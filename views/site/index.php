@@ -1,79 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>VIKONDA</title>
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/animate.min.css">
-    <link rel="stylesheet" href="/css/slick.css">
-    <link rel="stylesheet" href="/css/slick-theme.css">
-    <link rel="stylesheet" href="/css/bee3D.css">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-<div class="header-bar">
-    <div class="mail-phone">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="mail-block">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <span><a href="mailto:example@example.com">example@example.com</a></span>
-                    </div>
-                    <div class="phone-block">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span><a href="skype:+380999999999?call">+38 (099) 999 99 99</a></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    VIKONDA
-                </a>
-            </div>
+<?php
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="btn btn-default" href="#">Главная</a></li>
-                    <li class="dropdown">
-                        <a class="btn btn-default" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Товар<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Окна</a></li>
-                            <li><a href="#">Двери</a></li>
-                            <li><a href="#">Доп. аксесуары</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="btn btn-default" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Калькулятор<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Окна</a></li>
-                            <li><a href="#">Двери</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="btn btn-default" href="#">Контакты</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-    </nav>
-</div>
+$this->registerJsFile('/js/bee3D.js');
+
+
+$js = "window.onload = function() {
+    /*=======---bee3d slider---=======*/
+    var demo = document.getElementById('demo');
+
+    var slider = new Bee3D(demo, {
+        effect: 'coverflow',
+        focus: 2,
+        navigation: {
+            enabled: true
+        },
+        autoplay: {
+            enabled: true,
+            pauseHover: true
+        },
+        loop: {
+            enabled: true,
+            continuous: true,
+        }
+    });
+};";
+
+$this->registerJs($js, \yii\web\View::POS_END);
+
+$js = "
+    $('#slider').slick({
+        dots: false,
+        infinite: true,
+        autoplay: true,
+        speed: 1200,
+        cssEase: 'linear',
+        autoplaySpeed: 5000
+    });
+
+
+    $('#about').css('opacity', 0);
+    $('#about').waypoint(function() {
+        $('#about').addClass('animated rollIn').css('opacity', 1);
+    }, { offset: '55%'});
+    $('#about h1').css('opacity', 0);
+    $('#about h1').waypoint(function() {
+        $('#about h1').addClass('animated flipInX').css('opacity', 1);
+    }, { offset: '70%'});
+    $('#steps h1').css('opacity', 0);
+    $('#steps h1').waypoint(function() {
+        $('#steps h1').addClass('animated flipInY').css('opacity', 1);
+    }, { offset: '57%'});
+    $('#products h1').css('opacity', 0);
+    $('#products h1').waypoint(function() {
+        $('#products h1').addClass('animated flipInY').css('opacity', 1);
+    }, { offset: '57%'});
+    $('#calculate h1').css('opacity', 0);
+    $('#calculate h1').waypoint(function() {
+        $('#calculate h1').addClass('animated flipInY').css('opacity', 1);
+    }, { offset: '57%'});
+    $('#calculate .calculate-image').css('opacity', 0);
+    $('#calculate .calculate-image').waypoint(function() {
+        $('#calculate .calculate-image').addClass('animated fadeInLeft').css('opacity', 1);
+    }, { offset: '60%'});
+    $('#calculate .calculate-desc').css('opacity', 0);
+    $('#calculate .calculate-desc').waypoint(function() {
+        $('#calculate .calculate-desc').addClass('animated fadeInRight').css('opacity', 1);
+    }, { offset: '60%'});
+    
+    $('#step-block-1').css('opacity', 0);
+    $('#step-block-1').waypoint(function() {
+        $('#step-block-1').addClass('animated fadeInLeft');
+    }, { offset: '57%'});
+    $('#step-block-2').css('opacity', 0);
+    $('#step-block-2').waypoint(function() {
+        $('#step-block-2').addClass('animated fadeInRight');
+    }, { offset: '57%'});
+    $('#step-block-3').css('opacity', 0);
+    $('#step-block-3').waypoint(function() {
+        $('#step-block-3').addClass('animated fadeInLeft');
+    }, { offset: '57%'});
+    $('#step-block-4').css('opacity', 0);
+    $('#step-block-4').waypoint(function() {
+        $('#step-block-4').addClass('animated fadeInRight');
+    }, { offset: '57%'});";
+
+    $this->registerJs($js, \yii\web\View::POS_READY);
+?>
 
 <section class="section-slider">
     <div id="slider" class="slider">
-        <div class="slider-item"><img class="img-responsive" src="/img/window1.jpg" alt="slider-img"></div>
-        <div class="slider-item"><img class="img-responsive" src="/img/window2.jpg" alt="slider-img"></div>
-        <div class="slider-item"><img class="img-responsive" src="/img/window1.jpg" alt="slider-img"></div>
-        <div class="slider-item"><img class="img-responsive" src="/img/window2.jpg" alt="slider-img"></div>
+        <div class="slider-item"><img class="img-responsive" src="/img/img1.jpg" alt="slider-img"></div>
+        <div class="slider-item"><img class="img-responsive" src="/img/img1.jpg" alt="slider-img"></div>
     </div>
 </section>
 
@@ -147,56 +163,7 @@
         </div>
     </div>
 </section>
-<section id="products" class="section-new-products">
-    <div class="line"></div>
-    <h1>Популярные модели</h1>
-    <div class="container">
-        <div class="products-slider">
-            <div id="demo" class="bee3D--parent">
-
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-                <div class="bee3D--slide">
-                    <div class="bee3D--inner">
-                        <img class="img-responsive" src="/img/window-1.png" alt="">
-                    </div>
-                </div>
-
-                <!-- Navigation Arrows -->
-                <span class="bee3D--nav bee3D--nav__prev"></span>
-                <span class="bee3D--nav bee3D--nav__next"></span>
-            </div>
-        </div>
-    </div>
-</section>
+<?=$this->render('@app/views/site/slider');?>
 <section id="calculate" class="section-calculate">
     <h1>Индивидуальный расчет</h1>
     <div class="container">
@@ -245,7 +212,7 @@
                 <div class="col-md-3">
                     <div class="footer-contact">
                         <ul>
-                            <li><i class="fa fa-envelope" aria-hidden="true"></i><span><a href="mailto:example@example.com">example@example.com</a></span></li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><span><a href="mailto:<?=\app\models\Settings::get('admin_email'); ?>"><?=\app\models\Settings::get('admin_email'); ?></a></span></li>
                             <li><i class="fa fa-phone" aria-hidden="true"></i><span><a href="skype:+380999999999?call">+38 (099) 999 99 99</a></span></li>
                         </ul>
                     </div>
@@ -273,13 +240,3 @@
         </div>
     </div>
 </footer>
-
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.waypoints.js"></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/classie.js"></script>
-<script src="/js/bee3D.js"></script>
-<script src="/js/main.js"></script>
-</body>
-</html>

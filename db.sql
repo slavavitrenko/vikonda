@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 30 2016 г., 18:03
+-- Время создания: Июл 01 2016 г., 16:56
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -35,24 +35,15 @@ CREATE TABLE IF NOT EXISTS `calculate_door` (
   `box` int(1) NOT NULL,
   `jamb` int(1) NOT NULL,
   `locker` int(1) NOT NULL,
+  `furniture_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL,
   `calculate_type` varchar(25) NOT NULL,
   `sum` decimal(10,2) NOT NULL,
+  `phone` varchar(13) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `fio` varchar(255) NOT NULL,
   `created_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `calculate_door`
---
-
-INSERT INTO `calculate_door` (`id`, `partner_id`, `type_id`, `width`, `height`, `box`, `jamb`, `locker`, `region_id`, `calculate_type`, `sum`, `created_at`) VALUES
-(118, 0, 2, 60, 200, 1, 1, 1, 3, 'order', 5663.00, 1467298934),
-(119, 0, 3, 2341, 2314, 1, 0, 1, 5, 'calculate', 3629325.00, 1467294884),
-(120, 0, 3, 234, 243, 1, 1, 1, 4, 'order', 38167.00, 1467295103),
-(121, 0, 3, 2234, 234, 1, 0, 0, 4, 'order', 348921.00, 1467295900),
-(122, 0, 3, 2, 2, 1, 0, 0, 5, 'calculate', 5.00, 1467298566),
-(123, 0, 3, 2, 2, 1, 0, 0, 5, 'order', 5.00, 1467298570),
-(124, 0, 2, 60, 200, 1, 1, 1, 3, 'calculate', 5663.00, 1467298931);
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -68,38 +59,22 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `height` int(13) NOT NULL,
   `profile_id` int(11) NOT NULL,
   `glaze_id` int(11) NOT NULL,
-  `camers` int(11) NOT NULL,
   `furniture_id` int(11) NOT NULL,
   `region_id` int(13) NOT NULL,
   `calculate_type` varchar(25) NOT NULL,
   `sum` decimal(10,2) NOT NULL,
+  `fio` varchar(255) NOT NULL,
+  `phone` varchar(13) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `calculate_window`
 --
 
-INSERT INTO `calculate_window` (`id`, `partner_id`, `type_id`, `width`, `height`, `profile_id`, `glaze_id`, `camers`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `created_at`) VALUES
-(190, 0, 20, 24, 24, 4, 1, 234, 1, 5, 'calculate', 84.00, 1467293886),
-(192, 0, 1, 2000, 1500, 1, 1, 2, 1, 3, 'order', 2976.00, 1467298935),
-(194, 0, 19, 555, 333, 4, 1, 522, 2, 4, 'calculate', 200.00, 1467294622),
-(195, 0, 20, 32, 234, 1, 3, 234, 2, 5, 'order', 79.00, 1467294726),
-(196, 0, 19, 2234, 2341, 1, 3, 2341, 1, 5, 'calculate', 2034.00, 1467294869),
-(197, 0, 19, 412, 234, 4, 1, 1243, 1, 4, 'calculate', 179.00, 1467294937),
-(198, 0, 19, 32, 23, 4, 3, 243, 1, 5, 'calculate', 85.00, 1467295062),
-(199, 0, 19, 32, 23, 4, 3, 243, 1, 5, 'calculate', 85.00, 1467295065),
-(200, 0, 19, 32, 23, 4, 3, 243, 1, 5, 'calculate', 85.00, 1467295082),
-(201, 0, 19, 3, 4, 1, 1, 4, 1, 4, 'order', 79.00, 1467295376),
-(202, 0, 1, 22, 200, 1, 3, 22, 2, 5, 'calculate', 76.00, 1467295500),
-(203, 0, 19, 212, 23, 4, 3, 2344, 2, 4, 'calculate', 75.00, 1467295857),
-(204, 0, 20, 21, 234, 4, 3, 234, 2, 4, 'calculate', 76.00, 1467296226),
-(205, 0, 19, 21, 234, 4, 3, 234, 2, 4, 'calculate', 77.00, 1467296414),
-(206, 0, 19, 21, 234, 4, 3, 234, 2, 6, 'calculate', 78.00, 1467296469),
-(207, 0, 19, 123, 123, 1, 3, 123, 1, 5, 'order', 111.00, 1467297474),
-(208, 0, 19, 23, 234, 4, 1, 234, 2, 5, 'calculate', 78.00, 1467297785),
-(209, 0, 19, 234, 2134, 4, 3, 1234, 1, 5, 'order', 488.00, 1467298473),
-(210, 0, 1, 2000, 1500, 1, 1, 2, 1, 3, 'calculate', 2976.00, 1467298932);
+INSERT INTO `calculate_window` (`id`, `partner_id`, `type_id`, `width`, `height`, `profile_id`, `glaze_id`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `fio`, `phone`, `email`, `created_at`) VALUES
+(233, 0, 21, 324, 234, 1, 3, 2, 5, 'calculate', 142.74, 'sdf', '+380664875401', '', 1467380551);
 
 -- --------------------------------------------------------
 
@@ -121,10 +96,27 @@ CREATE TABLE IF NOT EXISTS `categories` (
 INSERT INTO `categories` (`id`, `name`, `parent`, `visible`) VALUES
 (18, 'Витрина', 0, 1),
 (19, 'Окна', 18, 1),
-(20, 'Двери', 18, 1),
-(21, 'Слайдеры', 0, 0),
-(22, 'Верхний слайдер', 21, 0),
-(23, 'Нижний слайдер', 21, 0);
+(20, 'Двери', 18, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `door_furniture`
+--
+
+CREATE TABLE IF NOT EXISTS `door_furniture` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(7,2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `door_furniture`
+--
+
+INSERT INTO `door_furniture` (`id`, `name`, `price`) VALUES
+(1, 'erteb54', 345.00),
+(2, 'u,o', 567.00);
 
 -- --------------------------------------------------------
 
@@ -138,15 +130,22 @@ CREATE TABLE IF NOT EXISTS `door_types` (
   `description` varchar(255) NOT NULL,
   `picture` text NOT NULL,
   `price` decimal(8,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `door_types`
 --
 
 INSERT INTO `door_types` (`id`, `name`, `description`, `picture`, `price`) VALUES
-(2, 'drtnbr', 'trebrt', 'uploads/door_types/122026_Papel-de-Pare2_2016-06-28_04:12:01.jpg', 45.00),
-(3, 'mrkuyr5', '54eym5aey', 'uploads/door_types/122026_Papel-de-Pare_2016-06-28_04:29:35.jpg', 65.00);
+(2, 'Тип 1', 'Описание', 'uploads/door_types/122026_Papel-de-Pare2_2016-07-01_11:13:53.jpg', 45.00),
+(3, 'Тип 2', 'Описание', 'uploads/door_types/ubuntu_linux_debian_3_2016-07-01_11:14:01.jpg', 65.00),
+(4, 'Тип 3', 'Описание', 'uploads/door_types/WallpapersxlKubuntuU_2016-07-01_11:14:13.jpg', 678.00),
+(5, 'Тип 4', 'Описание', 'uploads/door_types/122026_Papel-de-Pare_2016-07-01_11:14:26.jpg', 6587.00),
+(6, 'Тип 5', 'Описание', 'uploads/door_types/ubuntu_linux_debian__2016-07-01_11:14:39.jpg', 34654.00),
+(7, 'Тип 6', 'Описание', 'uploads/door_types/WallpapersxlKubuntuU_2016-07-01_11:14:52.jpg', 78908.00),
+(8, 'ТИп 7', 'Описание', 'uploads/door_types/ubuntu_linux_debian__2016-07-01_11:15:05.jpg', 58756.00),
+(9, 'Тип 8', 'Описание', 'uploads/door_types/ubuntu_linux_debian__2016-07-01_11:15:58.jpg', 67867.00),
+(10, 'Тип 9', 'Описание', 'uploads/door_types/WallpapersxlKubuntuU_2016-07-01_11:16:13.jpg', 4578.00);
 
 -- --------------------------------------------------------
 
@@ -186,15 +185,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `notifications`
---
-
-INSERT INTO `notifications` (`id`, `email`, `text`) VALUES
-(55, 'slavavitrenko@gmail.com', 'New order in your region - http://vikonda.unicweb.com.ua/door-orders/view?id=118'),
-(56, 'slavavitrenko@gmail.com', 'New order in your region - http://vikonda.unicweb.com.ua/window-orders/view?id=192');
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -206,11 +197,21 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `fio` varchar(255) NOT NULL,
   `region_id` int(11) DEFAULT NULL,
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
+(99, NULL, NULL, '', NULL, 0, 1467380690, 1467380690),
+(100, NULL, NULL, '', NULL, 0, 1467380851, 1467380851),
+(101, NULL, NULL, '', NULL, 0, 1467380955, 1467380955);
 
 -- --------------------------------------------------------
 
@@ -224,7 +225,14 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders_products`
+--
+
+INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`) VALUES
+(90, 100, 12, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,37 +268,31 @@ CREATE TABLE IF NOT EXISTS `pictures` (
   `path` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
   `created_at` int(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `pictures`
 --
 
 INSERT INTO `pictures` (`id`, `path`, `product_id`, `created_at`) VALUES
-(58, '122026_Papel-de-Pare12_2016-06-16_07:22:15.jpg', 12, 0),
-(59, 'ubuntu_linux_debian_12_2016-06-16_07:22:15.jpg', 12, 0),
-(60, 'WallpapersxlKubuntuU12_2016-06-16_07:22:15.jpg', 12, 0),
-(61, '122026_Papel-de-Pare13_2016-06-16_07:22:21.jpg', 13, 0),
-(62, 'ubuntu_linux_debian_13_2016-06-16_07:22:21.jpg', 13, 0),
-(63, 'WallpapersxlKubuntuU13_2016-06-16_07:22:21.jpg', 13, 0),
-(64, '122026_Papel-de-Pare14_2016-06-16_07:22:57.jpg', 14, 0),
-(65, 'ubuntu_linux_debian_14_2016-06-16_07:22:57.jpg', 14, 0),
-(66, 'WallpapersxlKubuntuU14_2016-06-16_07:22:58.jpg', 14, 0),
-(67, '122026_Papel-de-Pare15_2016-06-16_07:23:03.jpg', 15, 0),
-(68, 'ubuntu_linux_debian_15_2016-06-16_07:23:04.jpg', 15, 0),
-(69, 'WallpapersxlKubuntuU15_2016-06-16_07:23:04.jpg', 15, 0),
-(70, '122026_Papel-de-Pare16_2016-06-16_07:23:17.jpg', 16, 0),
-(71, 'ubuntu_linux_debian_16_2016-06-16_07:23:18.jpg', 16, 0),
-(72, 'WallpapersxlKubuntuU16_2016-06-16_07:23:18.jpg', 16, 0),
-(73, '122026_Papel-de-Pare17_2016-06-16_07:23:24.jpg', 17, 0),
-(74, 'ubuntu_linux_debian_17_2016-06-16_07:23:24.jpg', 17, 0),
-(75, 'WallpapersxlKubuntuU17_2016-06-16_07:23:24.jpg', 17, 0),
-(76, '122026_Papel-de-Pare18_2016-06-16_07:23:29.jpg', 18, 0),
-(77, 'ubuntu_linux_debian_18_2016-06-16_07:23:30.jpg', 18, 0),
-(78, 'WallpapersxlKubuntuU18_2016-06-16_07:23:30.jpg', 18, 0),
-(79, '122026_Papel-de-Pare19_2016-06-16_07:23:35.jpg', 19, 0),
-(80, 'ubuntu_linux_debian_19_2016-06-16_07:23:36.jpg', 19, 0),
-(81, 'WallpapersxlKubuntuU19_2016-06-16_07:23:36.jpg', 19, 0);
+(87, 'window-1другая12_2016-07-01_12:05:21.png', 12, 0),
+(88, 'window-1копия12_2016-07-01_12:05:21.png', 12, 0),
+(89, 'window-113_2016-07-01_12:05:38.png', 13, 0),
+(90, 'window-13-якопи13_2016-07-01_12:05:39.png', 13, 0),
+(91, 'window-1другая13_2016-07-01_12:05:39.png', 13, 0),
+(92, 'window-1копия13_2016-07-01_12:05:39.png', 13, 0),
+(93, 'window-114_2016-07-01_12:05:45.png', 14, 0),
+(94, 'window-13-якопи14_2016-07-01_12:05:45.png', 14, 0),
+(95, 'window-1другая14_2016-07-01_12:05:45.png', 14, 0),
+(96, 'window-1копия14_2016-07-01_12:05:45.png', 14, 0),
+(97, 'window-115_2016-07-01_12:05:53.png', 15, 0),
+(98, 'window-13-якопи15_2016-07-01_12:05:53.png', 15, 0),
+(99, 'window-1другая15_2016-07-01_12:05:53.png', 15, 0),
+(100, 'window-1копия15_2016-07-01_12:05:53.png', 15, 0),
+(118, 'window-120_2016-07-01_12:27:09.png', 20, 0),
+(119, 'window-13-якопи20_2016-07-01_12:27:09.png', 20, 0),
+(120, 'window-1другая20_2016-07-01_12:27:09.png', 20, 0),
+(121, 'window-1копия20_2016-07-01_12:27:09.png', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -305,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` decimal(7,2) NOT NULL,
   `description` text NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `products`
@@ -316,10 +318,7 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `cr
 (13, 19, 'Окно 2', 236.79, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099192),
 (14, 20, 'Дверь 1', 325.74, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099210),
 (15, 20, 'Дверь 2', 231.34, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099233),
-(16, 23, 'Элемент нижнего слайдера 1', 343.20, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099292),
-(17, 23, 'Элемент нижнего слайдера 2', 1000.00, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099342),
-(18, 22, 'Элемент верхнего слайдера 1', 122.98, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099363),
-(19, 22, 'Элемент верхнего слайдера 2', 213.54, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099414);
+(20, 19, 'апапапап', 1000.00, '<p>выаываывавыавыавыа</p>', 1467365154);
 
 -- --------------------------------------------------------
 
@@ -357,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `regions` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `percent` decimal(4,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `regions`
@@ -368,7 +367,8 @@ INSERT INTO `regions` (`id`, `name`, `percent`) VALUES
 (4, 'Хмельницкий', 2.00),
 (5, 'Киев', 3.00),
 (6, 'Пруссия', 4.00),
-(8, 'Киевская Русь', 3.50);
+(8, 'Киевская Русь', 3.50),
+(11, 'Винницкая область', 5.00);
 
 -- --------------------------------------------------------
 
@@ -384,15 +384,17 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `round` int(1) NOT NULL,
   `admin_email` text NOT NULL,
   `bot_email` varchar(255) NOT NULL,
-  `site_url` varchar(255) NOT NULL
+  `site_url` varchar(255) NOT NULL,
+  `admin_phone` varchar(13) NOT NULL,
+  `about_page` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `settings`
 --
 
-INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`, `bot_email`, `site_url`) VALUES
-(1, 25.60, 120.45, 10.45, 1, 'slavavitrenko@gmail.com', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua');
+INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`, `bot_email`, `site_url`, `admin_phone`, `about_page`) VALUES
+(1, 25.60, 120.45, 10.45, 0, 'test@test.test', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua', '+380999999999', '<h1 style="text-align: center;">Это страница о нас</h1>');
 
 -- --------------------------------------------------------
 
@@ -529,16 +531,22 @@ CREATE TABLE IF NOT EXISTS `window_types` (
   `description` text NOT NULL,
   `picture` text NOT NULL,
   `price` decimal(8,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `window_types`
 --
 
 INSERT INTO `window_types` (`id`, `name`, `description`, `picture`, `price`) VALUES
-(1, 'tyuyt', 'ytumyt', 'uploads/window_types/ubuntu_linux_debian_1_2016-06-28_04:12:33.jpg', 750.00),
-(19, 'rty5e', 'renter', 'uploads/window_types/122026_Papel-de-Pare19_2016-06-28_04:12:40.jpg', 200.00),
-(20, 't67', '6576', 'uploads/window_types/Screenshot_2016-06-29_09:01:03.png', 67.00);
+(21, 'Тип 1', 'Описание', 'uploads/window_types/122026_Papel-de-Pare_2016-07-01_11:11:31.jpg', 345.00),
+(22, 'Тип 2', 'Описание', 'uploads/window_types/ubuntu_linux_debian__2016-07-01_11:11:45.jpg', 345.00),
+(23, 'Тип 3', 'Описание', 'uploads/window_types/WallpapersxlKubuntuU_2016-07-01_11:12:03.jpg', 456.00),
+(24, 'Тип 4', 'Описание', 'uploads/window_types/ubuntu_linux_debian__2016-07-01_11:12:17.jpg', 348.00),
+(25, 'Тип 5', 'Описание', 'uploads/window_types/WallpapersxlKubuntuU_2016-07-01_11:12:32.jpg', 657.00),
+(26, 'Тип 6', 'Описание', 'uploads/window_types/122026_Papel-de-Pare_2016-07-01_11:12:43.jpg', 6587.00),
+(27, 'Тип 7', 'Описание', 'uploads/window_types/ubuntu_linux_debian__2016-07-01_11:13:18.jpg', 565.00),
+(28, 'Тип 8', 'Описание', 'uploads/window_types/WallpapersxlKubuntuU_2016-07-01_11:13:32.jpg', 679.00),
+(29, 'Тип 9', 'Описание', 'uploads/window_types/ubuntu_linux_debian__2016-07-01_11:13:44.jpg', 8798.00);
 
 --
 -- Индексы сохранённых таблиц
@@ -566,6 +574,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent` (`parent`),
   ADD KEY `name` (`name`(191));
+
+--
+-- Индексы таблицы `door_furniture`
+--
+ALTER TABLE `door_furniture`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `door_types`
@@ -706,37 +720,42 @@ ALTER TABLE `window_types`
 -- AUTO_INCREMENT для таблицы `calculate_door`
 --
 ALTER TABLE `calculate_door`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=130;
 --
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=211;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=235;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
+-- AUTO_INCREMENT для таблицы `door_furniture`
+--
+ALTER TABLE `door_furniture`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT для таблицы `door_types`
 --
 ALTER TABLE `door_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
@@ -746,17 +765,17 @@ ALTER TABLE `partners_regions`
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=122;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблицы `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблицы `settings`
 --
@@ -791,7 +810,7 @@ ALTER TABLE `window_profiles`
 -- AUTO_INCREMENT для таблицы `window_types`
 --
 ALTER TABLE `window_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

@@ -55,6 +55,7 @@ $items[] = ['label' => Yii::t('app', 'Windows'), 'items' => [
 
 $items[] = ['label' => Yii::t('app', 'Doors'), 'items' => [
 	['label' => Yii::t('app', 'Door Types'), 'url' => ['/door-types'], 'active' => Yii::$app->controller->id == 'door-types'],
+	['label' => Yii::t('app', 'Door Furnitures'), 'url' => ['/door-furniture'], 'active' => Yii::$app->controller->id == 'door-furniture'],
 ]
 , 'active' => true];
 

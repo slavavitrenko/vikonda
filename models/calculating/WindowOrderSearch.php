@@ -15,7 +15,7 @@ class WindowOrderSearch extends CalculateWindow
     public function rules()
     {
         return [
-            [['id', 'type_id', 'width', 'height', 'profile_id', 'glaze_id', 'camers', 'furniture_id', 'region_id'], 'integer'],
+            [['id', 'type_id', 'width', 'height', 'profile_id', 'glaze_id', 'furniture_id', 'region_id'], 'integer'],
             [['calculate_type'], 'safe'],
             [['sum'], 'number'],
             [['created_at'], 'default', 'value' => ''],
@@ -61,7 +61,6 @@ class WindowOrderSearch extends CalculateWindow
             'height' => $this->height,
             'profile_id' => $this->profile_id,
             'glaze_id' => $this->glaze_id,
-            'camers' => $this->camers,
             'furniture_id' => $this->furniture_id,
             'region_id' => $this->region_id,
             'sum' => $this->sum,

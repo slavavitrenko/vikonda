@@ -1,18 +1,50 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Products */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => $model->category->name, 'url' => ['/products/index', 'ProductSearch[category_id]' => $model->category_id]];
 $this->params['breadcrumbs'][] = $this->title;
+
+
+$js = '
+    $(".to-cart").on("click", function(){
+        var button = $(this);
+        $.post(
+            button.attr("value"),
+            {
+                product_id: button.attr("data-product-id")
+            },
+            function(data){
+                $.pjax.reload({container: "#cart-container"});
+            }
+        );
+    });
+
+$(".slider-for").slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: ".slider-nav"
+});
+$(".slider-nav").slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  asNavFor: ".slider-for",
+  dots: true,
+  centerMode: true,
+  focusOnSelect: true
+});
+';
+
+$this->registerJs($js, \yii\web\View::POS_END);
+
 ?>
 <div class="products-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
 <?php if(!Yii::$app->user->isGuest) :?>
     <?php if (Yii::$app->user->identity->type == 'admin') :?>
@@ -29,25 +61,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 <?php endif; ?>
     <div class="row">
+        <div class="col-sm-4">
+            <?php if($model->pictures) : ?>
+                <div class="slider-for">
+                    <?php foreach($model->pictures as $picture) : ?>
+                        <div class="well">
+                        <?=Html::a('<i class="glyphicon glyphicon-remove"></i>', ['delete-image', 'id' => $picture->id, 'return_url' => Url::to(['/products/view', 'id' => $model->id])], ['class' => Yii::$app->user->isGuest ? 'hidden' : '']); ?>
+                        <?=Html::img($picture->src, ['class' => 'img-responsive']);?>
+                        </div>
+                    <?php endforeach; ?>    
+                </div>
+                <div class="slider-nav">
+                    <?php foreach($model->pictures as $picture) : ?>
+                        <div class="">
+                        <?=Html::a('<i class="glyphicon glyphicon-remove"></i>', ['delete-image', 'id' => $picture->id, 'return_url' => Url::to(['/products/view', 'id' => $model->id])], ['class' => Yii::$app->user->isGuest ? 'hidden' : '']); ?>
+                        <?=Html::img($picture->src, ['class' => 'img-responsive']);?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
-        <?= DetailView::widget([
-            'model' => $model,
-            'attributes' => [
-                'category.name',
-                'name',
-                'description:html',
+        <div class="col-sm-8">
+            <h2><?=$model->name; ?></h2>
+            <?=$model->description; ?>
+            <?=Html::a(Yii::t('app', 'To cart'), false,
                 [
-                    'attribute' => 'created_at',
-                    'value' => Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at])
-                ],
-            ],
-        ]) ?>
-
-        <?php if($model->pictures) : ?>
-            <?php foreach($model->pictures as $picture) : ?>
-                <?=Html::img($picture->src, ['class' => 'well col-sm-4']);?>
-            <?php endforeach; ?>
-        <?php endif; ?>
+                    'class' => 'btn btn-no-border btn-primary to-cart',
+                    'value' => Url::to(['/products/add-in-cart']),
+                    'data-product-id' => $model->id,
+                ])?>
+        </div>
     </div>
-
 </div>

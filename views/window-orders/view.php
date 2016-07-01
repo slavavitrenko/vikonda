@@ -14,17 +14,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-        <?= $model->partner_id == '0' ?
-        Html::a(Yii::t('app', 'Take'), ['take', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-success', 'data-method' => 'post'])
-        :
-        Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]); ?>
+        <?php if(in_array(Yii::$app->user->identity->type, ['admin', 'manager'])) : ?>
+            <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php endif; ?>
+        <?php if(Yii::$app->user->identity->type == 'partner') : ?>
+            <?= $model->partner_id == '0' ?
+            Html::a(Yii::t('app', 'Take'), ['take', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-success', 'data-method' => 'post'])
+            :
+            Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]); ?>
+        <?php endif; ?>
     </p>
 
     <?= DetailView::widget([
@@ -50,7 +54,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'furniture_id',
                 'value' => $model->furniture->name
             ],
-            'camers',
             [
                 'attribute' => 'region_id',
                 'value' => $model->region->name

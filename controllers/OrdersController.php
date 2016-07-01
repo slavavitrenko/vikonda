@@ -69,8 +69,11 @@ class OrdersController extends Controller
 
 	public function actionDelete($id)
 	{
-		$this->findModel($id)->delete();
+        if(!in_array(Yii::$app->user->identity->type, ['admin', 'manager'])){
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
 
+		$this->findModel($id)->delete();
 		return $this->redirect(['index']);
 	}
 
@@ -91,16 +94,38 @@ class OrdersController extends Controller
         return $this->redirect($return_url ? $return_url : ['index']);
 	}
 
-	protected function findModel($id)
-	{
-		if (
-			($model = Orders::findOne($id)) !== null
-			&& in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
-			&& in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
-			or in_array($model->partner_id, ['0', Yii::$app->user->identity->id])) {
-			return $model;
-		} else {
-			throw new NotFoundHttpException('The requested page does not exist.');
-		}
-	}
+
+	// ПРИСТАЛЬНО СМОТРИМ ЮЗЕРУ В ГЛАЗА
+    protected function findModel($id)
+    {
+        if(($model = Orders::findOne($id)) != false){
+            if(in_array(Yii::$app->user->identity->type, ['admin', 'manager'])){
+                return $model;
+            }
+            if(Yii::$app->user->identity->type == 'partner'){
+                if(
+                    in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
+                   	or
+                    in_array($model->partner_id, ['0', Yii::$app->user->identity->id])
+                    ){
+                    return $model;
+                }
+                else{
+                    throw new NotFoundHttpException('The requested page does not exist.');
+                }
+            }
+        }
+        else{
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        }
+        // if (
+        //     ($model = CalculateDoor::findOne($id)) !== null
+        //     && in_array($model->region_id, array_values(ArrayHelper::map(Yii::$app->user->identity->regions, 'id', 'id')))
+        //     && in_array(Yii::$app->user->identity->type, ['admin', 'manager'])
+        //     or in_array($model->partner_id, ['0', Yii::$app->user->identity->id])) {
+        //     return $model;
+        // } else {
+        //     throw new NotFoundHttpException('The requested page does not exist.');
+        // }
+    }
 }

@@ -25,25 +25,30 @@ class CalculateWindow extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'camers', 'furniture_id', 'region_id', 'sum', 'created_at'], 'required'],
-			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'camers', 'furniture_id', 'region_id', 'created_at'], 'integer'],
+			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'furniture_id', 'region_id', 'sum', 'created_at', 'phone', 'fio'], 'required'],
+			[['type_id', 'width', 'height', 'profile_id', 'glaze_id', 'furniture_id', 'region_id', 'created_at'], 'integer'],
 			[['sum'], 'number'],
 			[['calculate_type'], 'string', 'max' => 25],
 			[['calculate_type'], 'match', 'pattern' => '/^(calculate|order)$/', 'message' => Yii::t('app', 'Calculate type must be "order" or "calculate"')],
 			[['calculate_type'], 'default', 'value' => 'calculate'],
 			[['partner_id'], 'default', 'value' => '0'],
+			[['email', 'fio', 'phone'], 'string', 'max' => 255],
+			[['phone'], 'match', 'pattern' => '/^\+38([0-9]{10})$/'],
+			[['email'], 'email'],
 		];
 	}
 
 	public function fields(){
 		return [
+			'phone',
+			'fio',
+			'email',
 			'calculate_id' => function($model){ return $model->id; },
 			'type_id' => function($model){ return $model->type->name; },
 			'width' => function($model){ return $model->width . ' ' . Yii::t('app', 'см'); },
 			'height' => function($model){ return $model->height . ' ' . Yii::t('app', 'см'); },
 			'profile_id' => function($model){ return $model->profile->name; },
 			'glaze_id' => function($model){ return $model->glaze->name; },
-			'camers',
 			'furniture_id' => function($model){ return $model->furniture->name; },
 			'region_id' => function($model){ return $model->region->name; },
 			'sum' => function($model){ return round($model->sum, Settings::get('round') ? 0 : 2); }
@@ -59,13 +64,14 @@ class CalculateWindow extends \yii\db\ActiveRecord
 			'height' => Yii::t('app', 'Window Height'),
 			'profile_id' => Yii::t('app', 'Window Profile'),
 			'glaze_id' => Yii::t('app', 'Window Glaze'),
-			'camers' => Yii::t('app', 'Window Camers'),
 			'furniture_id' => Yii::t('app', 'Window Furniture'),
 			'region_id' => Yii::t('app', 'Region'),
 			'calculate_type' => Yii::t('app', 'Window Calculate Type'),
 			'sum' => Yii::t('app', 'Sum'),
 			'created_at' => Yii::t('app', 'Created At'),
 			'partner_id' => Yii::t('app', 'Partner'),
+			'phone' => Yii::t('app', 'Phone'),
+			'fio' => Yii::t('app', 'FIO'),
 		];
 	}
 
@@ -132,7 +138,7 @@ class CalculateWindow extends \yii\db\ActiveRecord
     	if($this->calculate_type == 'order'){
     		if(($emails = array_values(ArrayHelper::map($this->partners, 'id', 'email'))) != false){
     			foreach($emails as $email){
-			        \app\models\Notifications::notify($email, Yii::t('app', 'New order in your region - {link}', ['link' => \yii\helpers\Url::to(["/window-orders/view", 'id' => $this->id], true)]));
+			        \app\models\Notifications::notify($email, Yii::t('app', 'New window order in your region - {link}', ['link' => \yii\helpers\Url::to(["/window-orders/view", 'id' => $this->id], true)]));
     			}
     		}
     	}

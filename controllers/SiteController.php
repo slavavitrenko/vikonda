@@ -49,7 +49,14 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->renderPartial('index');
+        $this->layout = 'frontend';
+        return $this->render('index');
+    }
+
+    public function actionAbout()
+    {
+        $this->layout = 'frontend';
+        return $this->render('about');
     }
 
     public function actionCart(){

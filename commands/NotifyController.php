@@ -3,7 +3,7 @@
 namespace app\commands;
 
 
-use yii;
+use Yii;
 use yii\helpers\Url;
 use app\models\Settings;
 use \yii\console\Controller;
@@ -17,6 +17,7 @@ class NotifyController extends Controller
 			foreach($entries as $entry){
 				Yii::$app->mailer->compose()
 		            ->setTo($entry->email)
+		            ->setSubject('Новый заказ н сайте - ' . Settings::get('site_url'))
 		            ->setFrom([Settings::get('bot_email') => 'Bot'])
 		            ->setTextBody($entry->text)
 		            ->send();

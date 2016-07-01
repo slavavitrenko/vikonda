@@ -9,6 +9,7 @@ use app\models\Settings;
 use yii\helpers\ArrayHelper;
 use app\models\user\User;
 use app\models\PartnersRegions;
+use app\models\DoorFurniture;
 
 
 class CalculateDoor extends \yii\db\ActiveRecord
@@ -22,24 +23,31 @@ class CalculateDoor extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'sum', 'created_at'], 'required'],
-			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'region_id', 'created_at'], 'integer'],
+			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'furniture_id', 'region_id', 'sum', 'created_at', 'phone', 'fio'], 'required'],
+			[['type_id', 'width', 'height', 'box', 'jamb', 'locker', 'furniture_id', 'region_id', 'created_at'], 'integer'],
 			[['sum'], 'number'],
 			[['calculate_type'], 'string', 'max' => 25],
 			[['calculate_type'], 'match', 'pattern' => '/^(calculate|order)$/', 'message' => Yii::t('app', 'Calculate type must be "order" or "calculate"')],
 			[['calculate_type'], 'default', 'value' => 'calculate'],
 			[['partner_id'], 'default', 'value' => '0'],
+			[['email', 'fio', 'phone'], 'string', 'max' => 255],
+			[['phone'], 'match', 'pattern' => '/^\+38([0-9]{10})$/'],
+			[['email'], 'email'],
 		];
 	}
 
 	public function fields(){
 		return [
+			'fio',
+			'email',
+			'phone',
 			'calculate_id' => function($model){ return $model->id; },
 			'width' => function($model){ return $model->width . ' ' . Yii::t('app', 'см.'); },
 			'height' => function($model){ return $model->height . ' ' . Yii::t('app', 'см.'); },
 			'box' => function($model){ return Yii::t('app', $model->box ? 'Yeap' : 'Nope'); },
 			'jamb' => function($model){ return Yii::t('app', $model->jamb ? 'Yeap' : 'Nope'); },
 			'locker' => function($model){ return Yii::t('app', $model->locker ? 'Yeap' : 'Nope'); },
+			'furniture_id' => function($model){ return $model->furniture->name; },
 			'region_id' => function($model){ return $model->region->name; },
 			'sum' => function($model){ return round($model->sum, Settings::get('round') ? 0 : 2);},
 		];
@@ -55,11 +63,14 @@ class CalculateDoor extends \yii\db\ActiveRecord
 			'box' => Yii::t('app', 'Door Box'),
 			'jamb' => Yii::t('app', 'Door Jamb'),
 			'locker' => Yii::t('app', 'Door Locker'),
+			'furniture_id' => Yii::t('app', 'Furniture'),
 			'region_id' => Yii::t('app', 'Region'),
 			'calculate_type' => Yii::t('app', 'Door Calculate Type'),
 			'sum' => Yii::t('app', 'Sum'),
 			'created_at' => Yii::t('app', 'Created At'),
 			'partner_id' => Yii::t('app', 'Partner'),
+			'phone' => Yii::t('app', 'Phone'),
+			'fio' => Yii::t('app', 'FIO'),
 		];
 	}
 
@@ -81,6 +92,10 @@ class CalculateDoor extends \yii\db\ActiveRecord
 
     public function getPartner(){
         return $this->hasOne(User::className(), ['id' => 'partner_id']);
+    }
+
+    public function getFurniture(){
+    	return $this->hasOne(DoorFurniture::className(), ['id' => 'furniture_id']);
     }
 
 	public function beforeValidate(){
@@ -120,7 +135,7 @@ class CalculateDoor extends \yii\db\ActiveRecord
     	if($this->calculate_type == 'order'){
     		if(($emails = array_values(ArrayHelper::map($this->partners, 'id', 'email'))) != false){
     			foreach($emails as $email){
-    				\app\models\Notifications::notify($email, Yii::t('app', 'New order in your region - {link}', ['link' => \yii\helpers\Url::to(["/door-orders/view", 'id' => $this->id], true)]));
+    				\app\models\Notifications::notify($email, Yii::t('app', 'New door order in your region - {link}', ['link' => \yii\helpers\Url::to(["/door-orders/view", 'id' => $this->id], true)]));
     			}
     		}
     	}

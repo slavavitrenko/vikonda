@@ -27,7 +27,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 
 ?>
 <div class="row">
-	<div class="col-sm-9">
+	<div class="col-sm-12">
 		<?= ListView::widget([
 		    'dataProvider' => $dataProvider,
 		    'summary' => '',
@@ -38,8 +38,5 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 		    // ],
 		    'itemView' => '_item',
 		]);?>
-	</div>
-	<div class="col-sm-3">
-		<?=$this->render('_nav'); ?>
 	</div>
 </div>

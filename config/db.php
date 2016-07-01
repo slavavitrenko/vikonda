@@ -9,5 +9,5 @@ return [
     'password' => $settings->password,
     'charset' => 'utf8',
     // 'enableSchemaCache' => YII_DEBUG ? false :true
-    'enableSchemaCache' => false
+    'enableSchemaCache' => true
 ];

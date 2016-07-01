@@ -21,18 +21,18 @@ class Orders extends \yii\db\ActiveRecord
     public function scenarios(){
         return [
             'create' => ['updated_at', 'created_at'],
-            'order' => ['region_id', 'phone', 'email', 'updated_at', 'created_at'],
+            'order' => ['fio', 'region_id', 'phone', 'email', 'updated_at', 'created_at'],
         ];
     }
 
     public function rules()
     {
         return [
-            [['phone', 'region_id'], 'required'],
+            [['phone', 'region_id', 'fio'], 'required'],
             [['partner_id'], 'default', 'value' => 0],
             [['region_id'], 'default', 'value' => 0],
             [['phone'], 'string', 'max' => 13],
-            [['email'], 'string', 'max' => 255],
+            [['email', 'fio'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'default', 'value' => time()],
         ];
     }
@@ -43,6 +43,7 @@ class Orders extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'phone' => Yii::t('app', 'Phone'),
             'email' => Yii::t('app', 'Email'),
+            'fio' => Yii::t('app', 'FIO'),
             'region_id' => Yii::t('app', 'Region'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -110,12 +111,7 @@ class Orders extends \yii\db\ActiveRecord
     }
 
     private function send_email($email){
-
-        Yii::$app->mailer->compose()
-            ->setTo($email)
-            ->setFrom(['noreply@' . $_SERVER['HTTP_HOST'] => 'Bot'])
-            ->setTextBody(Yii::t('app', 'New order in your region - {link}', ['link' => \yii\helpers\Url::to(["/orders/index"], true)]))
-            ->send();
+        \app\models\Notifications::notify($email, Yii::t('app', 'New order in your region - {link}', ['link' => \yii\helpers\Url::to(["/orders/index"], true)]));
     }
 
 }

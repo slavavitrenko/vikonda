@@ -2,5 +2,5 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'siteName' => Yii::t('app', 'WinDoors')
+    'siteName' => Yii::t('app', 'Vikonda')
 ];

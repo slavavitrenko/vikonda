@@ -8,6 +8,7 @@ use app\models\WindowTypesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
 // Image manipulation
@@ -25,6 +26,18 @@ class WindowTypesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return in_array(Yii::$app->user->identity->type, ['admin', 'manager']);
+                        },
+                    ],
                 ],
             ],
         ];
@@ -101,7 +114,7 @@ class WindowTypesController extends Controller
                 $fullname = Yii::getAlias('@webroot') . '/uploads/window_types/' . $filename . $model_id . '_' . $date . '.' . $image->extension;
                 $imagine = Image::getImagine()
                 ->open($fullname)
-                ->thumbnail(new Box(300, 300))
+                ->thumbnail(new Box(200, 110))
                 ->save($fullname, ['quality' => 90]);
 
                 return 'uploads/window_types/' . $filename . $model_id . '_' . $date . '.' . $image->extension;

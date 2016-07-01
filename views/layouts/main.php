@@ -1,12 +1,9 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use app\assets\AppAsset;
+use app\assets\FrontendAsset;
 
 $js = '
 var baseUrl = window.location.protocol + "//" + window.location.hostname + ":8093";
@@ -17,10 +14,10 @@ socket.on("mess", function(){
 });';
 
 if(!Yii::$app->user->isGuest){
-	$this->registerJs($js, \yii\web\View::POS_READY);
+	// $this->registerJs($js, \yii\web\View::POS_READY);
 }
 
-AppAsset::register($this);
+FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

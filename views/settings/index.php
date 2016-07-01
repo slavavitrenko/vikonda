@@ -17,6 +17,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 
 	<?=$form->field($model, 'admin_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 
+	<?= $form->field($model, 'admin_phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
+
 	<?=$form->field($model, 'bot_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 
 	<?= $form->field($model, 'box_price') ?>
@@ -24,6 +26,15 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 	<?=$form->field($model, 'jamb_price') ?>
 
 	<?=$form->field($model, 'locker_price') ?>
+
+    <?= $form->field($model, 'about_page')->widget(\yii\redactor\widgets\Redactor::className(),
+        [
+            'clientOptions' => [
+                'minHeight' => 400,
+                'lang' => mb_substr(Yii::$app->language, 0, 2),
+                'plugins' => ['clips', 'fontcolor']
+            ]
+    ])?>
 
 
 	<?= $form->field($model, 'round')->radioList([

@@ -22,7 +22,6 @@ use app\models\Pictures;
 class ProductsController extends Controller
 {
 
-
     public function behaviors()
     {
         return [
@@ -34,7 +33,7 @@ class ProductsController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create', 'update', 'delete'],
+                'only' => ['create', 'update', 'delete', 'delete-image'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -115,6 +114,11 @@ class ProductsController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionDeleteImage($id, $return_url=null){
+        Pictures::deleteAll(['id' => $id]);
+        return $this->redirect($return_url ? [$return_url] : ['index']);
+    }
+
     protected function findModel($id)
     {
         if (($model = Products::findOne($id)) !== null) {
@@ -137,7 +141,7 @@ class ProductsController extends Controller
                 $filename = Yii::getAlias('@webroot') . '/uploads/products/' . $filename . $model_id . '_' . $date . '.' . $image->extension;
                 $imagine = Image::getImagine()
                 ->open($filename)
-                ->thumbnail(new Box(1024, 1024))
+                ->thumbnail(new Box(235, 400))
                 ->save($filename, ['quality' => 90]);
             }
         }
