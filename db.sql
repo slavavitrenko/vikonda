@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 01 2016 г., 16:56
+-- Время создания: Июл 02 2016 г., 09:14
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `calculate_door` (
   `email` varchar(255) NOT NULL,
   `fio` varchar(255) NOT NULL,
   `created_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -67,14 +67,7 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `phone` varchar(13) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `calculate_window`
---
-
-INSERT INTO `calculate_window` (`id`, `partner_id`, `type_id`, `width`, `height`, `profile_id`, `glaze_id`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `fio`, `phone`, `email`, `created_at`) VALUES
-(233, 0, 21, 324, 234, 1, 3, 2, 5, 'calculate', 142.74, 'sdf', '+380664875401', '', 1467380551);
+) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -185,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -202,16 +195,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
-(99, NULL, NULL, '', NULL, 0, 1467380690, 1467380690),
-(100, NULL, NULL, '', NULL, 0, 1467380851, 1467380851),
-(101, NULL, NULL, '', NULL, 0, 1467380955, 1467380955);
+(104, NULL, NULL, '', NULL, 0, 1467439555, 1467439555),
+(105, NULL, NULL, '', NULL, 0, 1467439932, 1467439932);
 
 -- --------------------------------------------------------
 
@@ -226,13 +218,6 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `orders_products`
---
-
-INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`) VALUES
-(90, 100, 12, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -394,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`, `bot_email`, `site_url`, `admin_phone`, `about_page`) VALUES
-(1, 25.60, 120.45, 10.45, 0, 'test@test.test', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua', '+380999999999', '<h1 style="text-align: center;">Это страница о нас</h1>');
+(1, 25.60, 120.45, 10.45, 0, 'test@test.test', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua', '+380999999999', '<h1 style="text-align: center;">Это страница "О нас"</h1>');
 
 -- --------------------------------------------------------
 
@@ -720,12 +705,12 @@ ALTER TABLE `window_types`
 -- AUTO_INCREMENT для таблицы `calculate_door`
 --
 ALTER TABLE `calculate_door`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=134;
 --
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=235;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=237;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -745,12 +730,12 @@ ALTER TABLE `door_types`
 -- AUTO_INCREMENT для таблицы `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
