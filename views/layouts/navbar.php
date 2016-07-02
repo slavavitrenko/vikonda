@@ -42,10 +42,7 @@ Yii::$app->cart->status
 
 $items[] = ['label' => Yii::t('app', 'Products'), 'items' => $catItems];
 
-$items[] = ['label' => Yii::t('app', 'Calculator'), 'items' => [
-    ['label' => Yii::t('app', 'Calculate Doors'), 'url' => ['/site/calculator']],
-    ['label' => Yii::t('app', 'Calculate Windows'), 'url' => ['/site/calculator']],
-]];
+$items[] = ['label' => Yii::t('app', 'Calculator'), 'url' => ['/site/calculate']];
 
 $items[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
 

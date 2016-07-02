@@ -47,15 +47,18 @@ class SiteController extends Controller
         ];
     }
 
+    public function init(){
+        $this->layout = 'frontend';
+        return parent::init();
+    }
+
     public function actionIndex()
     {
-        $this->layout = 'frontend';
         return $this->render('index');
     }
 
     public function actionAbout()
     {
-        $this->layout = 'frontend';
         return $this->render('about');
     }
 
@@ -86,6 +89,10 @@ class SiteController extends Controller
     {
         if($product_id){Yii::$app->cart->delete($product_id);}
         return $this->actionCart();
+    }
+
+    public function actionCalculate(){
+        return $this->render('calculate');
     }
 
 }

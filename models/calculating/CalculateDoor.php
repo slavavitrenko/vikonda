@@ -42,6 +42,7 @@ class CalculateDoor extends \yii\db\ActiveRecord
 			'email',
 			'phone',
 			'calculate_id' => function($model){ return $model->id; },
+			'type_id' => function($model){ return $model->type->name; },
 			'width' => function($model){ return $model->width . ' ' . Yii::t('app', 'см.'); },
 			'height' => function($model){ return $model->height . ' ' . Yii::t('app', 'см.'); },
 			'box' => function($model){ return Yii::t('app', $model->box ? 'Yeap' : 'Nope'); },

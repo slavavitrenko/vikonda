@@ -72,6 +72,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'window' => 'site/calculate',
             ],
         ],
         'view' => [

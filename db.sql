@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 02 2016 г., 09:14
+-- Время создания: Июл 02 2016 г., 11:39
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -43,7 +43,21 @@ CREATE TABLE IF NOT EXISTS `calculate_door` (
   `email` varchar(255) NOT NULL,
   `fio` varchar(255) NOT NULL,
   `created_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `calculate_door`
+--
+
+INSERT INTO `calculate_door` (`id`, `partner_id`, `type_id`, `width`, `height`, `box`, `jamb`, `locker`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `phone`, `email`, `fio`, `created_at`) VALUES
+(134, 17, 2, 21, 234, 1, 0, 1, 2, 3, 'order', 2377.29, '+380664875401', '', 'dsfg', 1467441196),
+(135, 17, 2, 231, 234, 1, 0, 0, 1, 5, 'order', 25298.14, '+380664875401', 'sdf@sdf.com', 'sadf', 1467445580),
+(136, 17, 2, 123, 123, 1, 0, 0, 2, 5, 'order', 7142.07, '+380664875401', 'sadf@sdf.com', 'CSD', 1467445657),
+(137, 0, 2, 132, 1234, 1, 0, 0, 1, 5, 'order', 75637.64, '+380664875401', 'sadf@sdf.com', 'CSD', 1467445810),
+(138, 0, 8, 80, 200, 1, 0, 1, 2, 4, 'calculate', 9589185.70, '+380663564463', 'slavavitrenko@gmail.com', 'Витренко Вячеслав Дмитриевич', 1467447746),
+(139, 0, 5, 80, 200, 1, 0, 1, 2, 4, 'calculate', 1075204.90, '+380663564463', 'slavavitrenko@gmail.com', 'Витренко Вячеслав Дмитриевич', 1467447758),
+(140, 17, 5, 80, 200, 1, 0, 1, 2, 4, 'order', 1075204.90, '+380663564463', 'slavavitrenko@gmail.com', 'Витренко Вячеслав Дмитриевич', 1467447804),
+(141, 0, 5, 123, 123, 1, 0, 0, 2, 4, 'order', 1016606.69, '+380664875401', '', 'sdaf', 1467448338);
 
 -- --------------------------------------------------------
 
@@ -67,7 +81,18 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `phone` varchar(13) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `calculate_window`
+--
+
+INSERT INTO `calculate_window` (`id`, `partner_id`, `type_id`, `width`, `height`, `profile_id`, `glaze_id`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `fio`, `phone`, `email`, `created_at`) VALUES
+(238, 0, 24, 123, 123, 4, 3, 2, 4, 'order', 80.38, '123', '+380664875401', 'sdf@sdf.com', 1467445414),
+(239, 0, 21, 12, 123, 4, 3, 2, 5, 'order', 62.55, 'ASf', '+380664875401', 'pa@sadf.com', 1467445488),
+(240, 0, 24, 234, 234, 4, 3, 2, 4, 'order', 122.43, 'dfs', '+380664875401', 'sdaf@sdaf.com', 1467445702),
+(241, 0, 21, 234, 234, 4, 3, 2, 4, 'order', 122.26, 'sdf', '+380664875401', 'sadf@sdf.com', 1467445737),
+(242, 0, 24, 234, 324, 4, 1, 1, 4, 'order', 174.05, 'weqr', '+380664875401', 'sdaf@sdaf.com', 1467445769);
 
 -- --------------------------------------------------------
 
@@ -178,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -195,15 +220,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
-(104, NULL, NULL, '', NULL, 0, 1467439555, 1467439555),
-(105, NULL, NULL, '', NULL, 0, 1467439932, 1467439932);
+(106, NULL, NULL, '', NULL, 0, 1467447140, 1467447140),
+(107, NULL, NULL, '', NULL, 0, 1467448244, 1467448244);
 
 -- --------------------------------------------------------
 
@@ -217,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -705,12 +730,12 @@ ALTER TABLE `window_types`
 -- AUTO_INCREMENT для таблицы `calculate_door`
 --
 ALTER TABLE `calculate_door`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=142;
 --
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=237;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=243;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -730,17 +755,17 @@ ALTER TABLE `door_types`
 -- AUTO_INCREMENT для таблицы `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=108;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
