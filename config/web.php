@@ -16,7 +16,7 @@ $config = [
                     'sourcePath' => null,
                     'basePath' => '@webroot',
                     'baseUrl' => '@web',
-                    'css' => ['css/theme.css'],
+                    'css' => ['css/style.css'],
                 ],
             ],
         ],
@@ -72,7 +72,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'window' => 'site/calculate',
+                'site/calculate/window' => 'site/calculate',
+                'site/calculate/door' => 'site/calculate',
+                'category/<id:\w+>' => 'products/category',
             ],
         ],
         'view' => [

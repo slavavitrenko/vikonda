@@ -38,6 +38,6 @@ class Settings extends \yii\db\ActiveRecord
     }
 
     static public function get($option){
-        return Settings::findOne(1)->$option;
+        return Settings::find()->select([$option])->one()->$option;
     }
 }

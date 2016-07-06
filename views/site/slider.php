@@ -8,20 +8,18 @@ $products = Products::find()->orderBy(['id' => SORT_ASC])->limit(7)->all();
 
 ?>
 
-<section id="products" class="section-new-products">
-    <div class="line"></div>
-    <h1><?=Yii::t('app', 'Popular items')?></h1>
+<section id="products" class="section section-popular-prod">
+    <h2 class="text-center">Популярные модели окон</h2>
     <div class="container">
         <div class="products-slider">
-            <div id="demo" class="bee3D--parent">
+            <div id="bee3d" class="bee3D--parent">
             <?php foreach($products as $product) : ?>
                 <div class="bee3D--slide">
                     <div class="bee3D--inner">
-                        <?=Html::img($product->pictures[0]->src, ['class' => 'img-responsive']); ?>
+                        <?=Html::img($product->pictures[0]->src, ['class' => 'img-responsive'])?>
                     </div>
                 </div>
-            <?php endforeach; ?>
-                <!-- Navigation Arrows -->
+                <?php endforeach; ?>
                 <span class="bee3D--nav bee3D--nav__prev"></span>
                 <span class="bee3D--nav bee3D--nav__next"></span>
             </div>

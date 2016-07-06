@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <base href="/">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Welcome to angular2-seed!</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- inject:css -->
-  <link rel="stylesheet" href="/css/styles.css?1467445970421">
-  <!-- endinject -->
-</head>
-<body>
+<?php
 
+$this->registerJsFile('/js/dropdown.js');
+$this->registerCssFile('/css/styles.css');
+
+
+$this->title = Yii::t('app', 'Calculator');
+
+?>
+<div class="container">
   <sd-app>Loading...</sd-app>
-
+</div>
   <script>
   // Fixes undefined module function in SystemJS bundle
   function module() {}

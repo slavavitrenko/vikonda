@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 02 2016 г., 11:39
+-- Время создания: Июл 06 2016 г., 11:56
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -43,21 +43,16 @@ CREATE TABLE IF NOT EXISTS `calculate_door` (
   `email` varchar(255) NOT NULL,
   `fio` varchar(255) NOT NULL,
   `created_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `calculate_door`
 --
 
 INSERT INTO `calculate_door` (`id`, `partner_id`, `type_id`, `width`, `height`, `box`, `jamb`, `locker`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `phone`, `email`, `fio`, `created_at`) VALUES
-(134, 17, 2, 21, 234, 1, 0, 1, 2, 3, 'order', 2377.29, '+380664875401', '', 'dsfg', 1467441196),
-(135, 17, 2, 231, 234, 1, 0, 0, 1, 5, 'order', 25298.14, '+380664875401', 'sdf@sdf.com', 'sadf', 1467445580),
-(136, 17, 2, 123, 123, 1, 0, 0, 2, 5, 'order', 7142.07, '+380664875401', 'sadf@sdf.com', 'CSD', 1467445657),
-(137, 0, 2, 132, 1234, 1, 0, 0, 1, 5, 'order', 75637.64, '+380664875401', 'sadf@sdf.com', 'CSD', 1467445810),
 (138, 0, 8, 80, 200, 1, 0, 1, 2, 4, 'calculate', 9589185.70, '+380663564463', 'slavavitrenko@gmail.com', 'Витренко Вячеслав Дмитриевич', 1467447746),
 (139, 0, 5, 80, 200, 1, 0, 1, 2, 4, 'calculate', 1075204.90, '+380663564463', 'slavavitrenko@gmail.com', 'Витренко Вячеслав Дмитриевич', 1467447758),
-(140, 17, 5, 80, 200, 1, 0, 1, 2, 4, 'order', 1075204.90, '+380663564463', 'slavavitrenko@gmail.com', 'Витренко Вячеслав Дмитриевич', 1467447804),
-(141, 0, 5, 123, 123, 1, 0, 0, 2, 4, 'order', 1016606.69, '+380664875401', '', 'sdaf', 1467448338);
+(142, 0, 6, 60, 200, 1, 1, 1, 1, 3, 'calculate', 4200273.40, '+380663564463', '', 'Витренко Вясчеслав Дмитриевич', 1467530550);
 
 -- --------------------------------------------------------
 
@@ -81,18 +76,16 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `phone` varchar(13) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `calculate_window`
 --
 
 INSERT INTO `calculate_window` (`id`, `partner_id`, `type_id`, `width`, `height`, `profile_id`, `glaze_id`, `furniture_id`, `region_id`, `calculate_type`, `sum`, `fio`, `phone`, `email`, `created_at`) VALUES
-(238, 0, 24, 123, 123, 4, 3, 2, 4, 'order', 80.38, '123', '+380664875401', 'sdf@sdf.com', 1467445414),
-(239, 0, 21, 12, 123, 4, 3, 2, 5, 'order', 62.55, 'ASf', '+380664875401', 'pa@sadf.com', 1467445488),
-(240, 0, 24, 234, 234, 4, 3, 2, 4, 'order', 122.43, 'dfs', '+380664875401', 'sdaf@sdaf.com', 1467445702),
-(241, 0, 21, 234, 234, 4, 3, 2, 4, 'order', 122.26, 'sdf', '+380664875401', 'sadf@sdf.com', 1467445737),
-(242, 0, 24, 234, 324, 4, 1, 1, 4, 'order', 174.05, 'weqr', '+380664875401', 'sdaf@sdaf.com', 1467445769);
+(250, 0, 21, 500, 200, 4, 3, 2, 4, 'calculate', 168.00, '4нено6', '+380663564463', '', 1467739192),
+(251, 0, 21, 5000, 200, 4, 3, 2, 5, 'calculate', 1069.00, 'Витренко Вячеслав Дмитриевич', '+380663564463', '', 1467739266),
+(252, 0, 27, 5645, 54654, 4, 3, 2, 6, 'calculate', 209214.00, 'Витренко Вячеслав Дмитриевич', '+380663564463', '', 1467739683);
 
 -- --------------------------------------------------------
 
@@ -203,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -220,15 +213,16 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
-(106, NULL, NULL, '', NULL, 0, 1467447140, 1467447140),
-(107, NULL, NULL, '', NULL, 0, 1467448244, 1467448244);
+(138, '+380663564463', '', 'Витренко Вячеслав Дмитриевич', 4, 17, 1467794015, 1467794015),
+(139, NULL, NULL, '', NULL, 0, 1467794043, 1467794043),
+(140, NULL, NULL, '', NULL, 0, 1467794773, 1467794773);
 
 -- --------------------------------------------------------
 
@@ -242,7 +236,14 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders_products`
+--
+
+INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`) VALUES
+(136, 138, 20, 35, NULL);
 
 -- --------------------------------------------------------
 
@@ -254,18 +255,19 @@ CREATE TABLE IF NOT EXISTS `partners_regions` (
   `id` int(11) NOT NULL,
   `partner_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `partners_regions`
 --
 
 INSERT INTO `partners_regions` (`id`, `partner_id`, `region_id`) VALUES
-(45, 17, 3),
-(46, 17, 4),
-(47, 17, 5),
-(48, 17, 6),
-(49, 17, 8);
+(71, 17, 3),
+(72, 17, 4),
+(73, 17, 5),
+(74, 17, 6),
+(75, 17, 8),
+(76, 17, 11);
 
 -- --------------------------------------------------------
 
@@ -278,31 +280,40 @@ CREATE TABLE IF NOT EXISTS `pictures` (
   `path` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
   `created_at` int(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `pictures`
 --
 
 INSERT INTO `pictures` (`id`, `path`, `product_id`, `created_at`) VALUES
-(87, 'window-1другая12_2016-07-01_12:05:21.png', 12, 0),
-(88, 'window-1копия12_2016-07-01_12:05:21.png', 12, 0),
-(89, 'window-113_2016-07-01_12:05:38.png', 13, 0),
-(90, 'window-13-якопи13_2016-07-01_12:05:39.png', 13, 0),
-(91, 'window-1другая13_2016-07-01_12:05:39.png', 13, 0),
-(92, 'window-1копия13_2016-07-01_12:05:39.png', 13, 0),
-(93, 'window-114_2016-07-01_12:05:45.png', 14, 0),
-(94, 'window-13-якопи14_2016-07-01_12:05:45.png', 14, 0),
-(95, 'window-1другая14_2016-07-01_12:05:45.png', 14, 0),
-(96, 'window-1копия14_2016-07-01_12:05:45.png', 14, 0),
-(97, 'window-115_2016-07-01_12:05:53.png', 15, 0),
-(98, 'window-13-якопи15_2016-07-01_12:05:53.png', 15, 0),
-(99, 'window-1другая15_2016-07-01_12:05:53.png', 15, 0),
-(100, 'window-1копия15_2016-07-01_12:05:53.png', 15, 0),
-(118, 'window-120_2016-07-01_12:27:09.png', 20, 0),
-(119, 'window-13-якопи20_2016-07-01_12:27:09.png', 20, 0),
-(120, 'window-1другая20_2016-07-01_12:27:09.png', 20, 0),
-(121, 'window-1копия20_2016-07-01_12:27:09.png', 20, 0);
+(195, 'window212_2016-07-06_10:01:51.png', 12, 0),
+(196, 'window312_2016-07-06_10:01:51.png', 12, 0),
+(197, 'window412_2016-07-06_10:01:51.png', 12, 0),
+(198, 'window512_2016-07-06_10:01:51.png', 12, 0),
+(199, 'window612_2016-07-06_10:01:52.png', 12, 0),
+(200, 'window113_2016-07-06_10:01:55.png', 13, 0),
+(201, 'window213_2016-07-06_10:01:56.png', 13, 0),
+(202, 'window313_2016-07-06_10:01:56.png', 13, 0),
+(203, 'window413_2016-07-06_10:01:56.png', 13, 0),
+(204, 'window513_2016-07-06_10:01:56.png', 13, 0),
+(205, 'window613_2016-07-06_10:01:57.png', 13, 0),
+(207, 'window214_2016-07-06_10:02:00.png', 14, 0),
+(208, 'window314_2016-07-06_10:02:01.png', 14, 0),
+(209, 'window414_2016-07-06_10:02:01.png', 14, 0),
+(210, 'window514_2016-07-06_10:02:01.png', 14, 0),
+(211, 'window614_2016-07-06_10:02:01.png', 14, 0),
+(212, 'window115_2016-07-06_10:02:05.png', 15, 0),
+(213, 'window215_2016-07-06_10:02:05.png', 15, 0),
+(214, 'window315_2016-07-06_10:02:05.png', 15, 0),
+(215, 'window415_2016-07-06_10:02:06.png', 15, 0),
+(216, 'window515_2016-07-06_10:02:06.png', 15, 0),
+(217, 'window615_2016-07-06_10:02:06.png', 15, 0),
+(219, 'window220_2016-07-06_10:02:10.png', 20, 0),
+(220, 'window320_2016-07-06_10:02:10.png', 20, 0),
+(221, 'window420_2016-07-06_10:02:10.png', 20, 0),
+(222, 'window520_2016-07-06_10:02:11.png', 20, 0),
+(223, 'window620_2016-07-06_10:02:11.png', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -404,7 +415,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`, `bot_email`, `site_url`, `admin_phone`, `about_page`) VALUES
-(1, 25.60, 120.45, 10.45, 0, 'test@test.test', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua', '+380999999999', '<h1 style="text-align: center;">Это страница "О нас"</h1>');
+(1, 25.60, 120.45, 10.45, 1, 'test@test.test', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua', '+380999999999', '<h1 style="text-align: center;">Это страница "О нас"</h1>');
 
 -- --------------------------------------------------------
 
@@ -465,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
 (1, 'admin', 'email@email.ru', '$2y$10$tv4cRT23luXR6ZZIveDN4uDO.D4XS250QfQK3wDMgG6U2mALYRfhy', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466233255, 0, 'admin'),
-(17, 'partner', 'slavavitrenko@gmail.com', '$2y$10$p/sK9SvUeJrgYB97e4DEaurGy6a35artB4cx3Cv3ErR8vjmGEQ1hK', '1nnKK1QMrYwo1GYNLsfNTehWQH48bBQq', 1466584192, NULL, NULL, '127.0.0.1', 1466584193, 1467293279, 0, 'partner'),
+(17, 'partner', 'slavavitrenko@gmail.com', '$2y$10$TZX13gZp6YAb7RbwnOYyRuMeEFLuSWUJ5P05e//muS83Mv8XT72RS', '1nnKK1QMrYwo1GYNLsfNTehWQH48bBQq', 1466584192, NULL, NULL, '127.0.0.1', 1466584193, 1467794103, 0, 'partner'),
 (18, 'manager', 'manager@mail.ru', '$2y$10$59YaSCdFrzKNzjPI/ttICuMk07DEDaao8mGW/4FFmvlapADPlrmEi', '_udQ-MRSa3lHJ_nor6OQAE7iTffjp4pd', 1467181276, NULL, NULL, '93.78.238.18', 1467181276, 1467181276, 0, 'manager');
 
 -- --------------------------------------------------------
@@ -589,7 +600,9 @@ ALTER TABLE `categories`
 -- Индексы таблицы `door_furniture`
 --
 ALTER TABLE `door_furniture`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `name` (`name`);
 
 --
 -- Индексы таблицы `door_types`
@@ -663,7 +676,9 @@ ALTER TABLE `profile`
 --
 ALTER TABLE `regions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`(191));
+  ADD KEY `name` (`name`(191)),
+  ADD KEY `name_2` (`name`(191)),
+  ADD KEY `id` (`id`);
 
 --
 -- Индексы таблицы `settings`
@@ -699,7 +714,8 @@ ALTER TABLE `user`
 -- Индексы таблицы `window_furniture`
 --
 ALTER TABLE `window_furniture`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Индексы таблицы `window_glazes`
@@ -730,12 +746,12 @@ ALTER TABLE `window_types`
 -- AUTO_INCREMENT для таблицы `calculate_door`
 --
 ALTER TABLE `calculate_door`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=142;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=146;
 --
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=243;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=254;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -755,27 +771,27 @@ ALTER TABLE `door_types`
 -- AUTO_INCREMENT для таблицы `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=141;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=141;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
 ALTER TABLE `partners_regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=224;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --

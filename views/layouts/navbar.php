@@ -4,75 +4,115 @@ use yii\bootstrap\Nav;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\NavBar;
+use app\models\Settings;
 
 ?>
-<div class="header-bar">
-    <div class="mail-phone">
+
+<?php
+$itemsRight = [];
+
+
+$catItems = [];
+foreach(\app\models\Categories::find()->where(['parent' => 18])->andWhere(['visible' => '1'])->all() as $category){
+    $catItems[] = ['label' => $category->name, 'url' => Url::to(['/category/' . $category->id])];
+    $catItems[] = '<li class="divider"></li>';
+}
+array_pop($catItems);
+
+$itemsRight[] = Yii::$app->user->getIsGuest() ?
+    ['label' => Yii::t('app', 'Login'), 'url' => ['/user/login'], 'linkOptions' => ['class' => 'btn btn-default']]
+    :
+    ['label' => Yii::t('app', 'Logout'), 'url' => ['/user/logout'],
+        'linkOptions' => ['data-method' => 'post', 'class' => 'btn btn-default']
+    ];
+
+$itemsRight[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
+.
+Yii::$app->cart->status
+, 'url' => ['/site/cart'], 'linkOptions' => ['style' => 'color:yellow', 'class' => Yii::$app->user->isGuest ? 'btn btn-default' : ' hidden', 'data-pjax' => 0]];
+
+$itemsLeft[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/']];
+
+$itemsLeft[] = ['label' => Yii::t('app', 'Products'), 'items' => $catItems];
+
+$itemsLeft[] = ['label' => Yii::t('app', 'Calculator'), 'items' => [
+    ['label' => Yii::t('app', 'Calculate Windows'), 'url' => ['/site/calculate/window']],
+    '<li class="divider"></li>',
+    ['label' => Yii::t('app', 'Calculate Doors'), 'url' => ['/site/calculate/door']]
+]];
+
+$itemsLeft[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
+
+if(!Yii::$app->user->isGuest){
+    $itemsLeft[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/orders/index'], 'active' => false];
+}
+
+?>
+
+<header>
+    <div class="top-cont-block">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="mail-block">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <span><a href="mailto:<?=\app\models\Settings::get('admin_email'); ?>"><?=\app\models\Settings::get('admin_email'); ?></a></span>
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="<?=Url::to(['/']); ?>"><img class="img-responsive" src="/img/logo.png" alt="logotype"></a>
                     </div>
-                    <div class="phone-block">
+                </div>
+                <div class="col-md-3">
+                    <div class="slogan">
+                        <p>Заходи, считай, заказывай, получай</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="address">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <p><span>г. Полтава</span> <br> ул. Маршала Конева, 4/2</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="contacts">
                         <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span><a href="skype:<?=\app\models\Settings::get('admin_phone')?>?call"><?=\app\models\Settings::get('admin_phone')?></a></span>
+                        <div class="contact-wrap">
+                            <span><?=Html::a(Settings::get('admin_phone'), 'tel:' . Settings::get('admin_phone'), ['target' => '_blank']); ?></span><br>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<?php
-$items = [];
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
 
-if(!Yii::$app->user->isGuest){
-        $items[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/orders/index'], 'active' => false];
-}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <?php
+                  echo Nav::widget([
+                    'activateParents' => true,
+                    'encodeLabels' => false,
+                    'options' => ['class' => 'nav navbar-nav navbar-left'],
+                    'items' => $itemsLeft
+                    ]);
+                  ?>
 
-$catItems = [];
-foreach(\app\models\Categories::find()->where(['parent' => 18])->andWhere(['visible' => '1'])->all() as $category){
-    $catItems[] = ['label' => $category->name, 'url' => Url::to(['/products/index', 'ProductSearch[category_id]' => $category->id])];
-}
-
-$items[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
-.
-Yii::$app->cart->status
-, 'url' => ['/site/cart'], 'linkOptions' => ['style' => 'color:yellow', 'class' => Yii::$app->user->isGuest ? '' : ' hidden', 'data-pjax' => 0]];
-
-$items[] = ['label' => Yii::t('app', 'Products'), 'items' => $catItems];
-
-$items[] = ['label' => Yii::t('app', 'Calculator'), 'url' => ['/site/calculate']];
-
-$items[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
-
-
-$items[] = Yii::$app->user->getIsGuest() ?
-    ['label' => Yii::t('app', 'Login'), 'url' => ['/user/login']]
-    :
-    ['label' => Yii::t('app', 'Logout'), 'url' => ['/user/logout'],
-        'linkOptions' => ['data-method' => 'post']
-    ];
-
-
-    NavBar::begin([
-        'brandLabel' => Yii::$app->params['siteName'],
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-default',
-        ],
-    ]);
-
-
-    \yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1, 'linkSelector' => false]);
-    echo Nav::widget([
-        'activateParents' => true,
-        'encodeLabels' => false,
-        'options' => ['class' => 'nav navbar-nav navbar-right'],
-        'items' => $items
-    ]);
-    \yii\widgets\Pjax::end();
-    NavBar::end();
-
-?>
-</div>
+              <?php \yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1, 'linkSelector' => false]);
+                  echo Nav::widget([
+                    'activateParents' => true,
+                    'encodeLabels' => false,
+                    'options' => ['class' => 'nav navbar-nav navbar-right'],
+                    'items' => $itemsRight
+                  ]);
+                  \yii\widgets\Pjax::end();
+              ?>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>

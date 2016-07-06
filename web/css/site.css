@@ -109,10 +109,6 @@ label.control-label {
     width: 50%;
 }
 
-/*.btn-group {
-    width: 100%;
-}*/
-
 div.required label:first-child:not(.btn):after {
     content: ' *';
     color: red;
@@ -129,4 +125,9 @@ div.required label:first-child:not(.btn):after {
 
 .slick-slide img {
     margin: 0 auto;
+}
+
+#about_map {
+    height: 500px;
+    width: 100%;
 }

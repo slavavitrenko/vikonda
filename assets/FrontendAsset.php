@@ -15,7 +15,7 @@ class FrontendAsset extends AssetBundle
         'css/slick.css',
         'css/slick-theme.css',
         'css/bee3D.css',
-        'css/style.css',
+        // 'css/style.css',
     ];
     public $js = [
         // 'js/bootstrap.min.js',

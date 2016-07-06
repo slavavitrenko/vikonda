@@ -48,7 +48,7 @@ class SiteController extends Controller
     }
 
     public function init(){
-        $this->layout = 'frontend';
+        // $this->layout = 'frontend';
         return parent::init();
     }
 

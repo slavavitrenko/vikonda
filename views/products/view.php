@@ -20,6 +20,10 @@ $js = '
             },
             function(data){
                 $.pjax.reload({container: "#cart-container"});
+                button.html("<i class=\"glyphicon glyphicon-ok\"></i>");
+                setTimeout(function(){
+                    button.html(oldContent);
+                }, 2000);
             }
         );
     });
@@ -44,7 +48,7 @@ $(".slider-nav").slick({
 $this->registerJs($js, \yii\web\View::POS_END);
 
 ?>
-<div class="products-view">
+<div class="products-view container">
 
 <?php if(!Yii::$app->user->isGuest) :?>
     <?php if (Yii::$app->user->identity->type == 'admin') :?>

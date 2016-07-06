@@ -33,7 +33,28 @@ class CalculateDoor extends \yii\db\ActiveRecord
 			[['email', 'fio', 'phone'], 'string', 'max' => 255],
 			[['phone'], 'match', 'pattern' => '/^\+38([0-9]{10})$/'],
 			[['email'], 'email'],
+			[['type_id'], 'validateType'],
+			[['furniture_id'], 'validateFurniture'],
+			[['region_id'], 'validateRegion'],
 		];
+	}
+
+	public function validateRegion($attribute, $params){
+		if(Regions::findOne($this->region_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Region')]));
+		}
+	}
+
+	public function validateType($attribute, $params){
+		if(DoorTypes::findOne($this->type_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Door Type')]));
+		}
+	}
+
+	public function validateFurniture($attribute, $params){
+		if(DoorFurniture::findOne($this->furniture_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Door Furnitures')]));
+		}
 	}
 
 	public function fields(){

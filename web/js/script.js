@@ -1,3 +1,3 @@
 setTimeout(function(){
-	$('.alert.fade').slideUp(700);
+	$('.alert-success.fade').slideUp(700);
 }, 2000);

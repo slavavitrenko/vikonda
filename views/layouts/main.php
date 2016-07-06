@@ -1,23 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\assets\FrontendAsset;
-
-$js = '
-var baseUrl = window.location.protocol + "//" + window.location.hostname + ":8093";
-var socket = io(baseUrl);
-
-socket.on("mess", function(){
-	window.location = window.location;
-});';
-
-if(!Yii::$app->user->isGuest){
-	// $this->registerJs($js, \yii\web\View::POS_READY);
-}
+use app\models\Settings;
 
 FrontendAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,7 +17,7 @@ FrontendAsset::register($this);
 	<meta charset="<?= Yii::$app->charset ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?= Html::csrfMetaTags() ?>
-	<title><?= Html::encode($this->title) ?></title>
+    <title><?=Yii::$app->params['siteName']?> | <?= Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 </head>
 <body>
@@ -46,12 +37,56 @@ FrontendAsset::register($this);
 	} else {
 		echo $this->render('thin', ['content' => $content]);
 	} ?>
+
 </div>
 
 <footer class="footer">
-	<div class="container">
-		<p class="pull-left">&copy; <?=Yii::$app->params['siteName']; ?> <?= date('Y') ?></p>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="logo">
+                    <img class="img-responsive" src="/img/logo.png" alt="logotype">
+                </div>
+                <div class="social">
+                    <ul class="nav nav-pills">
+                        <li><a href=""><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-odnoklassniki" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div class="copy">
+                    <a href="http://unicweb.com.ua">&copy; UnicWeb 2016</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="footer-nav">
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">Товар</a></li>
+                    <li><a href="">Калькулятор</a></li>
+                    <li><a href="">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="footer-contacts">
+                    <div class="address">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <p><span>г. Полтава</span> <br> ул. Маршала Конева, 4/2</p>
+                    </div>
+                    <div class="contacts">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <div class="contact-wrap">
+                            <span><?=Html::a(Settings::get('admin_phone'), 'tel:' . Settings::get('admin_phone'), ['target' => '_blank']); ?></span><br>
+                        </div>
+                    </div>
+                    <div class="mail">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <span><?=Html::a(Settings::get('admin_email'), 'mailto:' . Settings::get('admin_email'), ['target' => '_blank']); ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 
 <?php $this->endBody() ?>

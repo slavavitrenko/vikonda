@@ -1,161 +1,130 @@
 <?php
 
+use yii\helpers\Html;
+use yii\helpers\Url;
+
+$this->title = Yii::t('app', 'Home');
+
 $this->registerJsFile('/js/bee3D.js');
 
 
-$js = "window.onload = function() {
+$js = "
     /*=======---bee3d slider---=======*/
-    var demo = document.getElementById('demo');
+    var bee3d = document.getElementById('bee3d');
 
-    var slider = new Bee3D(demo, {
+    var slider = new Bee3D(bee3d, {
         effect: 'coverflow',
         focus: 2,
         navigation: {
             enabled: true
         },
-        autoplay: {
-            enabled: true,
-            pauseHover: true
-        },
+        // autoplay: {
+        //     enabled: true,
+        //     pauseHover: true
+        // },
         loop: {
             enabled: true,
             continuous: true,
         }
     });
-};";
+";
 
 $this->registerJs($js, \yii\web\View::POS_END);
 
-$js = "
-    $('#slider').slick({
-        dots: false,
-        infinite: true,
-        autoplay: true,
-        speed: 1200,
-        cssEase: 'linear',
-        autoplaySpeed: 5000
-    });
-
-
-    $('#about').css('opacity', 0);
-    $('#about').waypoint(function() {
-        $('#about').addClass('animated rollIn').css('opacity', 1);
-    }, { offset: '55%'});
-    $('#about h1').css('opacity', 0);
-    $('#about h1').waypoint(function() {
-        $('#about h1').addClass('animated flipInX').css('opacity', 1);
-    }, { offset: '70%'});
-    $('#steps h1').css('opacity', 0);
-    $('#steps h1').waypoint(function() {
-        $('#steps h1').addClass('animated flipInY').css('opacity', 1);
-    }, { offset: '57%'});
-    $('#products h1').css('opacity', 0);
-    $('#products h1').waypoint(function() {
-        $('#products h1').addClass('animated flipInY').css('opacity', 1);
-    }, { offset: '57%'});
-    $('#calculate h1').css('opacity', 0);
-    $('#calculate h1').waypoint(function() {
-        $('#calculate h1').addClass('animated flipInY').css('opacity', 1);
-    }, { offset: '57%'});
-    $('#calculate .calculate-image').css('opacity', 0);
-    $('#calculate .calculate-image').waypoint(function() {
-        $('#calculate .calculate-image').addClass('animated fadeInLeft').css('opacity', 1);
-    }, { offset: '60%'});
-    $('#calculate .calculate-desc').css('opacity', 0);
-    $('#calculate .calculate-desc').waypoint(function() {
-        $('#calculate .calculate-desc').addClass('animated fadeInRight').css('opacity', 1);
-    }, { offset: '60%'});
-    
-    $('#step-block-1').css('opacity', 0);
-    $('#step-block-1').waypoint(function() {
-        $('#step-block-1').addClass('animated fadeInLeft');
-    }, { offset: '57%'});
-    $('#step-block-2').css('opacity', 0);
-    $('#step-block-2').waypoint(function() {
-        $('#step-block-2').addClass('animated fadeInRight');
-    }, { offset: '57%'});
-    $('#step-block-3').css('opacity', 0);
-    $('#step-block-3').waypoint(function() {
-        $('#step-block-3').addClass('animated fadeInLeft');
-    }, { offset: '57%'});
-    $('#step-block-4').css('opacity', 0);
-    $('#step-block-4').waypoint(function() {
-        $('#step-block-4').addClass('animated fadeInRight');
-    }, { offset: '57%'});";
+$js = "";
 
     $this->registerJs($js, \yii\web\View::POS_READY);
 ?>
 
+
 <section class="section-slider">
-    <div id="slider" class="slider">
-        <div class="slider-item"><img class="img-responsive" src="/img/img1.jpg" alt="slider-img"></div>
-        <div class="slider-item"><img class="img-responsive" src="/img/img1.jpg" alt="slider-img"></div>
+    <div class="blur"></div>
+    <div class="container">
+        <div class="slider-desc text-center">
+            <h1>Окна европейского качества <br> от производителя</h1>
+            <p>Уважаемые посетители нашего сайта, Вы сможете максимально удобно, не выходя из дома в любую погоду  и любое время ознакомиться со всем перечнем предлагаемых нами  товаров и заказать их в любом уголке Украины.</p>
+            <?=Html::a(Yii::t('app', 'Calculate price'), ['/site/calculate/window'], ['class' => 'btn btn-default']); ?>
+            <?=Html::a(Yii::t('app', 'View catalog'), ['/products'], ['class' => 'btn btn-default']); ?>
+        </div>
+
     </div>
 </section>
 
-<section id="about" class="section-about">
-    <div class="container about-wrapper">
+<section class="section-advantages">
+    <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <h1>О компании</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam et fuga fugit impedit in iure iusto molestias,
-                    natus nulla, odio quod sit, tenetur veritatis! Cupiditate eos explicabo iusto praesentium voluptates.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolor doloribus facilis id, ipsum rem. Amet architecto consequuntur debitis, doloribus eos, excepturi neque officia praesentium quibusdam quisquam quod sed, voluptas?
-                </p>
+            <div class="col-md-3 text-center advantage-item">
+                <img src="/img/shild.png" alt="shild" class="img-responsive">
+                <span>Гарантия 5 лет</span>
+            </div>
+            <div class="col-md-3 text-center advantage-item">
+                <img src="/img/wrench.png" alt="wrench" class="img-responsive">
+                <span>Установка за 1 день</span>
+            </div>
+            <div class="col-md-3 text-center advantage-item">
+                <img src="/img/window.png" alt="window" class="img-responsive">
+                <span>Дизайнерское оформление более 30 видов</span>
+            </div>
+            <div class="col-md-3 text-center advantage-item">
+                <img src="/img/prise.png" alt="prise" class="img-responsive">
+                <span>Срок службы окон <br>50 лет</span>
             </div>
         </div>
     </div>
 </section>
-<section id="steps" class="section-step">
-    <h1>Шаги производства</h1>
+
+<section class="section section-steps">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div id="step-block-1" class="step-block">
-                    <div class="step-img-wrapper">
-                        <div class="image-block">
-
+                <h2 class="text-center">Как мы изготовим вам окна</h2>
+                <div class="step-wrap">
+                    <div class="step-item media">
+                        <div class="step-img media-left media-middle">
+                            <img class="media-object" src="/img/step1.png" alt="step-1">
+                        </div>
+                        <div class="step-desc media-body">
+                            <h3 class="media-heading">.01</h3>
+                            <div class="col-md-8">
+                                <p>Сделайте расчёт своего заказа</p>
+                                <p class="decription">Для расчета перейдите к <a href="<?=Url::to(['site/calculate/window']); ?>">калькулятору</a></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="step-desc">
-                        <h2 class="step-desc-title">Шаг 1</h2>
-                        <p class="step-desc-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi eaque
-                            explicabo hic ipsam iure libero nisi, recusandae similique vero?</p>
-                    </div>
-                </div>
-                <div id="step-block-2" class="step-block">
-                    <div class="step-desc">
-                        <h2 class="step-desc-title">Шаг 2</h2>
-                        <p class="step-desc-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi eaque
-                            explicabo hic ipsam iure libero nisi, recusandae similique vero?</p>
-                    </div>
-                    <div class="step-img-wrapper">
-                        <div class="image-block">
-
+                    <div class="step-item media">
+                        <div class="step-desc media-body text-right">
+                            <h3 class="media-heading">.02</h3>
+                            <div class="col-md-8 step-desc-wrap">
+                                <p>Отправте заявку на заказ</p>
+                                <p class="decription">После расчета параметров окна или двери, кликните кнопку «Заказать»</p>
+                            </div>
+                        </div>
+                        <div class="step-img media-right media-middle">
+                            <img class="media-object" src="/img/step1.png" alt="step-2">
                         </div>
                     </div>
-                </div>
-                <div id="step-block-3" class="step-block">
-                    <div class="step-img-wrapper">
-                        <div class="image-block">
-
+                    <div class="step-item media">
+                        <div class="step-img media-left media-middle">
+                            <img class="media-object" src="/img/step3.png" alt="step-3">
+                        </div>
+                        <div class="step-desc media-body">
+                            <h3 class="media-heading">.03</h3>
+                            <div class="col-md-8">
+                                <p>Наш менеджер свяжется с вами для уточнения деталей</p>
+                                <p class="decription">Наш специалист перезвонит вам для подтверждения заказа.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="step-desc">
-                        <h2 class="step-desc-title">Шаг 3</h2>
-                        <p class="step-desc-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi eaque
-                            explicabo hic ipsam iure libero nisi, recusandae similique vero?</p>
-                    </div>
-                </div>
-                <div id="step-block-4" class="step-block">
-                    <div class="step-desc">
-                        <h2 class="step-desc-title">Шаг 4</h2>
-                        <p class="step-desc-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi eaque
-                            explicabo hic ipsam iure libero nisi, recusandae similique vero?</p>
-                    </div>
-                    <div class="step-img-wrapper">
-                        <div class="image-block">
-
+                    <div class="step-item media">
+                        <div class="step-desc media-body text-right">
+                            <h3 class="media-heading">.04</h3>
+                            <div class="col-md-8 step-desc-wrap">
+                                <p>Получите ваш заказ</p>
+                                <p class="decription">Мы изготавливам для вас окна или двери. При необходимости осуществляем доставку на объект и монтаж.</p>
+                            </div>
+                        </div>
+                        <div class="step-img media-right media-middle">
+                            <img class="media-object" src="/img/step4.png" alt="step-4">
                         </div>
                     </div>
                 </div>
@@ -163,80 +132,30 @@ $js = "
         </div>
     </div>
 </section>
-<?=$this->render('@app/views/site/slider');?>
-<section id="calculate" class="section-calculate">
-    <h1>Индивидуальный расчет</h1>
+
+<?=$this->render('slider'); ?>
+
+<section class="section section-calculate">
     <div class="container">
-        <div class="calculator-wrapper">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="calculate-image">
-                        <a href=""><img class="img-responsive" src="http://placehold.it/250x250" alt=""></a>
-                    </div>
-
-                </div>
-                <div class="col-md-8">
-                    <div class="calculate-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Accusamus consectetur consequatur dolor eligendi incidunt necessitatibus nisi odio provident quam, repellat rerum temporibus ullam vel.
-                            Dolorem facilis minus nesciunt quaerat? Atque, commodi ducimus esse et,
-                            laborum, nobis nostrum officiis omnis optio quaerat quo reiciendis rem repellendus sed voluptatibus.
-                            In tempora, voluptates?</p>
-                    </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <div class="calculate-desc">
+                    <h2>Индивидуальный расчет</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <a href="<?=Url::to(['/site/calculate/window'])?>" class="btn btn-default">Рассчитать стоимость</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<footer class="footer">
-    <div class="line"></div>
-    <div class="top-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="footer-nav">
-                        <ul>
-                            <li><a href="">Главная</a></li>
-                            <li><a href="">Товар</a></li>
-                            <li><a href="">Калькулятор</a></li>
-                            <li><a href="">Контакты</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="footer-desc">
-                        <h4>О нас</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, dolores doloribus eligendi explicabo facere ipsum labore molestiae praesentium vel vero.</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="footer-contact">
-                        <ul>
-                            <li><i class="fa fa-envelope" aria-hidden="true"></i><span><a href="mailto:<?=\app\models\Settings::get('admin_email'); ?>"><?=\app\models\Settings::get('admin_email'); ?></a></span></li>
-                            <li><i class="fa fa-phone" aria-hidden="true"></i><span><a href="skype:+380999999999?call">+38 (099) 999 99 99</a></span></li>
-                        </ul>
-                    </div>
-                </div>
+
+<section class="section section-about">
+    <div class="container">
+        <h2 class="text-center">О компании <?=Yii::$app->params['siteName']; ?></h2>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">Наша компания предлагает только качественные товары. Мы работаем только с проверенными производителями. Мы даем гарантию на каждый товар, который Вы выбрали. Мы предлагаем Вам всевозможные решения Ваших пожеланий. Всегда у нас для Вас акционные предложения, скидки и подарки. В нашем магазине Вы всегда приобретаете товар  напрямую от производителя, не переплачивая дилерские наценки. Все пожелания и требования будут выполняться в кратчайшие сроки. Мы работаем для Вас. От Вашего комфорта зависит  наше будущее.</p>
             </div>
         </div>
     </div>
-    <div class="bot-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="copy">&copy; UnicWeb 2016</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="social">
-                        <ul class="nav nav-pills">
-                            <li><a href=""><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-                            <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href=""><i class="fa fa-odnoklassniki" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+</section>

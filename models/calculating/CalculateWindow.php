@@ -35,7 +35,42 @@ class CalculateWindow extends \yii\db\ActiveRecord
 			[['email', 'fio', 'phone'], 'string', 'max' => 255],
 			[['phone'], 'match', 'pattern' => '/^\+38([0-9]{10})$/'],
 			[['email'], 'email'],
+			[['type_id'], 'validateType'],
+			[['profile_id'], 'validateProfile'],
+			[['glaze_id'], 'validateGlaze'],
+			[['furniture_id'], 'validateFurniture'],
+			[['region_id'], 'validateRegion'],
 		];
+	}
+
+	public function validateType($attribute, $params){
+		if(WindowTypes::findOne($this->type_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Window Type')]));
+		}
+	}
+
+	public function validateProfile($attribute, $params){
+		if(WindowProfiles::findOne($this->profile_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Window Profile')]));
+		}
+	}
+
+	public function validateGlaze($attribute, $params){
+		if(WindowGlazes::findOne($this->glaze_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Window Glaze')]));
+		}
+	}
+
+	public function validateFurniture($attribute, $params){
+		if(WindowFurniture::findOne($this->furniture_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Window Furniture')]));
+		}
+	}
+
+	public function validateRegion($attribute, $params){
+		if(Regions::findOne($this->region_id) == null){
+			$this->addError($attribute, Yii::t('app', '{field} must not be empty', ['field' => Yii::t('app', 'Region')]));
+		}
 	}
 
 	public function fields(){

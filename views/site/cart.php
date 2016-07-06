@@ -24,6 +24,8 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 
 ?>
 
+<div class="container">
+
 <?php if(count($order->products) >= 1) { ?>
 	<div class="row">
 		<div class="col-sm-8">
@@ -53,26 +55,27 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 					</tr>
 			</table>
 			<?php \yii\widgets\Pjax::end(); ?>
-	</div>
-	<div class="col-sm-4">
-			<?php $form = ActiveForm::begin(); ?>
-			<?=$form->field($model, 'fio'); ?>
-			<?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
-			<?=$form->field($model, 'email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
-			<?=$form->field($model, 'region_id')->widget(Select2::className(), [
-					'data' => ArrayHelper::map(Regions::find()->all(), 'id', 'name'),
-					'options' => ['placeholder' => Yii::t('app', 'Choose...')],
-					'pluginOptions' => ['allowClear' => false]
-				]); ?>
+		</div>
+		<div class="col-sm-4">
+				<?php $form = ActiveForm::begin(); ?>
+				<?=$form->field($model, 'fio'); ?>
+				<?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
+				<?=$form->field($model, 'email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
+				<?=$form->field($model, 'region_id')->widget(Select2::className(), [
+						'data' => ArrayHelper::map(Regions::find()->all(), 'id', 'name'),
+						'options' => ['placeholder' => Yii::t('app', 'Choose...')],
+						'pluginOptions' => ['allowClear' => false]
+					]); ?>
 
-			<div class="form-group">
-				<?= Html::submitButton(Yii::t('app', 'Send') , ['class' => 'btn btn-primary btn-block btn-lg']) ?>
-			</div>
-			<?php ActiveForm::end(); ?>
-	</div>
-</div>
+				<div class="form-group">
+					<?= Html::submitButton(Yii::t('app', 'Send') , ['class' => 'btn btn-primary btn-block btn-lg']) ?>
+				</div>
+				<?php ActiveForm::end(); ?>
+		</div>
 
 		<?php } else{ ?>
 			<h2><?=Yii::t('app', 'Not enough products')?></h2>
 			<p><?=Html::a(Yii::t('app', 'Get searching?'), ['/products/index'], ['class' => 'btn btn-lg btn-success']);?></p>
 		<?php }?>
+	</div>
+</div>
