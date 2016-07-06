@@ -150,7 +150,7 @@ class ProductsController extends Controller
                 $filename = Yii::getAlias('@webroot') . '/uploads/products/' . $filename . $model_id . '_' . $date . '.' . $image->extension;
                 $imagine = Image::getImagine()
                 ->open($filename)
-                ->thumbnail(new Box(800, 800))
+                ->thumbnail(new Box(235, 400))
                 ->save($filename, ['quality' => 95]);
             }
         }

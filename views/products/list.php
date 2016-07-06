@@ -39,7 +39,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 			    'summary' => '',
 			    'options' => [
 			        'tag' => 'div',
-			    //     'class' => 'list-wrapper',
+			        'class' => 'product-list',
 			    //     'id' => 'list-wrapper',
 			    ],
 			    'itemView' => '_item',

@@ -11,7 +11,7 @@ use app\models\Regions;
 $this->title = Yii::t('app', 'Door Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calculate-door-index">
+<div class="calculate-door-index container">
 
     <?=$this->render('@app/views/orders/_menu', \app\components\OrdersCount::count()) ?>
 

@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $js = '
     $(".to-cart").on("click", function(){
         var button = $(this);
+        var oldContent = button.html();
         $.post(
             button.attr("value"),
             {
@@ -28,34 +29,35 @@ $js = '
         );
     });
 
-$(".slider-for").slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: ".slider-nav"
-});
-$(".slider-nav").slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  asNavFor: ".slider-for",
-  dots: true,
-  centerMode: true,
-  focusOnSelect: true
+    $(".slider-for").slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: ".slider-nav"
+  });
+  $(".slider-nav").slick({
+    arrows: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: ".slider-for",
+    // dots: true,
+    centerMode: true,
+    focusOnSelect: true
 });
 ';
 
 $this->registerJs($js, \yii\web\View::POS_END);
 
 ?>
-<div class="products-view container">
+<div class="product-view container">
 
 <?php if(!Yii::$app->user->isGuest) :?>
     <?php if (Yii::$app->user->identity->type == 'admin') :?>
         <p>
-            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-product btn-primary']) ?>
             <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
+                'class' => 'btn btn-product btn-danger',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     'method' => 'post',
@@ -64,12 +66,12 @@ $this->registerJs($js, \yii\web\View::POS_END);
         </p>
     <?php endif; ?>
 <?php endif; ?>
-    <div class="row">
+    <div class="row product-item-view">
         <div class="col-sm-4">
             <?php if($model->pictures) : ?>
                 <div class="slider-for">
                     <?php foreach($model->pictures as $picture) : ?>
-                        <div class="well">
+                        <div class="">
                         <?=Html::a('<i class="glyphicon glyphicon-remove"></i>', ['delete-image', 'id' => $picture->id, 'return_url' => Url::to(['/products/view', 'id' => $model->id])], ['class' => Yii::$app->user->isGuest ? 'hidden' : '']); ?>
                         <?=Html::img($picture->src, ['class' => 'img-responsive']);?>
                         </div>
@@ -87,14 +89,18 @@ $this->registerJs($js, \yii\web\View::POS_END);
         </div>
 
         <div class="col-sm-8">
-            <h2><?=$model->name; ?></h2>
+            <h2 class="product-title"><?=$model->name; ?></h2>
+            <div class='product-text'>
+                <span class='lead'><?=Yii::t('app', 'Price')?>: <?=$model->price; ?></span>
+    
+                <?=Html::a(Yii::t('app', 'To cart'), false,
+                    [
+                        'class' => 'btn btn-no-border btn-primary to-cart',
+                        'value' => Url::to(['/products/add-in-cart']),
+                        'data-product-id' => $model->id,
+                    ])?>
+            </div>
             <?=$model->description; ?>
-            <?=Html::a(Yii::t('app', 'To cart'), false,
-                [
-                    'class' => 'btn btn-no-border btn-primary to-cart',
-                    'value' => Url::to(['/products/add-in-cart']),
-                    'data-product-id' => $model->id,
-                ])?>
         </div>
     </div>
 </div>

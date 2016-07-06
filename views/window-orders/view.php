@@ -9,7 +9,7 @@ $this->title = $model->type->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Window Orders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calculate-window-view">
+<div class="calculate-window-view container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

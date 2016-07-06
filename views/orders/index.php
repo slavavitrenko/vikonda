@@ -12,7 +12,7 @@ $regions = in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? Reg
 $this->title = Yii::t('app', 'Site Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="orders-index">
+<div class="orders-index container">
 
     <?=$this->render('@app/views/orders/_menu', \app\components\OrdersCount::count()) ?>
 

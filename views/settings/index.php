@@ -31,7 +31,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 
 	<?=$form->field($model, 'admin_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 
-	<?= $form->field($model, 'admin_phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
+	<?php // echo $form->field($model, 'admin_phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
+
+	<?= $form->field($model, 'admin_phone'); ?>
 
 	<?=$form->field($model, 'bot_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 

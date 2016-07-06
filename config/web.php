@@ -8,18 +8,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
-        'assetManager' => [
-            'class' => 'yii\web\AssetManager',
-            'appendTimestamp' => true,
-            'bundles' => [
-                'yii\bootstrap\BootstrapAsset' => [
-                    'sourcePath' => null,
-                    'basePath' => '@webroot',
-                    'baseUrl' => '@web',
-                    'css' => ['css/style.css'],
-                ],
-            ],
-        ],
         'i18n' => [
             'translations' => [
                 'app' => [
@@ -75,6 +63,7 @@ $config = [
                 'site/calculate/window' => 'site/calculate',
                 'site/calculate/door' => 'site/calculate',
                 'category/<id:\w+>' => 'products/category',
+                'product/<id:\w+>' => 'products/view'
             ],
         ],
         'view' => [

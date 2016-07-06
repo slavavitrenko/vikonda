@@ -11,7 +11,7 @@ use app\models\WindowTypes;
 $this->title = Yii::t('app', 'Window Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calculate-window-index">
+<div class="calculate-window-index container">
 
     <?=$this->render('@app/views/orders/_menu', \app\components\OrdersCount::count()) ?>
 

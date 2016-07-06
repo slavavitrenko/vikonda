@@ -13,7 +13,7 @@ $this->title = $model->phone;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Orders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="orders-view">
+<div class="orders-view container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

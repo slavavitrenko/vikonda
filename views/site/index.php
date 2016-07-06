@@ -8,8 +8,45 @@ $this->title = Yii::t('app', 'Home');
 $this->registerJsFile('/js/bee3D.js');
 
 
+$js = '
+    $(".section-advantages").css("opacity", 0);
+    $(".section-advantages").waypoint(function() {
+        $(".section-advantages").addClass("animated zoomIn").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-steps h2").css("opacity", 0);
+    $(".section-steps h2").waypoint(function() {
+        $(".section-steps h2").addClass("animated bounceInUp").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-popular-prod h2").css("opacity", 0);
+    $(".section-popular-prod h2").waypoint(function() {
+        $(".section-popular-prod h2").addClass("animated bounceInUp").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-calculate h2").css("opacity", 0);
+    $(".section-calculate h2").waypoint(function() {
+        $(".section-calculate h2").addClass("animated bounceInUp").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-about h2").css("opacity", 0);
+    $(".section-about h2").waypoint(function() {
+        $(".section-about h2").addClass("animated bounceInUp").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-steps .step-item").css("opacity", 0);
+    $(".section-steps .step-item").waypoint(function() {
+        $(".section-steps .step-item").addClass("animated rollIn").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-calculate p, .section-calculate a").css("opacity", 0);
+    $(".section-calculate p, .section-calculate a").waypoint(function() {
+        $(".section-calculate p, .section-calculate a").addClass("animated bounceInRight").css("opacity", 1);
+    }, {offset: "65%"});
+    $(".section-about p").css("opacity", 0);
+    $(".section-about p").waypoint(function() {
+        $(".section-about p").addClass("animated bounceInUp").css("opacity", 1);
+    }, {offset: "65%"});
+';
+
+$this->registerJs($js, \yii\web\View::POS_END);
+
 $js = "
-    /*=======---bee3d slider---=======*/
+
     var bee3d = document.getElementById('bee3d');
 
     var slider = new Bee3D(bee3d, {
@@ -18,24 +55,21 @@ $js = "
         navigation: {
             enabled: true
         },
-        // autoplay: {
-        //     enabled: true,
-        //     pauseHover: true
-        // },
+        autoplay: {
+            enabled: true,
+            pauseHover: true
+        },
         loop: {
             enabled: true,
             continuous: true,
         }
     });
+    
 ";
 
-$this->registerJs($js, \yii\web\View::POS_END);
+$this->registerJs($js, \yii\web\View::POS_READY);
 
-$js = "";
-
-    $this->registerJs($js, \yii\web\View::POS_READY);
 ?>
-
 
 <section class="section-slider">
     <div class="blur"></div>
@@ -53,19 +87,19 @@ $js = "";
 <section class="section-advantages">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 text-center advantage-item">
+            <div class="col-sm-3 col-xs-6 text-center advantage-item">
                 <img src="/img/shild.png" alt="shild" class="img-responsive">
                 <span>Гарантия 5 лет</span>
             </div>
-            <div class="col-md-3 text-center advantage-item">
+            <div class="col-sm-3 col-xs-6 text-center advantage-item">
                 <img src="/img/wrench.png" alt="wrench" class="img-responsive">
                 <span>Установка за 1 день</span>
             </div>
-            <div class="col-md-3 text-center advantage-item">
+            <div class="col-sm-3 col-xs-6 text-center advantage-item">
                 <img src="/img/window.png" alt="window" class="img-responsive">
                 <span>Дизайнерское оформление более 30 видов</span>
             </div>
-            <div class="col-md-3 text-center advantage-item">
+            <div class="col-sm-3 col-xs-6 text-center advantage-item">
                 <img src="/img/prise.png" alt="prise" class="img-responsive">
                 <span>Срок службы окон <br>50 лет</span>
             </div>
@@ -87,7 +121,7 @@ $js = "";
                             <h3 class="media-heading">.01</h3>
                             <div class="col-md-8">
                                 <p>Сделайте расчёт своего заказа</p>
-                                <p class="decription">Для расчета перейдите к <a href="<?=Url::to(['site/calculate/window']); ?>">калькулятору</a></p>
+                                <p class="decription">Для расчета перейдите к <a href="<?=Url::to(['/site/calculate/window'])?>">калькулятору</a></p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +130,7 @@ $js = "";
                             <h3 class="media-heading">.02</h3>
                             <div class="col-md-8 step-desc-wrap">
                                 <p>Отправте заявку на заказ</p>
-                                <p class="decription">После расчета параметров окна или двери, кликните кнопку «Заказать»</p>
+                                <p class="decription">После расчета параметров окна или двери, кликните кнопку «Отправить заявку»</p>
                             </div>
                         </div>
                         <div class="step-img media-right media-middle">
@@ -138,7 +172,7 @@ $js = "";
 <section class="section section-calculate">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-4 col-sm-12">
                 <div class="calculate-desc">
                     <h2>Индивидуальный расчет</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

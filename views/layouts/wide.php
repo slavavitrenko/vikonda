@@ -15,7 +15,7 @@ if($regions){
 		<div class="col-sm-3">
 			<?=$this->render('@app/views/layouts/sidebar', \app\components\OrdersCount::count()); ?>
 		</div>
-		<div class="col-sm-9" id='main-layout'>
+		<div class="col-sm-9">
 			<?= \app\widgets\Alert::widget(); ?>
 			<?= $content ?>
 		</div>

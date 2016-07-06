@@ -146,7 +146,7 @@ return [
 	'cur' => 'грн.',
 	'fName' => 'Имя',
 	'{field} must not be empty' => 'Значение "{field}" заполнено неверно',
-	'' => '',
+	'Vikonda' => 'WinDoors',
 	'' => '',
 	'' => '',
 	'' => '',

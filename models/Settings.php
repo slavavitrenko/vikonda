@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use yii\helpers\Html;
 
 use Yii;
 

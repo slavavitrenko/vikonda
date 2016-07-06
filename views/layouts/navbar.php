@@ -29,7 +29,7 @@ $itemsRight[] = Yii::$app->user->getIsGuest() ?
 $itemsRight[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
 .
 Yii::$app->cart->status
-, 'url' => ['/site/cart'], 'linkOptions' => ['style' => 'color:yellow', 'class' => Yii::$app->user->isGuest ? 'btn btn-default' : ' hidden', 'data-pjax' => 0]];
+, 'url' => ['/site/cart'], 'linkOptions' => ['class' => Yii::$app->user->isGuest ? 'btn btn-default btn-cart' : ' hidden', 'data-pjax' => 0]];
 
 $itemsLeft[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/']];
 
@@ -41,7 +41,7 @@ $itemsLeft[] = ['label' => Yii::t('app', 'Calculator'), 'items' => [
     ['label' => Yii::t('app', 'Calculate Doors'), 'url' => ['/site/calculate/door']]
 ]];
 
-$itemsLeft[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
+$itemsLeft[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about'], 'active' => false];
 
 if(!Yii::$app->user->isGuest){
     $itemsLeft[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/orders/index'], 'active' => false];
@@ -53,34 +53,34 @@ if(!Yii::$app->user->isGuest){
     <div class="top-cont-block">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="logo">
                         <a href="<?=Url::to(['/']); ?>"><img class="img-responsive" src="/img/logo.png" alt="logotype"></a>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="slogan">
-                        <p>Заходи, считай, заказывай, получай</p>
+                        <p>Заходи, считай,<br /> заказывай, получай</p>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="address">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <p><span>г. Полтава</span> <br> ул. Маршала Конева, 4/2</p>
+                        <p><span>г. Полтава</span><br>ул. Маршала Конева, 4/2</p>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="contacts">
                         <i class="fa fa-phone" aria-hidden="true"></i>
                         <div class="contact-wrap">
-                            <span><?=Html::a(Settings::get('admin_phone'), 'tel:' . Settings::get('admin_phone'), ['target' => '_blank']); ?></span><br>
+                            <span><?=Settings::get('admin_phone'); ?></span><br>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default headroom">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">

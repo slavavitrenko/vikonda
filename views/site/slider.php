@@ -16,7 +16,7 @@ $products = Products::find()->orderBy(['id' => SORT_ASC])->limit(7)->all();
             <?php foreach($products as $product) : ?>
                 <div class="bee3D--slide">
                     <div class="bee3D--inner">
-                        <?=Html::img($product->pictures[0]->src, ['class' => 'img-responsive'])?>
+                        <?=Html::img($product->pictures[0]->src, ['class' => ''])?>
                     </div>
                 </div>
                 <?php endforeach; ?>
