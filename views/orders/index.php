@@ -12,7 +12,7 @@ $regions = in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? Reg
 $this->title = Yii::t('app', 'Site Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="orders-index container">
+<div class="orders-index">
 
     <?=$this->render('@app/views/orders/_menu', \app\components\OrdersCount::count()) ?>
 
@@ -37,8 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->partner_id ? '<span class="label label-success">' . Yii::t("app", "Taked") . ' - ' . $model->partner->username . '</span>' : '<span class="label label-warning">' . Yii::t('app', 'Not taked') . '</span>';
                     }
                 ],
-                'phone',
-                'email:email',
+                // 'phone',
+                // 'email:email',
                 [
                     // 'visible' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']),
                     'attribute' => 'region_id',
@@ -52,10 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'region.name',
                 ],
                 // 'updated_at',
-                [
-                    'attribute' => 'created_at',
-                    'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
-                ],
+                // [
+                //     'attribute' => 'created_at',
+                //     'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
+                // ],
 
                 [
                     'class' => 'yii\grid\ActionColumn', 'template' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '{view} {delete}' : '{take} {view}',
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->partner_id == '0' ?
                             Html::a(Yii::t('app', 'Take'), ['take', 'id' => $key], ['class' => 'btn btn-sm btn-success', 'data-method' => 'post'])
                             :
-                            Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $key], ['class' => 'btn btn-sm btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]);
+                            /*Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $key], ['class' => 'btn btn-sm btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')])*/'';
                         }
                     ]
                 ],

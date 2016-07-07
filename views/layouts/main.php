@@ -20,8 +20,10 @@ AppAsset::register($this);
     <title><?=Yii::$app->params['siteName']?> | <?= Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 </head>
-<body class="<?=Yii::$app->controller->action->id == 'calculate' ? 'background' : ''?>">
+<body>
 <?php $this->beginBody() ?>
+
+<div class="wrap <?=Yii::$app->controller->action->id == 'calculate' ? 'background' : ''?>">
 
 <?=$this->render('@app/views/layouts/navbar'); ?>
 
@@ -35,6 +37,7 @@ AppAsset::register($this);
 	} else {
 		echo $this->render('thin', ['content' => $content]);
 	} ?>
+</div>
 
 <footer class="footer">
     <div class="container">

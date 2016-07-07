@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $model->partner_id == '0' ?
             Html::a(Yii::t('app', 'Take'), ['take', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-success', 'data-method' => 'post'])
             :
-            Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]); ?>
+            /*Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $model->id, 'return_url' => Url::to(['/window-orders/view', 'id' => $model->id])], ['class' => 'btn btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]);*/ '' ?>
         <?php endif; ?>
     </p>
 
@@ -37,8 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             'sum',
             'fio',
-            'phone',
-            'email',
+            [
+                'attribute' => 'phone',
+                'visible' => $model->partner_id == Yii::$app->user->identity->id or Yii::$app->user->identity->type == 'admin',
+            ],
+            [
+                'attribute' => 'email',
+                'visible' => $model->partner_id == Yii::$app->user->identity->id or Yii::$app->user->identity->type == 'admin',
+            ],
             [
                 'attribute' => 'type_id',
                 'value' => $model->type->name

@@ -11,7 +11,7 @@ use app\models\WindowTypes;
 $this->title = Yii::t('app', 'Window Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calculate-window-index container">
+<div class="calculate-window-indexr">
 
     <?=$this->render('@app/views/orders/_menu', \app\components\OrdersCount::count()) ?>
 
@@ -53,10 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filter' => Html::activeDropdownList($searchModel, 'region_id', ArrayHelper::map(Regions::find()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => ''/*Yii::t('app', 'Choose...')*/])
                 ],
                 // 'calculate_type',
-                [
-                    'attribute' => 'created_at',
-                    'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
-                ],
+                // [
+                //     'attribute' => 'created_at',
+                //     'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
+                // ],
                 [
                     'class' => 'yii\grid\ActionColumn', 'template' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '{view} {delete}' : '{take} {view}',
                     'buttons' => [
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->partner_id == '0' ?
                             Html::a(Yii::t('app', 'Take'), ['take', 'id' => $key], ['class' => 'btn btn-sm btn-success', 'data-method' => 'post'])
                             :
-                            Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $key], ['class' => 'btn btn-sm btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')]);
+                            /*Html::a(Yii::t('app', 'Untake'), ['untake', 'id' => $key], ['class' => 'btn btn-sm btn-danger', 'data-method' => 'post', 'data-confirm' => Yii::t('app', 'Are you sure you want to untake this item?')])*/'';
                         }
                     ]
                 ],

@@ -30,9 +30,8 @@ $this->title = Yii::t('app', 'About');
 ?>
 
 <div class="container">
-	<?=\app\models\Settings::get('about_page')?>
+	<div class="product-item-view">
+		<?=\app\models\Settings::get('about_page')?>
+		<div id="about_map"></div>
+	</div>
 </div>
-
-
-<!-- Карта -->
-<div id="about_map"></div>

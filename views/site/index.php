@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\assets\SiteAsset;
+
+SiteAsset::register($this);
 
 $this->title = Yii::t('app', 'Home');
 

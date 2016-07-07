@@ -19,7 +19,7 @@ use yii\helpers\Html;
 		</div>
 	</div>
 	<div class="col-md-9">
-		<h2 class='product-title'><?=$model->name; ?></h2>
+		<h2 class='product-title'><?=Html::encode($model->name); ?></h2>
     	<div class="product-text">
     		<span class='lead'><?=Yii::t('app', 'Price')?>: <?=$model->price; ?></span>
     	</div>

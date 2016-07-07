@@ -1,12 +1,14 @@
 <?php
 
-// $this->registerJsFile('/js/dropdown.js');
+use app\assets\CalcAsset;
 
-\app\assets\FrontendAsset::register($this);
+\app\assets\CalcAsset::register($this);
 
 $this->title = Yii::t('app', 'Calculator');
 
 ?>
+
+<div class="container">
 
   <sd-app>
     <div class="sk-cube-grid">
@@ -21,7 +23,7 @@ $this->title = Yii::t('app', 'Calculator');
       <div class="sk-cube sk-cube9"></div>
     </div>
   </sd-app>
-
+</div>
   <script>
   function module() {}
   </script>

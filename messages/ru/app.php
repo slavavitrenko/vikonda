@@ -147,7 +147,7 @@ return [
 	'fName' => 'Имя',
 	'{field} must not be empty' => 'Значение "{field}" заполнено неверно',
 	'Vikonda' => 'WinDoors',
-	'' => '',
+	'Your order has been accepted. Thank you!' => 'Ваш заказ принят. Спасибо!',
 	'' => '',
 	'' => '',
 	'' => '',

@@ -86,13 +86,13 @@ class OrdersController extends Controller
         return $this->redirect($return_url ? $return_url : ['index']);
 	}
 
-	public function actionUntake($id, $return_url=null){
-		$this->findModel($id)->updateAttributes([
-				'partner_id' => '0',
-			]);
-			Yii::$app->session->setFlash('warning', Yii::t('app', 'You are succesfully untaked item №{num}', ['num' => $id]));
-        return $this->redirect($return_url ? $return_url : ['index']);
-	}
+	// public function actionUntake($id, $return_url=null){
+	// 	$this->findModel($id)->updateAttributes([
+	// 			'partner_id' => '0',
+	// 		]);
+	// 		Yii::$app->session->setFlash('warning', Yii::t('app', 'You are succesfully untaked item №{num}', ['num' => $id]));
+ //        return $this->redirect($return_url ? $return_url : ['index']);
+	// }
 
 
 	// ПРИСТАЛЬНО СМОТРИМ ЮЗЕРУ В ГЛАЗА

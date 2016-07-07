@@ -1,19 +1,19 @@
-body {
+html, body {
     height: 100%;
-}
-html: {
-    height: auto;
 }
 
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -20px;
-    padding: 0 0 20px;
+    margin: 0 auto -275px;
+    padding: 0;
 }
 
 .wrap > .container {
-    padding: 20px 15px 20px;
+     padding: 10px 15px 370px;
+}
+.background > .container {
+    padding: 0px 0px 370px;
 }
 
 .not-set {
@@ -74,7 +74,6 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
-
 
 label.control-label {
   display: block;
@@ -166,7 +165,7 @@ div.required label:first-child:not(.btn):after {
 
 .product-item .btn-product:last-child {
     border-radius: 0 30px 30px 0;
-    color: yellow;
+    /*color: yellow;*/
     font-weight: 800;
     margin-left: 3px;
 }
@@ -183,7 +182,8 @@ div.required label:first-child:not(.btn):after {
     border-color: transparent;
 }
 
-.product-view .btn {
+.product-view .btn, .btn-default, .btn-default:hover {
+    color: white;
     padding: 10px 15px;
     border-radius: 30px;
     font-weight: 700;
@@ -209,4 +209,13 @@ div.required label:first-child:not(.btn):after {
     margin-right: 30px;
     font-size: 25px;
     line-height: 30px;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 0;
+}
+
+p {
+    word-wrap: break-word;
 }

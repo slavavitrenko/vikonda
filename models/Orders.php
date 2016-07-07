@@ -107,6 +107,12 @@ class Orders extends \yii\db\ActiveRecord
                 $this->send_email($email);
             }
         }
+
+        // Client
+        if($this->email){
+            \app\models\Notifications::notify($this->email, Yii::t('app', 'Your order has been accepted. Thank you!'));
+        }
+
         parent::afterSave($insert, $changedAttributes);
     }
 
