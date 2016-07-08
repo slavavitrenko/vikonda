@@ -27,18 +27,7 @@ AppAsset::register($this);
 
 <?=$this->render('@app/views/layouts/navbar'); ?>
 
-	<?php
-	if(!Yii::$app->user->isGuest){
-		if(in_array(Yii::$app->user->identity->type, ['admin', 'manager']) && Yii::$app->controller->id != 'site'){
-			echo $this->render('wide', ['content' => $content]);
-		} else {
-            echo '<div class="container">';
-            echo $this->render('thin', ['content' => $content]);
-            echo '</div>';
-		}
-	} else {
-		echo $this->render('thin', ['content' => $content]);
-	} ?>
+	<?= $this->render('thin', ['content' => $content]); ?>
 </div>
 
 <footer class="footer">

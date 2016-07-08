@@ -9,7 +9,7 @@ $this->title = $model->type->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Window Orders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calculate-window-view container">
+<div class="calculate-window-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -68,7 +68,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->region->name
             ],
             // 'calculate_type',
-            'created_at',
+            [
+                'attribute' => 'created_at',
+                'value' => Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]),
+            ],
         ],
     ]) ?>
 

@@ -9,7 +9,7 @@ $this->title = $model->type->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Door Orders'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calculate-door-view container">
+<div class="calculate-door-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

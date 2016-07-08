@@ -52,10 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'region.name',
                 ],
                 // 'updated_at',
-                // [
-                //     'attribute' => 'created_at',
-                //     'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
-                // ],
+                [
+                    'attribute' => 'created_at',
+                    'value' => function($model){ return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);}
+                ],
 
                 [
                     'class' => 'yii\grid\ActionColumn', 'template' => in_array(Yii::$app->user->identity->type, ['admin', 'manager']) ? '{view} {delete}' : '{take} {view}',

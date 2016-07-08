@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 08 2016 г., 09:12
+-- Время создания: Июл 08 2016 г., 09:45
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `phone` varchar(13) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=335 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=336 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `calculate_window`
@@ -116,7 +116,8 @@ INSERT INTO `calculate_window` (`id`, `partner_id`, `type_id`, `width`, `height`
 (289, 0, 28, 234, 345, 1, 1, 1, 4, 'calculate', 206.00, 'sadf', '+380664875401', '', 1467809930),
 (291, 0, 36, 20, 20, 4, 3, 2, 11, 'calculate', 472.00, 'Bhbh', '+380664875401', '', 1467810736),
 (293, 0, 22, 123, 123, 4, 3, 2, 6, 'calculate', 82.00, 'sdf', '+380664875401', '', 1467811375),
-(330, 0, 28, 23, 23, 1, 3, 2, 6, 'calculate', 53.00, 'ASDf', '+380664875401', '', 1467892273);
+(330, 0, 28, 23, 23, 1, 3, 2, 6, 'calculate', 53.00, 'ASDf', '+380664875401', '', 1467892273),
+(335, 17, 21, 200, 200, 4, 3, 2, 5, 'order', 110.00, 'Витренко Вячеслав Дмитриевич', '+380663564463', '', 1467959200);
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -243,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
@@ -251,7 +252,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
 (186, NULL, NULL, '', NULL, 0, 1467957440, 1467957440),
-(187, NULL, NULL, '', NULL, 0, 1467958227, 1467958227);
+(187, NULL, NULL, '', NULL, 0, 1467958227, 1467958227),
+(188, '+380663564463', 'mxuser@ya.ru', 'Витренко Вячеслав Дмитриевич', 5, 17, 1467959301, 1467959301),
+(189, NULL, NULL, '', NULL, 0, 1467959330, 1467959330),
+(190, NULL, NULL, '', NULL, 0, 1467959376, 1467959376);
 
 -- --------------------------------------------------------
 
@@ -265,7 +269,14 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders_products`
+--
+
+INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`) VALUES
+(222, 188, 12, 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -349,6 +360,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(255) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `description` text NOT NULL,
+  `views` int(10) NOT NULL,
   `created_at` int(13) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
@@ -356,13 +368,13 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Дамп данных таблицы `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `created_at`) VALUES
-(12, 19, 'Окно 1', 123.00, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099153),
-(13, 19, 'Окно 2', 236.79, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099192),
-(14, 20, 'Дверь 1', 325.74, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099210),
-(15, 20, 'Дверь 2', 231.34, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1466099233),
-(20, 19, 'апапапап', 1000.00, '<p>выаываывавыавыавыа</p>', 1467365154),
-(21, 24, 'Samsung', 15000.00, 'SamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsung', 1467892775);
+INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `description`, `views`, `created_at`) VALUES
+(12, 19, 'Окно 1', 123.00, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 10, 1466099153),
+(13, 19, 'Окно 2', 236.79, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1, 1466099192),
+(14, 20, 'Дверь 1', 325.74, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 3, 1466099210),
+(15, 20, 'Дверь 2', 231.34, '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p><p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p><p>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p><p>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p><p>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 0, 1466099233),
+(20, 19, 'апапапап', 1000.00, '<p>выаываывавыавыавыа</p>', 0, 1467365154),
+(21, 24, 'Samsung', 15000.00, 'SamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsungSamsung', 2, 1467892775);
 
 -- --------------------------------------------------------
 
@@ -388,7 +400,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (17, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (19, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -501,7 +512,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `type`) VALUES
 (1, 'admin', 'email@email.ru', '$2y$10$tv4cRT23luXR6ZZIveDN4uDO.D4XS250QfQK3wDMgG6U2mALYRfhy', '9OKghb3P67QjnuknO2INTJ5uD-zPLz8E', 1465997720, NULL, NULL, '127.0.0.1', 1465997720, 1466233255, 0, 'admin'),
 (17, 'partner', 'slavavitrenko@gmail.com', '$2y$10$TZX13gZp6YAb7RbwnOYyRuMeEFLuSWUJ5P05e//muS83Mv8XT72RS', '1nnKK1QMrYwo1GYNLsfNTehWQH48bBQq', 1466584192, NULL, NULL, '127.0.0.1', 1466584193, 1467794103, 0, 'partner'),
-(18, 'manager', 'manager@mail.ru', '$2y$10$59YaSCdFrzKNzjPI/ttICuMk07DEDaao8mGW/4FFmvlapADPlrmEi', '_udQ-MRSa3lHJ_nor6OQAE7iTffjp4pd', 1467181276, NULL, NULL, '93.78.238.18', 1467181276, 1467181276, 0, 'manager'),
 (19, 'pere', 'neros354@gmail.com', '$2y$10$KgbcOvleh3NURkKey9.jPefGXsuyIftMPRMPBozNZ/AZCd8gRgqh.', 'idEnhohqj8VnPpxitNu5xHx1VgEWSWVa', 1467893233, NULL, NULL, '93.78.238.18', 1467893233, 1467893233, 0, 'partner');
 
 -- --------------------------------------------------------
@@ -787,7 +797,7 @@ ALTER TABLE `calculate_door`
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=335;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=336;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -807,17 +817,17 @@ ALTER TABLE `door_types`
 -- AUTO_INCREMENT для таблицы `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=188;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=191;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=212;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=223;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
