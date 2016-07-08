@@ -26,7 +26,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 
 <?= $form->field($user, 'type')->radioList([
         'admin' => Yii::t('app', 'Admin'),
-        'manager' => Yii::t('app', 'Manager'),
+        // 'manager' => Yii::t('app', 'Manager'),
         'partner' => Yii::t('app', 'Partner'),
     ], [
         'id' => 'user-type',

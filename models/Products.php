@@ -34,12 +34,13 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'name', 'description', 'price'], 'required'],
-            [['category_id', 'created_at'], 'integer'],
+            [['category_id', 'created_at', 'views'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 255],
             ['created_at', 'default', 'value' => time()],
             [['images'], 'file', 'maxFiles' => 10, 'skipOnEmpty' => true, 'extensions' => 'gif, jpg, png'],
-            ['price', 'number']
+            ['price', 'number'],
+            [['views'], 'default', 'value' => '0'],
         ];
     }
 

@@ -78,8 +78,13 @@ class ProductsController extends Controller
 
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        
+        $model->views = $model->views + 1;
+        $model->save(false);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

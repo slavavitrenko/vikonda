@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use app\models\Products;
 
-$products = Products::find()->orderBy(['id' => SORT_ASC])->limit(7)->all();
+$products = Products::find()->orderBy(['views' => SORT_DESC])->limit(7)->all();
 
 ?>
 
@@ -17,6 +17,7 @@ $products = Products::find()->orderBy(['id' => SORT_ASC])->limit(7)->all();
                 <div class="bee3D--slide">
                     <div class="bee3D--inner">
                         <?=Html::img($product->pictures[0]->src, ['class' => 'img-responsive'])?>
+                        <?=Html::a(Yii::t('app', 'Details'), ['/product/' . $product->id], ['class' => 'btn btn-default btn-sm product-view-btn']); ?>
                     </div>
                 </div>
                 <?php endforeach; ?>
