@@ -31,7 +31,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 	<?php if(count($order->products) >= 1) { ?>
 		<div class="row">
 			<div class="col-sm-8">
-				<?php \yii\widgets\Pjax::begin(['id' => 'order-container']); ?>
+				<?php \yii\widgets\Pjax::begin(['id' => 'order-container', 'timeout' => 1000]); ?>
 				<table class="table table-bordered table-striped orders-table">
 					<th><?=Yii::t('app', 'Name'); ?></th>
 					<th><?=Yii::t('app', 'Count'); ?></th>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 07 2016 г., 16:12
+-- Время создания: Июл 08 2016 г., 09:12
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -243,24 +243,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
 INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
-(163, NULL, NULL, '', NULL, 0, 1467889382, 1467889382),
-(165, NULL, NULL, '', NULL, 0, 1467889892, 1467889892),
-(168, NULL, NULL, '', NULL, 0, 1467890174, 1467890174),
-(169, NULL, NULL, '', NULL, 0, 1467890225, 1467890225),
-(171, NULL, NULL, '', NULL, 0, 1467890413, 1467890413),
-(173, NULL, NULL, '', NULL, 0, 1467891393, 1467891393),
-(175, NULL, NULL, '', NULL, 0, 1467892750, 1467892750),
-(176, NULL, NULL, '', NULL, 0, 1467893198, 1467893198),
-(177, NULL, NULL, '', NULL, 0, 1467894057, 1467894057),
-(179, NULL, NULL, '', NULL, 0, 1467894087, 1467894087),
-(181, NULL, NULL, '', NULL, 0, 1467895385, 1467895385);
+(186, NULL, NULL, '', NULL, 0, 1467957440, 1467957440),
+(187, NULL, NULL, '', NULL, 0, 1467958227, 1467958227);
 
 -- --------------------------------------------------------
 
@@ -274,19 +265,7 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `orders_products`
---
-
-INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `count`, `price`) VALUES
-(174, 163, 20, 1, NULL),
-(179, 168, 12, 1, NULL),
-(180, 168, 13, 1, NULL),
-(181, 168, 20, 1, NULL),
-(191, 173, 12, 1, NULL),
-(194, 177, 12, 1, NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -513,7 +492,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updated_at` int(11) NOT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
   `type` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'partner'
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `user`
@@ -833,12 +812,12 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=182;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=188;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=200;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=212;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
@@ -873,7 +852,7 @@ ALTER TABLE `social_account`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT для таблицы `window_furniture`
 --
