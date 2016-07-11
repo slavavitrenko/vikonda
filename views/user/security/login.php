@@ -47,7 +47,7 @@ $this->title = Yii::t('user', 'Sign in');
 
                     <?= $form->field($model, 'rememberMe')->hiddenInput()->label(false) ?>
 
-                    <?= Html::submitButton(Yii::t('user', 'Sign in'), ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']) ?>
+                    <?= Html::submitButton(Yii::t('user', 'Sign in'), ['class' => 'btn btn-default btn-block', 'tabindex' => '3']) ?>
 
                     <?php ActiveForm::end(); ?>
                 </div>

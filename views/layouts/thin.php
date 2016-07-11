@@ -4,5 +4,9 @@ use yii\widgets\Breadcrumbs;
 
 ?>
 
-<?= \app\widgets\Alert::widget(); ?>
+<div class="alert-div">
+	<div class="container">
+		<?= \app\widgets\Alert::widget(); ?>
+	</div>
+</div>
 <?= $content ?>

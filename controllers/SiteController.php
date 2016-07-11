@@ -60,7 +60,15 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $this->layout = 'frontend';
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'You message was submitted. Thank you.'));
+            return $this->refresh();
+        }
+        return $this->render('about', [
+            'model' => $model,
+        ]);
     }
 
     public function actionCart(){

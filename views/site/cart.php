@@ -59,6 +59,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 				<?php \yii\widgets\Pjax::end(); ?>
 			</div>
 			<div class="col-sm-4">
+			<h2><?=Yii::t('app', 'Submit Order')?></h2>
 					<?php $form = ActiveForm::begin(); ?>
 					<?=$form->field($model, 'fio'); ?>
 					<?= $form->field($model, 'phone')->widget(MaskedInput::className(), ['mask' => '+380999999999']) ?>
