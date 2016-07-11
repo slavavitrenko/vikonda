@@ -162,7 +162,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="text-center">Как мы выполним ваш заказ</h2>
+                <h2 class="text-center">Как мы выполним Ваш заказ</h2>
                 <div class="step-wrap">
                     <div class="step-item media">
                         <div class="step-img media-left media-middle">
@@ -192,16 +192,16 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                         </div>
                         <div class="step-desc media-body">
                             <div class="col-md-8">
-                                <p>Наш менеджер свяжется с вами для уточнения деталей</p>
-                                <p class="decription">Наш специалист перезвонит вам для подтверждения заказа.</p>
+                                <p>Наш менеджер свяжется с Вами для уточнения деталей</p>
+                                <p class="decription">Наш специалист перезвонит Вам для подтверждения заказа.</p>
                             </div>
                         </div>
                     </div>
                     <div class="step-item media">
                         <div class="step-desc media-body text-right">
                             <div class="col-md-8 step-desc-wrap">
-                                <p>Получите ваш заказ</p>
-                                <p class="decription">Мы изготавливам для вас окна или двери. При необходимости осуществляем доставку на объект и монтаж.</p>
+                                <p>Получите Ваш заказ</p>
+                                <p class="decription">Мы изготавливам для Вас окна или двери. При необходимости осуществляем доставку на объект и монтаж.</p>
                             </div>
                         </div>
                         <div class="step-img media-right media-middle">

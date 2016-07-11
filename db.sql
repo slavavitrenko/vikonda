@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 11 2016 г., 10:31
+-- Время создания: Июл 11 2016 г., 13:21
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -244,13 +244,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `orders`
---
-
-INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
-(199, NULL, NULL, '', NULL, 0, 1468221448, 1468221448);
 
 -- --------------------------------------------------------
 
