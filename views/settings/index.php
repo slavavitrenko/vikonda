@@ -35,6 +35,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update Settings');
 
 	<?= $form->field($model, 'admin_phone'); ?>
 
+	<?= $form->field($model, 'address'); ?>
+
 	<?=$form->field($model, 'bot_email')->widget(MaskedInput::className(), ['clientOptions' => ['alias' =>  'email']]); ?>
 
 	<?= $form->field($model, 'box_price') ?>

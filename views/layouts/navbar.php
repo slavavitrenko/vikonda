@@ -53,23 +53,18 @@ if(!Yii::$app->user->isGuest){
     <div class="top-cont-block">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-12">
                     <div class="logo">
                         <a href="<?=Url::to(['/']); ?>"><img class="img-responsive" src="/img/logo.png" alt="logotype"></a>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="slogan">
-                        <p>Заходи, считай,<br /> заказывай, получай</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="address">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <p><span>г. Полтава</span><br>ул. Маршала Конева, 4/2</p>
+                        <p><span><?php echo Settings::get('address'); ?></span></p>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="contacts">
                         <i class="fa fa-phone" aria-hidden="true"></i>
                         <div class="contact-wrap">

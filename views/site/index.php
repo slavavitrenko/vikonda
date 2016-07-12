@@ -152,7 +152,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
     <div class="container">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <p class="text-center">Уважаемые посетители нашего сайта, Вы сможете максимально удобно, не выходя из дома в любую погоду  и любое время ознакомиться со всем перечнем предлагаемых нами  товаров и заказать их в любом уголке Украины. Наша компания предлагает только качественные товары. Мы работаем только с проверенными производителями. Мы даем гарантию на каждый товар, который Вы выбрали. Мы предлагаем Вам всевозможные решения Ваших пожеланий. Всегда у нас для Вас акционные предложения, скидки и подарки. В нашем магазине Вы всегда приобретаете товар  напрямую от производителя, не переплачивая дилерские наценки. Все пожелания и требования будут выполняться в кратчайшие сроки. Мы работаем для Вас. От Вашего комфорта зависит  наше будущее.</p>
+                <p class="text-center"><b>Уважаемые</b> посетители нашего сайта, Вы сможете максимально удобно, <b>не выходя из дома</b>, в любую погоду и любое время, <b>ознакомиться</b> со всем перечнем предлагаемых нами  товаров и <b>заказать</b> их <b>в любом уголке Украины</b>. Наша компания предлагает только <b>качественные товары</b>. Мы работаем только с <b>проверенными производителями</b>. Мы даем <b>гарантию</b> на каждый товар, который Вы выбрали. Мы предлагаем Вам всевозможные решения Ваших пожеланий. Всегда у нас для Вас <b>акционные предложения, скидки и подарки</b>. В нашем магазине Вы всегда приобретаете товар  напрямую от производителя, <b>не переплачивая</b> дилерские наценки. Все пожелания и требования будут <b>выполняться в кратчайшие сроки</b>. Мы работаем для Вас. От Вашего комфорта зависит  наше будущее.</p>
             </div>
         </div>
     </div>
@@ -170,7 +170,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                         </div>
                         <div class="step-desc media-body">
                             <div class="col-md-8">
-                                <p>Сделайте расчёт своего заказа</p>
+                                <p>Сделайте расчёт Вашего заказа</p>
                                 <p class="decription">Для расчета перейдите к <a href="/site/calculate/window">калькулятору</a></p>
                             </div>
                         </div>
@@ -179,7 +179,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                         <div class="step-desc media-body text-right">
                             <div class="col-md-8 step-desc-wrap">
                                 <p>Отправте заявку на заказ</p>
-                                <p class="decription">После расчета параметров окна или двери, кликните кнопку «Отправить заявку»</p>
+                                <p class="decription">После расчета кликните кнопку «Отправить заявку»</p>
                             </div>
                         </div>
                         <div class="step-img media-right media-middle">
@@ -193,7 +193,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                         <div class="step-desc media-body">
                             <div class="col-md-8">
                                 <p>Наш менеджер свяжется с Вами для уточнения деталей</p>
-                                <p class="decription">Наш специалист перезвонит Вам для подтверждения заказа.</p>
+                                <p class="decription">Наш специалист перезвонит Вам.</p>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                         <div class="step-desc media-body text-right">
                             <div class="col-md-8 step-desc-wrap">
                                 <p>Получите Ваш заказ</p>
-                                <p class="decription">Мы изготавливам для Вас окна или двери. При необходимости осуществляем доставку на объект и монтаж.</p>
+                                <p class="decription">Ваш заказ будет доставлен Вам любым доступным способом.</p>
                             </div>
                         </div>
                         <div class="step-img media-right media-middle">
@@ -221,8 +221,8 @@ $this->registerJs($js, \yii\web\View::POS_READY);
         <div class="row">
             <div class="col-md-8 col-md-offset-4 col-sm-12">
                 <div class="calculate-desc">
-                    <h2>Индивидуальный расчет</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <h2>Заходи, считай, заказывай, получай</h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
                     <a href="<?=Url::to(['/site/calculate/window'])?>" class="btn btn-default">Рассчитать стоимость</a>
                 </div>
             </div>

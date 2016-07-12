@@ -18,7 +18,7 @@ class Settings extends \yii\db\ActiveRecord
         return [
             [['box_price', 'locker_price', 'round', 'admin_email'], 'required'],
             [['box_price', 'locker_price', 'jamb_price'], 'number'],
-            [['admin_email', 'bot_email', 'site_url', 'admin_phone', 'about_page'], 'string', 'max' => 255],
+            [['admin_email', 'bot_email', 'site_url', 'admin_phone', 'about_page', 'address'], 'string', 'max' => 255],
             [['round'], 'integer'],
         ];
     }
@@ -35,6 +35,7 @@ class Settings extends \yii\db\ActiveRecord
             'site_url' => Yii::t('app', 'Site Url'),
             'admin_phone' => Yii::t('app', 'Admin Phone'),
             'about_page' => Yii::t('app', 'About Page'),
+            'address' => Yii::t('app', 'Address (in navbar)'),
         ];
     }
 

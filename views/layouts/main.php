@@ -95,7 +95,7 @@ AppAsset::register($this);
                 <div class="footer-contacts">
                     <div class="address">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <p><span>г. Полтава</span> <br> ул. Маршала Конева, 4/2</p>
+                        <p><span><?php echo Settings::get('address'); ?></span></p>
                     </div>
                     <div class="contacts">
                         <i class="fa fa-phone" aria-hidden="true"></i>
