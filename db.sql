@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 11 2016 г., 13:21
+-- Время создания: Июл 12 2016 г., 10:59
 -- Версия сервера: 5.5.44-MariaDB
 -- Версия PHP: 5.4.16
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `calculate_window` (
   `phone` varchar(13) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=337 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=338 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `calculate_window`
@@ -226,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -243,7 +243,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `partner_id` int(11) NOT NULL,
   `updated_at` int(13) NOT NULL,
   `created_at` int(13) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `phone`, `email`, `fio`, `region_id`, `partner_id`, `updated_at`, `created_at`) VALUES
+(201, NULL, NULL, '', NULL, 0, 1468246983, 1468246983),
+(202, NULL, NULL, '', NULL, 0, 1468247622, 1468247622);
 
 -- --------------------------------------------------------
 
@@ -257,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   `product_id` int(11) NOT NULL,
   `count` int(5) NOT NULL,
   `price` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -423,15 +431,16 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `bot_email` varchar(255) NOT NULL,
   `site_url` varchar(255) NOT NULL,
   `admin_phone` varchar(255) NOT NULL,
-  `about_page` text NOT NULL
+  `about_page` text NOT NULL,
+  `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `settings`
 --
 
-INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`, `bot_email`, `site_url`, `admin_phone`, `about_page`) VALUES
-(1, 25.60, 120.45, 10.45, 1, 'info@unicweb.com.ua', 'mxuser@ya.ru', 'vikonda.unicweb.com.ua', '+38(099)9999999<br>+38(066)3567446', '<h1 style="text-align: center;">Это страница "О нас"</h1><h3 style="text-align: center;">Здесь укажется информация о компании, описание ее деятельности, основные преимущества и прочее</h3>');
+INSERT INTO `settings` (`id`, `box_price`, `locker_price`, `jamb_price`, `round`, `admin_email`, `bot_email`, `site_url`, `admin_phone`, `about_page`, `address`) VALUES
+(1, 25.60, 120.45, 10.45, 1, 'info@unicweb.com.ua', 'mxuser@ya.ru', 'http://vikonda.unicweb.com.ua', '+38(050)7272275<br>+38(067)5555555', '<h1 style="text-align: center;">Это страница "О нас"</h1><h3 style="text-align: center;">Здесь укажется информация о компании, описание ее деятельности, основные преимущества и прочее</h3>', 'г. Полтава,<br>ул. С. Петлюры 26');
 
 -- --------------------------------------------------------
 
@@ -778,7 +787,7 @@ ALTER TABLE `calculate_door`
 -- AUTO_INCREMENT для таблицы `calculate_window`
 --
 ALTER TABLE `calculate_window`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=337;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=338;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -798,17 +807,17 @@ ALTER TABLE `door_types`
 -- AUTO_INCREMENT для таблицы `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=200;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=203;
 --
 -- AUTO_INCREMENT для таблицы `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=240;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=243;
 --
 -- AUTO_INCREMENT для таблицы `partners_regions`
 --
