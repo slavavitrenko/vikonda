@@ -62,7 +62,7 @@ $config = [
             'rules' => [
                 'site/calculate/window' => 'site/calculate',
                 'site/calculate/door' => 'site/calculate',
-                'category/<id:\w+>' => 'products/category',
+                // 'category/<id:\w+>' => 'products/category',
                 'product/<id:\w+>' => 'products/view'
             ],
         ],
@@ -98,19 +98,19 @@ $config = [
     'params' => $params,
 ];
 
-// if (YII_ENV_DEV) {
-//     // configuration adjustments for 'dev' environment
-//     $config['bootstrap'][] = 'debug';
-//     $config['modules']['debug'] = [
-//         'class' => 'yii\debug\Module',
-//         'allowedIPs' => ['127.0.0.1', '192.168.0.*', '93.78.238.18']
-//     ];
+if (YII_ENV_DEV) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+        'allowedIPs' => ['127.0.0.1', '192.168.0.*', '93.78.238.18']
+    ];
 
-//     $config['bootstrap'][] = 'gii';
-//     $config['modules']['gii'] = [
-//         'class' => 'yii\gii\Module',
-//         'allowedIPs' => ['127.0.0.1', '192.168.0.*', '93.78.238.18'],
-//     ];
-// }
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1', '192.168.0.*', '93.78.238.18'],
+    ];
+}
 
 return $config;

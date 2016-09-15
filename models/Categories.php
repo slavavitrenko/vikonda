@@ -11,6 +11,8 @@ class Categories extends \yii\db\ActiveRecord
 
     public $label;
 
+    public $image;
+
     public static function tableName()
     {
         return 'categories';
@@ -22,9 +24,10 @@ class Categories extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['parent', 'visible'], 'integer'],
             [['parent'], 'default', 'value' => '0'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'picture'], 'string', 'max' => 255],
             [['name'], 'validateExist'],
-            [['visible'], 'default', 'value' => 1]
+            [['visible'], 'default', 'value' => 1],
+            [['image'], 'file'],
         ];
     }
 
@@ -42,6 +45,8 @@ class Categories extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'parent' => Yii::t('app', 'Parent'),
+            'image' => Yii::t('app', 'Picture'),
+            'picture' => Yii::t('app', 'Picture'),
             'visible' => Yii::t('app', 'Visible'),
         ];
     }
@@ -78,6 +83,10 @@ class Categories extends \yii\db\ActiveRecord
                 $product->delete();
             }
         }
+        if(!empty($this->picture)){
+            @unlink($this->picture);
+        }
+
         return true;
     }
 

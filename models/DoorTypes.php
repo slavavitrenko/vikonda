@@ -16,10 +16,11 @@ class DoorTypes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'picture', 'price'], 'required'],
+            [['name', 'description', 'picture', 'price', 'formula'], 'required'],
             [['picture'], 'file'],
             [['price'], 'number'],
             [['name', 'description'], 'string', 'max' => 255],
+            [['formula'], 'string', 'max' => 500]
         ];
     }
 
@@ -42,6 +43,7 @@ class DoorTypes extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'picture' => Yii::t('app', 'Picture'),
             'price' => Yii::t('app', 'Price'),
+            'formula' => Yii::t('app', 'Formula')
         ];
     }
 

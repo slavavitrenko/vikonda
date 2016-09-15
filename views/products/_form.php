@@ -7,7 +7,15 @@ use kartik\select2\Select2;
 use app\models\Categories;
 use kartik\file\FileInput;
 
+
+
+foreach(Categories::find()->all() as $category){
+    if(!$category->child){
+        $categories[] = $category;
+    }
+}
 ?>
+
 
 <div class="products-form">
 
@@ -18,7 +26,7 @@ use kartik\file\FileInput;
     <div class="row">
         <div class="col-sm-6">
             <?= $form->field($model, 'category_id')->widget(Select2::className(), [
-            	'data' => ArrayHelper::map(Categories::find()->where(['<>', 'parent', '0'])->all(), 'id', 'name', 'parentName'),
+            	'data' => ArrayHelper::map($categories, 'id', 'name', 'parentName'),
             	'options' => ['placeholder' => Yii::t('app', 'Choose...')],
             ])->label(Yii::t('app', 'Category')) ?>
         </div>
@@ -27,7 +35,16 @@ use kartik\file\FileInput;
         </div>
     </div>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-sm-6">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-6">
+            <?=$form->field($model, 'manufacturer')->textInput(['maxlength' => true]); ?>
+        </div>
+    </div>
+
+
 
     <?= $form->field($model, 'description')->widget(\yii\redactor\widgets\Redactor::className(),
         [

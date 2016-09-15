@@ -69,7 +69,10 @@ class ProductsController extends Controller
 
     public function actionCategory($id){
         $searchModel = new ProductSearch();
-        $dataProvider = $searchModel->search(['category_id' => $id], '');
+        $params = Yii::$app->request->queryParams;
+        $params['ProductSearch']['category_id'] = $id;
+        $dataProvider = $searchModel->search($params);
+
         return $this->render('list', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -24,7 +24,8 @@
         "yiidoc/yii2-redactor": "*",
         "leandrogehlen/yii2-treegrid": "*",
         "yiisoft/yii2-imagine": "^2.0",
-        "kartik-v/yii2-widget-sidenav": "*"
+        "kartik-v/yii2-widget-sidenav": "*",
+        "kartik-v/yii2-nav-x": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

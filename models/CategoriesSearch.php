@@ -59,7 +59,6 @@ class CategoriesSearch extends Categories
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'parent' => $this->parent,
         ]);
 

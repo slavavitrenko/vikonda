@@ -40,11 +40,11 @@ a.asc:after, a.desc:after {
 }
 
 a.asc:after {
-    content: /*"\e113"*/ "\e151";
+    content: "\e113";
 }
 
 a.desc:after {
-    content: /*"\e114"*/ "\e152";
+    content: "\e114";
 }
 
 .sort-numerical a.asc:after {
@@ -233,4 +233,18 @@ div {
     display: block;
     bottom: 20%;
     position: relative;
+}
+
+#windowtypes-formula {
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.fileinput-remove-button, .fileinput-remove-button:hover {
+    padding: 7px 15px;
+}
+
+.kv-file-content img {
+  max-width: 250px;
 }

@@ -84,7 +84,9 @@ class WindowTypesController extends Controller
         $oldPicture = $model->picture;
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->picture = $this->saveFile(UploadedFile::getInstance($model, 'picture'), $model->id);
+            if($file = UploadedFile::getInstance($model, 'picture')){
+                $model->picture = $this->saveFile($file, $model->id);
+            }
             @unlink($oldPicture);
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);

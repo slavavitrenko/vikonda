@@ -93,6 +93,9 @@ $this->registerJs($js, \yii\web\View::POS_END);
 
         <div class="col-sm-8">
             <h2 class="product-title"><?=$model->name; ?></h2>
+            <?php if(!empty($model->manufacturer)): ?>
+                <h3><?=Yii::t('app', 'Manufacturer')?>: <?=$model->manufacturer; ?></h3>
+            <?php endif; ?>
             <div class='product-text'>
                 <span class='lead'><?=Yii::t('app', 'Price')?>: <?=$model->price; ?></span>
     

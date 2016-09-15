@@ -6,6 +6,8 @@ use yii\helpers\Html;
 use yii\bootstrap\NavBar;
 use app\models\Settings;
 
+use kartik\nav\NavX;
+
 ?>
 
 <?php
@@ -13,11 +15,20 @@ $itemsRight = [];
 
 
 $catItems = [];
-foreach(\app\models\Categories::find()->where(['parent' => 18])->andWhere(['visible' => '1'])->all() as $category){
-    $catItems[] = ['label' => $category->name, 'url' => Url::to(['/category/' . $category->id])];
+foreach(\app\models\Categories::find()->where(['visible' => '1', 'parent' => 0])->all() as $category){
+    $catItem = ['label' => $category->name, 'url' => ['/products/category/', 'id' => $category->id]];
+    if($category->child){
+        // unset($catItem['url']);
+        // $catItem['url'] = '#';
+        foreach($category->child as $child){
+            $catItem['items'][] = ['label' => $child->name, 'url' => ['/products/category/', 'id' => $category->id]];
+        }
+    }
+    $catItems[] = $catItem;
     $catItems[] = '<li class="divider"></li>';
 }
 array_pop($catItems);
+
 
 $itemsRight[] = Yii::$app->user->getIsGuest() ?
     ['label' => Yii::t('app', 'Login'), 'url' => ['/user/login'], 'linkOptions' => ['class' => 'btn btn-default']]
@@ -90,10 +101,10 @@ if(!Yii::$app->user->isGuest){
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <?php
-                  echo Nav::widget([
+                  echo NavX::widget([
                     'activateParents' => true,
                     'encodeLabels' => false,
-                    'options' => ['class' => 'nav navbar-nav navbar-left'],
+                    'options' => ['class' => 'nav navbar-nav nav-pills navbar-left'],
                     'items' => $itemsLeft
                     ]);
                   ?>

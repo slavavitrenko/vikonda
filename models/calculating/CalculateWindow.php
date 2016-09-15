@@ -149,19 +149,32 @@ class CalculateWindow extends \yii\db\ActiveRecord
 		return parent::beforeValidate();
 	}
 
-	//==================================================================//
-	// =============== Сделать нормальное рассчитывание =============== //
-	//==================================================================//
 	private function calculate(){
+
 		$price = 0;
-		// Квадратура
-		$price += (($this->height * $this->width)/1000000) * $this->type->price;
-		// Фурнитура
-		$price += $this->furniture->price;
-		// Стеклопакет
-		$price += (($this->height * $this->width)/1000000) * $this->glaze->price;
-		// Профиль
-		$price += (($this->height + $this->width)/500) * $this->profile->price;
+		$price = eval('return '
+			.
+			str_ireplace(
+				[
+					"тип",
+					"высота",
+					"ширина",
+					"профиль",
+					"стекло",
+					"фурнитура",
+				],
+				[
+					$this->type->price,
+					$this->height,
+					$this->width,
+					$this->profile->price,
+					$this->glaze->price,
+					$this->furniture->price,
+				],
+				$this->type->formula)
+			.
+			';');
+		
 		// Накидываем процент региона
 		$price += ($this->region->percent / 100) * $price;
 		// Возвращаем округленную стоимость (округленную до целых гривен или нет, в зависимости от настроек)

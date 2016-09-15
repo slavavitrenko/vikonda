@@ -19,7 +19,7 @@ class ProductSearch extends Products
     {
         return [
             [['id', 'category_id', 'created_at'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['name', 'description', 'manufacturer'], 'safe'],
         ];
     }
 
@@ -61,7 +61,6 @@ class ProductSearch extends Products
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'category_id' => $this->category_id,
             'created_at' => $this->created_at,
         ]);
@@ -73,6 +72,7 @@ class ProductSearch extends Products
         $query->orFilterWhere(['categories.parent' => $this->category_id]);
 
         $query->andFilterWhere(['like', 'products.name', $this->name])
+            ->andFilterWhere(['like', 'products.manufacturer', $this->manufacturer])
             ->andFilterWhere(['like', 'products.description', $this->description]);
 
         return $dataProvider;

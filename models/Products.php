@@ -33,9 +33,9 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'name', 'description', 'price'], 'required'],
+            [['category_id', 'name', 'description', 'price', 'manufacturer'], 'required'],
             [['category_id', 'created_at', 'views'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'manufacturer'], 'string'],
             [['name'], 'string', 'max' => 255],
             ['created_at', 'default', 'value' => time()],
             [['images'], 'file', 'maxFiles' => 10, 'skipOnEmpty' => true, 'extensions' => 'gif, jpg, png'],
@@ -51,12 +51,13 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category_id' => Yii::t('app', 'Category'),
             'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'price' => Yii::t('app', 'Price'),
             'images' => Yii::t('app', 'Images'),
-            'price' => Yii::t('app', 'Price')
+            'category_id' => Yii::t('app', 'Category'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'description' => Yii::t('app', 'Description'),
+            'manufacturer' => Yii::t('app', 'Manufacturer'),
         ];
     }
 

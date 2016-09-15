@@ -23,6 +23,6 @@ use yii\helpers\Html;
     	<div class="product-text">
     		<span class='lead'><?=Yii::t('app', 'Price')?>: <?=$model->price; ?></span>
     	</div>
-		<?=mb_substr($model->description, 0, 250) . '...'; ?>
+		<div class="product-text"><?=mb_substr($model->description, 0, 255, 'utf-8') . '...'; ?></div>
 	</div>
 </div>

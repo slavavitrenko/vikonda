@@ -16,10 +16,10 @@ class WindowTypes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'price', 'picture'], 'required'],
+            [['name', 'description', 'price', 'formula'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'formula'], 'string', 'max' => 255],
             [['picture'], 'file']
         ];
     }
@@ -43,6 +43,7 @@ class WindowTypes extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'picture' => Yii::t('app', 'Picture'),
             'price' => Yii::t('app', 'Price per quadmeter'),
+            'formula' => Yii::t('app', 'Formula'),
         ];
     }
 

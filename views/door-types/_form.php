@@ -20,6 +20,8 @@ use kartik\file\FileInput;
         ]
     ]) ?>
 
+    <?=$form->field($model, 'formula')->textArea(['rows' => 3])->hint(Yii::t('app', 'Available vars: "width", "height", "type", "box", "jamb", "locker"')); ?>
+
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">

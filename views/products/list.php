@@ -28,11 +28,15 @@ $js = '
 	});
 ';
 
+
 $this->registerJs($js, \yii\web\View::POS_READY);
 
 ?>
 <div class="container">
 	<div class="row">
+	<div class="col-sm-12">
+		<?=$this->render('_search', ['model' => $searchModel, 'dataProvider' => $dataProvider]);?>
+	</div>
 		<div class="col-sm-12">
 			<?= ListView::widget([
 			    'dataProvider' => $dataProvider,

@@ -127,25 +127,27 @@ class CalculateDoor extends \yii\db\ActiveRecord
 		return parent::beforeValidate();
 	}
 
-	//==================================================================//
-	// =============== Сделать нормальное рассчитывание =============== //
-	//==================================================================//
 	private function calculate(){
 		$price = 0;
-		// Квадратура
-		$price += ($this->height * $this->width)/100 * $this->type->price;
-		// Короб
-		if($this->box){
-			$price += round(Settings::get('box_price') * (( $this->width * 2 + $this->width * 2 )/100), 0);
-		}
-		// Замок
-		if($this->locker){
-			$price += Settings::get('locker_price');
-		}
-		// Наличник
-		if($this->jamb){
-			$price += Settings::get('jamb_price') * (( $this->width * 2 + $this->width * 2 )/100);
-		}
+		$price = eval('return ' . str_ireplace(
+			[
+				'ширина',
+				'высота',
+				'тип',
+				'короб',
+				'наличник',
+				'замок',
+			],
+			[
+				$this->width,
+				$this->height,
+				$this->type->price,
+				Settings::get('box_price'),
+				Settings::get('jamb_price'),
+				Settings::get('locker_price'),
+			],
+			$this->type->formula) . ';');
+
 		// Накидываем процент региона
 		$price += ($this->region->percent / 100) * $price;
 		// Возвращаем округленную стоимость (округленную до целых гривен или нет, в зависимости от настроек)

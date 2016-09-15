@@ -38,8 +38,8 @@ $items[] = ['label' => Yii::t('app', 'Orders').
 $items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
 	['label' => Yii::t('app', 'All users'), 'url' => ['/user/admin/index'], 'active' => Yii::$app->controller->id == 'admin', 'visible' => Yii::$app->user->identity->type == 'admin'],	
 	['label' => Yii::t('app', 'Regions'), 'url' => ['/regions/index'], 'active' => Yii::$app->controller->id == 'regions'],
-	['label' => Yii::t('app', 'Categories'), 'url' => ['/categories/index'], 'active' => Yii::$app->controller->id == 'categories'],
 	['label' => Yii::t('app', 'Products'), 'url' => ['/products/index'], 'active' => Yii::$app->controller->id == 'products'],
+	['label' => Yii::t('app', 'Categories'), 'url' => ['/categories/index'], 'active' => Yii::$app->controller->id == 'categories'],
 	['label' => Yii::t('app', 'Basic Settings'), 'url' => ['/settings/index'], 'active' => Yii::$app->controller->id == 'settings'],
 ]
 , 'active' => in_array(Yii::$app->controller->id, ['admin', 'regions', 'categories', 'products', 'settings'])];

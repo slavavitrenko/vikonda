@@ -27,7 +27,12 @@ class CalculateController extends Controller
 		}
 		$model = new CalculateWindow;
 		$model->load(Yii::$app->request->post(), '');
-		
+
+
+		// ================================== //
+		// ============ Убрать!!! =========== //
+		// ================================== //
+		// return $model->validate() ? $model : ['errors' => array_values($model->errors)];
 		return $model->save() ? $model : ['errors' => array_values($model->errors)];
 	}
 
@@ -41,6 +46,11 @@ class CalculateController extends Controller
 		$model = new CalculateDoor;
 		$model->load(Yii::$app->request->post(), '');
 
+
+		// ================================== //
+		// ============ Убрать!!! =========== //
+		// ================================== //
+		// return $model->validate() ? $model : ['errors' => array_values($model->errors)];
 		return $model->save() ? $model : ['errors' => array_values($model->errors)];
 	}
 
