@@ -16,17 +16,24 @@ use kartik\select2\Select2;
     ]); ?>
 
     <div class="row">
-        <div class="col-sm-4">
-            <?= $form->field($model, 'manufacturer')->widget(Select2::className(), [
-                'data' => ArrayHelper::map(Products::find()->groupBy('manufacturer')->all(), 'manufacturer', 'manufacturer'),
-                'pluginOptions' => [
-                    'placeholder' => Yii::t('app', 'Manufacturer'), 
-                    'allowClear' => true
-                ]
-            ])->label(false) ?>
+        <div class="col-sm-5">
+        <div class="row">
+            <div class="col-sm-6">
+                <?=$form->field($model, 'name')->textInput(['placeholder' => Yii::t('app', 'Name')])->label(false); ?>
+            </div>
+            <div class="col-sm-6">
+                <?= $form->field($model, 'manufacturer')->widget(Select2::className(), [
+                    'data' => ArrayHelper::map(Products::find()->groupBy('manufacturer')->all(), 'manufacturer', 'manufacturer'),
+                    'pluginOptions' => [
+                        'placeholder' => Yii::t('app', 'Manufacturer'), 
+                        'allowClear' => true
+                    ]
+                ])->label(false) ?>
+            </div>
+        </div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
             </div>

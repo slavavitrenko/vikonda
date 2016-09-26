@@ -104,4 +104,25 @@ class SiteController extends Controller
         return $this->render('calculate');
     }
 
+    public function actionImport(){
+        $file = fopen(__DIR__ . '/entries.csv', 'r');
+        while (false != $data = fgetcsv($file)){
+            $model = new \app\models\Products;
+            $model->category_id = 25;
+            $model->name = $data[0];
+            $model->description = '';
+            if(!empty($data[2])){
+                $model->description .= str_replace("\n", "<br>", $data[2]) . '<br><br>';
+            }
+            if(!empty($data[1])){
+                $model->description .= "<strong>Характеристики:</strong><br>" . str_replace("\n", "<br>", $data[1]) . "<br><br>";
+            }
+            if(!empty($data[3])){
+                $model->description .= "<strong>Преимущества:</strong><br>" . str_replace("\n", "<br>", $data[3]) . '<br><br>';
+            }
+            $model->save(false);
+        }
+        fclose($file);
+    }
+
 }

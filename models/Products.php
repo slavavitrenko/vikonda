@@ -33,7 +33,7 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'name', 'description', 'price', 'manufacturer'], 'required'],
+            [['category_id', 'name', 'description', 'price'], 'required'],
             [['category_id', 'created_at', 'views'], 'integer'],
             [['description', 'manufacturer'], 'string'],
             [['name'], 'string', 'max' => 255],
@@ -74,11 +74,11 @@ class Products extends \yii\db\ActiveRecord
     }
 
     public function beforeDelete(){
-        if($this->pictures){
-            foreach($this->pictures as $picture){
-                $picture->delete();
-            }
-        }
+        // if($this->pictures){
+        //     foreach($this->pictures as $picture){
+        //         $picture->delete();
+        //     }
+        // }
         return parent::beforeDelete();
     }
 

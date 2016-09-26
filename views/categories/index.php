@@ -16,15 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::encode($this->title) ?>
     </h1>
 
-    <?php Pjax::begin(); ?>
-        <?= TreeGrid::widget([
+    <?= TreeGrid::widget([
             'keyColumnName' => 'id',
             'parentColumnName' => 'parent',
+            'parentRootValue' => '0',
             'dataProvider' => $dataProvider,
             'columns' => [
                 'name',
                 ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
             ],
         ]); ?>
-    <?php Pjax::end(); ?>
 </div>

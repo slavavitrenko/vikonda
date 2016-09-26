@@ -78,11 +78,11 @@ class Categories extends \yii\db\ActiveRecord
                 $child->delete();
             }
         }
-        if($this->products){
-            foreach($this->products as $product){
-                $product->delete();
-            }
-        }
+        // if($this->products){
+        //     foreach($this->products as $product){
+        //         $product->delete();
+        //     }
+        // }
         if(!empty($this->picture)){
             @unlink($this->picture);
         }

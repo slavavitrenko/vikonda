@@ -22,7 +22,7 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "yiidoc/yii2-redactor": "*",
-        "leandrogehlen/yii2-treegrid": "*",
+        "leandrogehlen/yii2-treegrid": "^1.0",
         "yiisoft/yii2-imagine": "^2.0",
         "kartik-v/yii2-widget-sidenav": "*",
         "kartik-v/yii2-nav-x": "*"
