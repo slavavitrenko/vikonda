@@ -24,7 +24,7 @@ if(!empty($model->picture)){
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'parent')->widget(Select2::className(), [
-    	'data' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
+    	'data' => ArrayHelper::map(Categories::find()->all(), 'id', 'name', 'parentName'),
     	'options' => ['placeholder' => Yii::t('app', 'Root category')],
     	'pluginOptions' => ['allowClear' => true]
     ])->label(Yii::t('app', 'Parent category')) ?>
