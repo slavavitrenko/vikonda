@@ -6,7 +6,9 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
+use yii\data\ActiveDataProvider;
+use app\models\Posts;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -33,7 +35,7 @@ class SiteController extends Controller
             ],
         ];
     }
-    
+
     public function actions()
     {
         return [
@@ -47,20 +49,26 @@ class SiteController extends Controller
         ];
     }
 
-    public function init(){
-        // $this->layout = 'frontend';
-        return parent::init();
+    public function actionView($slug, $lang = 'uk')
+    {
+        if(false != ($model = Posts::findOne(['slug' => $slug]))){
+            return $this->render('view', [
+                'model' => $model,
+                'lang' => $lang,
+            ]);
+        }else{
+            throw new NotFoundHttpException(Yii::t('app','Post not found'));
+        }
     }
+
 
     public function actionIndex()
     {
-        $this->layout = 'frontend';
         return $this->render('index');
     }
 
     public function actionAbout()
     {
-        $this->layout = 'frontend';
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'You message was submitted. Thank you.'));
@@ -93,7 +101,7 @@ class SiteController extends Controller
         if($product_id){Yii::$app->cart->setCount($product_id, $count);}
         return $this->actionCart();
     }
- 
+
     public function actionDeleteFromCart($product_id=null)
     {
         if($product_id){Yii::$app->cart->delete($product_id);}

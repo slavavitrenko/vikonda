@@ -1,238 +1,362 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\Url;
-use app\assets\SiteAsset;
 
-SiteAsset::register($this);
+use \yii\helpers\ArrayHelper;
+use app\models\Regions;
+use \yii\helpers\Html;
 
 $this->title = Yii::t('app', 'Home');
-
-$this->registerJsFile('/js/bee3D.js');
-
-
-$js = '
-    $(".section-advantages").css("opacity", 0);
-    $(".section-advantages").waypoint(function() {
-        $(".section-advantages").addClass("animated zoomIn").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-steps h2").css("opacity", 0);
-    $(".section-steps h2").waypoint(function() {
-        $(".section-steps h2").addClass("animated bounceInUp").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-popular-prod h2").css("opacity", 0);
-    $(".section-popular-prod h2").waypoint(function() {
-        $(".section-popular-prod h2").addClass("animated bounceInUp").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-calculate h2").css("opacity", 0);
-    $(".section-calculate h2").waypoint(function() {
-        $(".section-calculate h2").addClass("animated bounceInUp").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-about h2").css("opacity", 0);
-    $(".section-about h2").waypoint(function() {
-        $(".section-about h2").addClass("animated bounceInUp").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-steps .step-item").css("opacity", 0);
-    $(".section-steps .step-item").waypoint(function() {
-        $(".section-steps .step-item").addClass("animated rollIn").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-calculate p, .section-calculate a").css("opacity", 0);
-    $(".section-calculate p, .section-calculate a").waypoint(function() {
-        $(".section-calculate p, .section-calculate a").addClass("animated bounceInRight").css("opacity", 1);
-    }, {offset: "65%"});
-    $(".section-about p").css("opacity", 0);
-    $(".section-about p").waypoint(function() {
-        $(".section-about p").addClass("animated bounceInUp").css("opacity", 1);
-    }, {offset: "65%"});
-';
-
-$this->registerJs($js, \yii\web\View::POS_END);
-
-$js = "
-
-        $('#slider').slick({
-        dots: false,
-        arrows: true,
-        infinite: true,
-        autoplay: true,
-        speed: 1200,
-        cssEase: 'linear',
-        autoplaySpeed: 5000
-    });
-
-
-    var bee3d = document.getElementById('bee3d');
-
-    var slider = new Bee3D(bee3d, {
-        effect: 'coverflow',
-        focus: 2,
-        navigation: {
-            enabled: true
-        },
-        autoplay: {
-            enabled: true,
-            pauseHover: true
-        },
-        loop: {
-            enabled: true,
-            continuous: true,
-        }
-    });
-    
-";
-
-$this->registerJs($js, \yii\web\View::POS_READY);
-
 ?>
 
-<section id="slider" class="section-slider">
-    <div class="slider-item slider-item-1">
-        <div class="row">
-            <div class="col-md-5 col-sm-6 col-sm-offset-1">
-                <div class="slider-desc">
-                    <h2>Окна</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
-                        excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/19" class="btn btn-default">Посмотреть каталог окон</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item slider-item-2">
-        <div class="row">
-            <div class="col-md-5 col-sm-6 col-sm-offset-1">
-                <div class="slider-desc">
-                    <h2>Двери</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
-                        excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/20" class="btn btn-default">каталог дверей</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item slider-item-3">
-        <div class="row">
-            <div class="col-md-5 col-sm-6 col-sm-offset-1">
-                <div class="slider-desc">
-                    <h2>Кондиционеры</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
-                        excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/24" class="btn btn-default">каталог кондиционеров</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item slider-item-4">
-        <div class="row">
-            <div class="col-md-5 col-sm-6 col-sm-offset-1">
-                <div class="slider-desc">
-                    <h2>Бензо и электро инструмент</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
-                        excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/25" class="btn btn-default">каталог инструментов</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item slider-item-5">
-        <div class="row">
-            <div class="col-md-5 col-sm-6 col-sm-offset-1">
-                <div class="slider-desc">
-                    <h2>Стройматериалы</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
-                        excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/26" class="btn btn-default">каталог стройматериалов</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="section-advantages">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <p class="text-center"><b>Уважаемые</b> посетители нашего сайта, Вы сможете максимально удобно, <b>не выходя из дома</b>, в любую погоду и любое время, <b>ознакомиться</b> со всем перечнем предлагаемых нами  товаров и <b>заказать</b> их <b>в любом уголке Украины</b>. Наша компания предлагает только <b>качественные товары</b>. Мы работаем только с <b>проверенными производителями</b>. Мы даем <b>гарантию</b> на каждый товар, который Вы выбрали. Мы предлагаем Вам всевозможные решения Ваших пожеланий. Всегда у нас для Вас <b>акционные предложения, скидки и подарки</b>. В нашем магазине Вы всегда приобретаете товар  напрямую от производителя, <b>не переплачивая</b> дилерские наценки. Все пожелания и требования будут <b>выполняться в кратчайшие сроки</b>. Мы работаем для Вас. От Вашего комфорта зависит  наше будущее.</p>
+<div class="call-up container-fluid">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-4 text-center">
+            <h3 class="font-weight-bold">Рассчитаем окна за 5 минут</h3>
+            <p>Перезвоним и поможем с расчетом Ваших окон</p>
+        </div>
+        <div class="col-12 col-md-8">
+            <form class="form-inline form-custom justify-content-center">
+                <label class="sr-only" for="inlineFormInput">Name</label>
+                <input type="text" class="form-control text-center" id="inlineFormInput" placeholder="Имя">
+
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <input type="text" class="form-control text-center" id="inlineFormInputGroup" placeholder="Телефон">
+
+                <button type="submit" class="btn btn-call">Позвонить</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="calculator container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Цены на пластиковые окна в Украине</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h2>Эконом</h2>
+            <div class="w-100">
+                <img src="/images/frame.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/line2.jpg" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Path 14.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Image 30.png" alt="" style="opacity: 0.20">
+            </div>
+            <button type="submit" class="btn btn-calculate">рассчитать</button>
+        </div>
+        <div class="col text-center">
+            <h2>Стандарт</h2>
+            <div class="w-100">
+                <img src="/images/frame.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/line3.jpg" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Path 13.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Image 31.png" alt="" style="opacity: 0.50">
+            </div>
+            <button type="submit" class="btn btn-calculate">рассчитать</button>
+        </div>
+        <div class="col text-center">
+            <h2>Премиум</h2>
+            <div class="w-100">
+                <img src="/images/frame.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/line4.jpg" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Path -1.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Image 32.png" alt=""  style="opacity: 0.70">
+            </div>
+            <button type="submit" class="btn btn-calculate">рассчитать</button>
+        </div>
+        <div class="col text-center">
+            <h2>Элит</h2>
+            <div class="w-100">
+                <img src="/images/frame.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/line.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Path 8.png" alt="">
+            </div>
+            <div class="w-100">
+                <img src="/images/Image 33.png" alt="">
+            </div>
+            <button type="submit" class="btn btn-calculate">рассчитать</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Start Windows -->
+<div class="wcalc">
+
+    <div class="form-group custom-form-group">
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <h4>Тип окна</h4>
+            </label>
+        </div>
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <img src="/wincalc/images/fn1.png" alt="">
+            </label>
+        </div>
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <img src="/wincalc/images/fn2.png" alt="">
+            </label>
+        </div>
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <img src="/wincalc/images/fn3.png" alt="">
+            </label>
+        </div>
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <img src="/wincalc/images/fn4.png" alt="">
+            </label>
+        </div>
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <img src="/wincalc/images/fn5.png" alt="">
+            </label>
+        </div>
+        <div class="form-check custom-form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                <img src="/wincalc/images/fn6.png" alt="">
+            </label>
+        </div>
+    </div>
+
+    <div class="wcalc__profile">
+        <div class="new-radio1">
+            <div class="form-group">
+                <legend>Выбор профиля</legend>
+                <div class="form-check form-check-new">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                        Эконом
+                        <span class="size-radio">Профиль 3 камеры, 2 стекла</span>
+                    </label>
+                </div>
+                <div class="form-check form-check-new">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                        Стандарт
+                        <span class="size-radio">Профиль 4 камеры, 3 стекла</span>
+                    </label>
+                </div>
+                <div class="form-check form-check-new">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                        Премиум
+                        <span class="size-radio">Профиль 5 камеры, 3 стекла</span>
+                    </label>
+                </div>
+                <div class="form-check form-check-new">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                        Элит
+                        <span class="size-radio">Профиль 6 камеры, 3 стекла</span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
-</section>
 
-<section class="section section-steps">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Как мы выполним Ваш заказ</h2>
-                <div class="step-wrap">
-                    <div class="step-item media">
-                        <div class="step-img media-left media-middle">
-                            <img class="media-object" src="/img/step1.png" alt="step-1">
-                        </div>
-                        <div class="step-desc media-body">
-                            <div class="col-md-8">
-                                <p>Сделайте расчёт Вашего заказа</p>
-                                <p class="decription">Для расчета перейдите к <a href="/site/calculate/window">калькулятору</a></p>
-                            </div>
-                        </div>
+    <div class="wcalc__measures">
+        <div class="wcalc__size">
+            <h4 class="wcalc__heading">Размеры</h4>
+            <ul>
+                <li>
+                    <form action="">
+                        <p>Высота</p>
+                        <input type="text" size="4" name="" value="">&nbsp мм
+                        <p>Ширина</p>
+                        <input type="text" size="4" name="" value="">&nbsp мм
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="wcalc__models">
+        <h4 class="wcalc__heading">
+            Тип открывания
+        </h4>
+
+        <div id="sliderVone" class="slider left-float noframe"></div>
+        <div id="sliderVtwo" class="slider left-float noframe"></div>
+        <div id="sliderVthree" class="slider left-float noframe"></div>
+
+        <div class="wcalc__box wcalc__box--1 isframe">
+            <div class="wcalc__frame wcalc__frame--1">
+                <img class="pic" src="/wincalc/images/f42.png" alt="">
+                <div class="wcalc__option wcalc__option--1">
+                    <p class="closed checked">глухое</p>
+                    <p class="turn-right">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--2">
+            <div class="wcalc__frame wcalc__frame--2 left-float">
+                <img class="pic-rev" src="/wincalc/images/f41.png" alt="">
+                <div class="wcalc__option wcalc__option--1">
+                    <p class="closed-rev checked">глухое</p>
+                    <p class="turn-left">поворотное</p>
+                    <p class="turn-down-rev">поворотно-откидное</p>
+                </div>
+            </div>
+            <div class="wcalc__frame wcalc__frame--1">
+                <img class="pic" src="/wincalc/images/f42.png" alt="">
+                <div class="wcalc__option wcalc__option--2">
+                    <p class="closed checked">глухое</p>
+                    <p class="turn-right">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--3">
+            <div class="wcalc__frame wcalc__frame--3">
+                <img class="pic-third" src="/wincalc/images/f33.png" alt="">
+                <div class="wcalc__option wcalc__option--1">
+                    <p class="closed-third checked">глухое</p>
+                    <p class="turn-down-third">поворотное</p>
+                </div>
+            </div>
+            <div class="wcalc__frame wcalc__frame--2 left-float">
+                <img class="pic-rev" src="/wincalc/images/f31.png" alt="">
+                <div class="wcalc__option wcalc__option--1">
+                    <p class="closed-rev checked">глухое</p>
+                    <p class="turn-left">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+            <div class="wcalc__frame wcalc__frame--1">
+                <img class="pic" src="/wincalc/images/f32.png" alt="">
+                <div class="wcalc__option wcalc__option--2">
+                    <p class="closed checked">глухое</p>
+                    <p class="turn-right">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--4">
+            <div class="wcalc__frame wcalc__frame--2 left-float">
+                <img class="pic-rev" src="/wincalc/images/f41.png" alt="">
+                <div class="wcalc__option wcalc__option--1">
+                    <p class="closed-rev checked" class="checked">глухое</p>
+                    <p class="turn-left">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+            <div class="wcalc__frame wcalc__frame--2 left-float">
+                <img class="pic-sec" src="/wincalc/images/f41.png" alt="">
+                <div class="wcalc__option wcalc__option--2">
+                    <p class="closed-sec checked">глухое</p>
+                    <p class="turn-left-sec">поворотное</p>
+                    <p class="turn-down-sec">поворотно-откидное</p>
+                </div>
+            </div>
+            <div class="wcalc__frame wcalc__frame--1">
+                <img class="pic" src="/wincalc/images/f42.png" alt="">
+                <div class="wcalc__option wcalc__option--2">
+                    <p class="closed checked">глухое</p>
+                    <p class="turn-right">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--5">
+
+        </div>
+
+        <div class="wcalc__box wcalc__box--6">
+            <div class="wcalc__frame wcalc__frame--2 left-float">
+                <img class="pic-rev" src="/wincalc/images/f31.png" alt="">
+                <div class="wcalc__option wcalc__option--1">
+                    <p class="closed-rev checked">глухое</p>
+                    <p class="turn-left">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+            <div class="wcalc__frame wcalc__frame--1">
+                <img class="pic" src="/wincalc/images/f32.png" alt="">
+                <div class="wcalc__option wcalc__option--3">
+                    <p class="closed checked">глухое</p>
+                    <p class="turn-right">поворотное</p>
+                    <p class="turn-down">поворотно-откидное</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="sliderHone" class="slider noframe"></div>
+        <div id="sliderHtwo" class="slider noframe"></div>
+        <div id="sliderHthree" class="slider noframe"></div>
+        <div id="sliderHfour" class="slider noframe"></div>
+        <div id="sliderHfive" class="slider noframe"></div>
+    </div>
+</div>
+<!-- End Windows -->
+
+<div class="order container-fluide">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <h1>Отправьте рассчет на оцеку
+                и получите дополнительную
+                скидку 10% на приобретение
+                москитной сетки</h1>
+        </div>
+        <div class="col-md-6 col-lg-5">
+            <form class="form-order">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><img src="/images/Path 15.png" alt=""></span>
+                        <input type="text" class="form-control" id="inputName" placeholder="Имя">
                     </div>
-                    <div class="step-item media">
-                        <div class="step-desc media-body text-right">
-                            <div class="col-md-8 step-desc-wrap">
-                                <p>Отправте заявку на заказ</p>
-                                <p class="decription">После расчета кликните кнопку «Отправить заявку»</p>
-                            </div>
-                        </div>
-                        <div class="step-img media-right media-middle">
-                            <img class="media-object" src="/img/step2.jpg" alt="step-2">
-                        </div>
-                    </div>
-                    <div class="step-item media">
-                        <div class="step-img media-left media-middle">
-                            <img class="media-object" src="/img/step3.png" alt="step-3">
-                        </div>
-                        <div class="step-desc media-body">
-                            <div class="col-md-8">
-                                <p>Наш менеджер свяжется с Вами для уточнения деталей</p>
-                                <p class="decription">Наш специалист перезвонит Вам.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-item media">
-                        <div class="step-desc media-body text-right">
-                            <div class="col-md-8 step-desc-wrap">
-                                <p>Получите Ваш заказ</p>
-                                <p class="decription">Ваш заказ будет доставлен Вам любым доступным способом.</p>
-                            </div>
-                        </div>
-                        <div class="step-img media-right media-middle">
-                            <img class="media-object" src="/img/step4.png" alt="step-4">
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><img src="/images/Image 34.png" alt=""></span>
+                        <input type="tel" class="form-control" id="inputPhone" placeholder="Номер телефона">
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<?=$this->render('slider'); ?>
-
-<section class="section section-calculate">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-4 col-sm-12">
-                <div class="calculate-desc">
-                    <h2>Заходи, считай, заказывай, получай</h2>
-                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
-                    <a href="<?=Url::to(['/site/calculate/window'])?>" class="btn btn-default">Рассчитать стоимость</a>
+                <div class="form-group">
+                    <?= Html::dropDownList('', null, ArrayHelper::map(Regions::find()->all(), 'name', 'name'),
+                        ['class' => 'custom-select', 'prompt' => Yii::t('app', 'Choose city')]);
+                    ?>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-order">Отправить расчет</button>
+            </form>
         </div>
     </div>
-</section>
+</div>
 
-
-<section class="section section-about">
-    <div class="container">
-        <h2 class="text-center"><?=Yii::$app->params['siteName']; ?></h2>
-    </div>
-</section>

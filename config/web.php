@@ -7,6 +7,15 @@ $config = [
     'language' => 'ru',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'on beforeAction' => function($event){
+        $seo = \app\models\SettingsSeo::findOne(['identificator' => Yii::$app->controller->id .
+            '-' . Yii::$app->controller->action->id]);
+        if($seo){
+            Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $seo->title]);
+            Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $seo->description]);
+            Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $seo->keywords]);
+        }
+    },
     'components' => [
         'i18n' => [
             'translations' => [
@@ -63,7 +72,15 @@ $config = [
                 'site/calculate/window' => 'site/calculate',
                 'site/calculate/door' => 'site/calculate',
                 // 'category/<id:\w+>' => 'products/category',
-                'product/<id:\w+>' => 'products/view'
+                'product/<id:\w+>' => 'products/view',
+                '/dopomoga/category/<slug:[\w-]+>' => '/dopomoga/category',
+                '/dopomoga/novini/<slug:[\w-]+>' => '/dopomoga/view',
+                //'/<lang:[\w-]+>/category/<slug:[\w-]+>' => '/site/category/<lang:[\w-]+>',
+                '/<lang:[\w-]+>/category/<slug:[\w-]+>' => '/categoriesblog/category',
+                '/category/<slug:[\w-]+>' => '/categoriesblog/category',
+                '/<lang:[\w-]+>/tender/<slug:[\w-]+>' => '/site/view',
+                '/tender/<slug:[\w-]+>' => '/site/view',
+                '/page/<slug:[\w-]+>' => '/categoriesblog/page',
             ],
         ],
         'view' => [
