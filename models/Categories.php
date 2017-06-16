@@ -100,4 +100,39 @@ class Categories extends \yii\db\ActiveRecord
         return parent::afterSave($insert, $changerAttributes);
     }
 
+    static public function getCatItems(){
+        $items = [];
+        $cats = self::find()->where(['parent' => '0', 'visible' => '1'])->all();
+        foreach($cats as $cat){
+            $item = ['label' => $cat->name];
+            if($cat->child){
+                $item['items'] = self::getRecursive($cat->id);
+            }
+            else{
+                $item['url'] = ['/products/category/', 'id' => $cat->id];
+            }
+            $items[] = $item;
+        }
+        return $items;
+    }
+
+    private static function getRecursive($cat_id){
+        $items = [];
+        $cats = self::find()->where(['visible' => '1', 'parent' => $cat_id])->all();
+
+        if($cats){
+            foreach($cats as $cat){
+                $item = ['label' => $cat->name];
+                if($cat->child){
+                    $item['items'] = self::getRecursive($cat->id);
+                }
+                else{
+                    $item['url'] = ['/products/category/', 'id' => $cat->id];
+                }
+                $items[] = $item;
+            }
+        }
+        return empty($items) ? null : $items;
+    }
+
 }

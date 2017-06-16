@@ -15,19 +15,20 @@ $itemsRight = [];
 
 
 $catItems = [];
-foreach(\app\models\Categories::find()->where(['visible' => '1', 'parent' => 0])->all() as $category){
-    $catItem = ['label' => $category->name, 'url' => ['/products/category/', 'id' => $category->id]];
-    if($category->child){
-        // unset($catItem['url']);
-        // $catItem['url'] = '#';
-        foreach($category->child as $child){
-            $catItem['items'][] = ['label' => $child->name, 'url' => ['/products/category/', 'id' => $category->id]];
-        }
-    }
-    $catItems[] = $catItem;
-    $catItems[] = '<li class="divider"></li>';
-}
-array_pop($catItems);
+$catItems = \app\models\Categories::getCatItems();
+// foreach(\app\models\Categories::find()->where(['visible' => '1', 'parent' => 0])->all() as $category){
+//     $catItem = ['label' => $category->name, 'url' => ['/products/category/', 'id' => $category->id]];
+//     if($category->child){
+//         // unset($catItem['url']);
+//         // $catItem['url'] = '#';
+//         foreach($category->child as $child){
+//             $catItem['items'][] = ['label' => $child->name, 'url' => ['/products/category/', 'id' => $category->id]];
+//         }
+//     }
+//     $catItems[] = $catItem;
+//     $catItems[] = '<li class="divider"></li>';
+// }
+// array_pop($catItems);
 
 
 $itemsRight[] = Yii::$app->user->getIsGuest() ?

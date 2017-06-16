@@ -93,7 +93,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                     <h2>Окна</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
                         excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/19" class="btn btn-default">Посмотреть каталог окон</a>
+                    <a href="<?=Url::to(['/products/category/', 'id' => 36]); ?>" class="btn btn-default">Посмотреть каталог окон</a>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                     <h2>Двери</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
                         excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/20" class="btn btn-default">каталог дверей</a>
+                    <a href="<?=Url::to(['/products/category/', 'id' => 37]); ?>" class="btn btn-default">каталог дверей</a>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                     <h2>Кондиционеры</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
                         excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/24" class="btn btn-default">каталог кондиционеров</a>
+                    <a href="<?=Url::to(['/products/category/', 'id' => 37]); ?>" class="btn btn-default">каталог кондиционеров</a>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                     <h2>Бензо и электро инструмент</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
                         excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/25" class="btn btn-default">каталог инструментов</a>
+                    <a href="<?=Url::to(['/products/category/', 'id' => 50]); ?>" class="btn btn-default">каталог инструментов</a>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
                     <h2>Стройматериалы</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cupiditate dolorum
                         excepturi id minima placeat. Id laborum repudiandae voluptates.</p>
-                    <a href="/category/26" class="btn btn-default">каталог стройматериалов</a>
+                    <a href="<?=Url::to(['/products/category/', 'id' => 19]); ?>" class="btn btn-default">каталог стройматериалов</a>
                 </div>
             </div>
         </div>
