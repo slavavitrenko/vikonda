@@ -5,12 +5,13 @@ $(document).ready(function() {
         picImgSec = $('.wcalc__frame .pic-sec'),
         picImgThird = $('.wcalc__frame .pic-third'),
         trigger = $('.wcalc__option p'),
-        allClasses = 'active effect-1 effect-2 effect-1-reverse effect-2-reverse effect-3';
+        profile = $('div.form-check-new'),
+        allClasses = 'effect-1 effect-2 effect-1-reverse effect-2-reverse effect-3';
 
     $('.wcalc__icons .gal-icon').on('click', function() {
       var panelToShow = $(this).attr('rel');
 
-      $('.gal-icon.checked').removeClass('checked');
+      // $('.gal-icon.checked').removeClass('checked');
       $(this).addClass('checked');
 
       $('.wcalc__box.isframe').removeClass('isframe');
@@ -23,6 +24,12 @@ $(document).ready(function() {
         $('.checked').removeClass('checked');
         $(this).addClass('checked');
     });
+
+    profile.on('click', function() {
+        $('.checked').removeClass('checked');
+        $(this).addClass('checked');
+    });
+
     $('.closed').on('click', function() {
         picImg.removeClass(allClasses);
     });

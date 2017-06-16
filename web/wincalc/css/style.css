@@ -29,8 +29,9 @@ h1 {
       display: none;
     }
 
+
 .wcalc {
-  width: 960px; }
+  width: 1170px; }
   .wcalc__heading {
     margin: 0;
     padding: 10px 0;
@@ -158,21 +159,11 @@ h1 {
   .wcalc__profile {
     float: right;
   text-align: center;
-  margin-top: 30px;}
+  margin-top: 30px;
+  }
   .wcalc__profile h4 {
     margin-bottom: 20px;
   }
-
-  .wclack123 ul li {
-  color: #ffffff;
-	border: 1px solid #333;
-  border-radius: 26px;
-  background-color: #79AED1;
-  border-color: #95989A;
-  height: 81px;
-  width: 24.770642201834864vw;
-  margin-bottom: 26px;
-}
 
 .form-check-new {
   color: #ffffff;
@@ -181,13 +172,14 @@ h1 {
   background-color: #79AED1;
   border-color: #95989A;
   margin-bottom: 26px;
-  height: 81px;
-  width: 24.770642201834864vw;
+  /*height: 81px;*/
+  /*width: 24.770642201834864vw;*/
   font-size: 22px;
 }
 
-.size-radio {
+.form-check .form-check-label p.size-radio {
   font-size: 14px;
+  margin: 0 15px;
 }
 
   /*.wcalc__profcontainer {
@@ -359,6 +351,7 @@ h1 {
   opacity: 1 !important; }
 
 .checked {
+  position: relative;
   background-color: #3B7EB5 !important;
   color: #fff; }
   .checked:before {
@@ -566,3 +559,19 @@ h1 {
 #sliderHfive {
   width: 500px;
   margin-left: 40px; }
+
+/* Styles added by Stas on June 14 */
+
+.wcalc__option>.form-check {
+  margin: 0;
+}
+
+.wcalc__option>.form-check>.form-check-label {
+  display: block;
+  padding: 0;
+}
+
+.form-check-new:checked{
+  background-color: darkblue;
+}
+

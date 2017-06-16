@@ -2,43 +2,45 @@
 
 use kartik\sidenav\SideNav;
 
-$totalCount = \app\models\Orders::find()->count();
-$windowOrdersCount = \app\models\calculating\CalculateWindow::find()->where(['calculate_type' => 'order'])->count();
+$siteOrdersCount = \app\models\Orders::find()->count();
+$windowOrdersCount = \app\models\WindowCalculate::find()->count();
 $doorOrdersCount = \app\models\calculating\CalculateDoor::find()->where(['calculate_type' => 'order'])->count();
-$siteOrdersCount = $windowOrdersCount + $doorOrdersCount;
+$totalCount = $windowOrdersCount + $doorOrdersCount + $siteOrdersCount;
 
 $items = [];
 
-$items[] = ['label' => Yii::t('app', 'Orders').
-			($totalCount >= 1 ?
-				(' <span class="badge">' . $totalCount . '</span>&nbsp;&nbsp;&nbsp;')
-				:
-				''), 'items' => [
-
-			['label' => Yii::t('app', 'Site Orders') // Количество покупок на сайте
-			.
-			($siteOrdersCount >= 1 ?
-				(' <span class="badge pull-right">' . $siteOrdersCount . '</span>')
-				:
-				''), 'url' => ['/orders/index'], 'active' => in_array(Yii::$app->controller->id, ['orders'])],
-
-
-			['label' => Yii::t('app', 'Window Orders') // Количество заказов на окна
-			.
-			($windowOrdersCount >= 1 ?
-				(' <span class="badge pull-right">' . $windowOrdersCount . '</span>')
-				:
-				''), 'url' => ['/window-orders'], 'active' => in_array(Yii::$app->controller->id, ['window-orders'])],
-
-
-			['label' => Yii::t('app', 'Door Orders') // Количество заказов на двери
-			.
-			($doorOrdersCount >= 1 ?
-				(' <span class="badge pull-right">' . $doorOrdersCount . '</span>')
-				:
-				''), 'url' => ['/door-orders'], 'active' => in_array(Yii::$app->controller->id, ['door-orders'])],
+$items[] = [
+	'label' => Yii::t('app', 'Orders').
+		($totalCount >= 1 ?
+			(' <span class="badge">' . $totalCount . '</span>&nbsp;&nbsp;&nbsp;')
+			:
+			''), 'items' => [
+		[
+			'label' => Yii::t('app', 'Site Orders') // Количество покупок на сайте
+				.
+				($siteOrdersCount >= 1 ?
+					(' <span class="badge pull-right">' . $siteOrdersCount . '</span>')
+					:
+					''), 'url' => ['/orders/index'], 'active' => in_array(Yii::$app->controller->id, ['orders'])],
+		[
+			'label' => Yii::t('app', 'Door Orders') // Количество заказов на двери
+				.
+				($doorOrdersCount >= 1 ?
+					(' <span class="badge pull-right">' . $doorOrdersCount . '</span>')
+					:
+					''), 'url' => ['/door-orders'], 'active' => in_array(Yii::$app->controller->id, ['door-orders'])
 		],
-		'active' => in_array(Yii::$app->controller->id, ['orders', 'door-orders', 'window-orders'])];
+		[
+			'label' => Yii::t('app', 'Window Orders') // Количество заказов на двери
+				.
+				($windowOrdersCount >= 1 ?
+					(' <span class="badge pull-right">' . $windowOrdersCount . '</span>')
+					:
+					''), 'url' => ['/window-calculate'], 'active' => in_array(Yii::$app->controller->id, ['window-calculate'])
+		],
+	],
+	'active' => in_array(Yii::$app->controller->id, ['orders', 'door-orders', 'window-calculate'])
+];
 // $items[] = ['label' => Yii::t('app', 'Partners'), 'url' => ['/partners/index'], 'active' => Yii::$app->controller->id == 'partners'];
 $items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
 	['label' => Yii::t('app', 'All users'), 'url' => ['/user/admin'], 'active' => Yii::$app->controller->id == 'admin', 'visible' => Yii::$app->user->identity->type == 'admin'],
@@ -48,7 +50,7 @@ $items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
 	['label' => Yii::t('app', 'Basic Settings'), 'url' => ['/settings'], 'active' => Yii::$app->controller->id == 'settings'],
 	['label' => Yii::t('app', 'Settings Seo'), 'url' => ['/settings-seo'], 'active' => Yii::$app->controller->id == 'settings-seo'],
 ]
-, 'active' => in_array(Yii::$app->controller->id, ['admin', 'regions', 'categories', 'products', 'settings'])];
+	, 'active' => in_array(Yii::$app->controller->id, ['admin', 'regions', 'categories', 'products', 'settings', 'settings-seo'])];
 
 if (!Yii::$app->user->getIsGuest()){
 	$items[] = ['label' => Yii::t('app', 'Controlling'), 'url' => '', 'items' => [
@@ -66,7 +68,7 @@ $items[] = ['label' => Yii::t('app', 'Doors'), 'items' => [
 	['label' => Yii::t('app', 'Door Types'), 'url' => ['/door-types'], 'active' => Yii::$app->controller->id == 'door-types'],
 	['label' => Yii::t('app', 'Door Furnitures'), 'url' => ['/door-furniture'], 'active' => Yii::$app->controller->id == 'door-furniture'],
 ]
-, 'active' => in_array(Yii::$app->controller->id, ['door-types', 'door-furniture'])];
+	, 'active' => in_array(Yii::$app->controller->id, ['door-types', 'door-furniture'])];
 
 ?>
 

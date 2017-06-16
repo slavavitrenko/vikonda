@@ -17,6 +17,22 @@ $config = [
         }
     },
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,   // do not publish the bundle
+                    'js' => [
+                        '/wincalc/js/jquery.min.js',
+                    ]
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null,   // do not publish the bundle
+                    'css' => [
+//                        'css/bootstrap.min.css'
+                    ]
+                ]
+            ],
+        ],
         'i18n' => [
             'translations' => [
                 'app' => [
@@ -69,8 +85,6 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'site/calculate/window' => 'site/calculate',
-                'site/calculate/door' => 'site/calculate',
                 // 'category/<id:\w+>' => 'products/category',
                 'product/<id:\w+>' => 'products/view',
                 '/dopomoga/category/<slug:[\w-]+>' => '/dopomoga/category',

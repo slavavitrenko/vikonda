@@ -30,12 +30,13 @@ use app\models\Categories;
     <body>
     <?php $this->beginBody() ?>
 
+    <?= $this->render('@app/views/_alert'); ?>
 
     <header class="header">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12  col-xl-3 logo text-center">
-                    <a href="#"><img class="img-fluid" src="/images/Image 11.png" alt=""></a>
+                    <a href="/site"><img class="img-fluid" src="/images/Image 11.png" alt=""></a>
                     <p>Окна и двери для Вашего дома<br>Изготовление и установка</p>
                 </div>
                 <div class="col-12 col-sm-6 col-xl-4">
@@ -45,7 +46,12 @@ use app\models\Categories;
                     </form>
                 </div>
                 <div class="col-12 col-sm-6 col-xl-2">
-                    <p class="bordered text-center">Город:<br>Полтава</p>
+                    <p class="bordered text-center">
+                        Город:<br>
+                        <span id="city">
+                            Полтава
+                        </span>
+                    </p>
                 </div>
                 <div class="col-12 col-xl-3">
                     <p>+38 <span class="font-weight-bold">(0xx)</span>xx <span class="show-numbers">показать все номера</span></p>
@@ -108,12 +114,31 @@ use app\models\Categories;
                     </div>
                 </div>
                 <div class="col-md-4 link-footer">
-                    <a href="#">Двери</a><br>
-                    <a href="#">Комплектующие<br>
-                        (продукция)</a><br>
-                    <a href="#">Сервис и услуги</a><br>
-                    <a href="#">Акции</a><br>
-                    <a href="#">О компании</a>
+                    <?php
+                    foreach (Categories::find()->where(['parent' => 0])->all() as $category) :?>
+                        <div class="col">
+                            <?=
+                            Html::a(Yii::t('app', $category->name), ['/products/category/', 'id' => $category->id],
+                                ['class'=> '']);
+                            ?>
+                        </div>
+                        <?php
+                    endforeach;
+                    ?>
+                    <?php
+                    foreach (Categoriesblog::find()->all() as $categoryblog) :?>
+                        <div class="col">
+                            <?=
+                            Html::a(Yii::t('app', $categoryblog->title), ['/categoriesblog/category', 'slug' => $categoryblog->slug],
+                                ['class'=> '']);
+                            ?>
+                        </div>
+                        <?php
+                    endforeach;
+                    ?>
+                    <div class="col ">
+                        <a href="/site/about">О компании</a>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="contacts">

@@ -1,5 +1,8 @@
 <?php
 namespace app\controllers;
+use app\models\Notifications;
+use app\models\Settings;
+use app\models\WindowCalculate;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -49,6 +52,60 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionCalculate(){
+        $request = Yii::$app->request;
+        if($request->isPost){
+            $model = new WindowCalculate();
+            if($model->load($request->post()) ){
+                if(isset($_POST['rightSideOption'])){
+                    if(isset($_POST['leftSideOption'])){
+                        if(isset($_POST['topSideOption'])){
+                            $model->opening_type = $_POST['leftSideOption'] . ', ' .
+                                $_POST['topSideOption'] . ', ' . $_POST['rightSideOption'];
+                        }
+                        else if(isset($_POST['leftSideOption2'])){
+                            $model->opening_type = $_POST['leftSideOption'] . ', ' .
+                                $_POST['leftSideOption2'] . ', ' . $_POST['rightSideOption'];
+                        }
+                        else{
+                            $model->opening_type = $_POST['leftSideOption'] . ', ' . $_POST['rightSideOption'];
+                        }
+                    }
+                    else{
+                        $model->opening_type = $_POST['rightSideOption'];
+                    }
+                }
+                else{
+                    $model->opening_type = Yii::t('app', 'Missing');
+                }
+                $model->save();
+                Notifications::notify(Notifications::notify(Settings::get('admin_email')),
+                    'Вам пришёл новый заказ. Тип окна - ' . $model->window_type . ', тип открывания - '
+                    . $model->opening_type . 'тип профиля - ' . $model->profile_type . ', высота - '
+                    . $model->height . ', ширина - ' . $model->width . ', имя заказчика - ' . $model->name
+                    . ', телефона заказчика - ' . $model->phone . ', город - ' . $model->city . '.'
+                );
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Your order sucessfully saved'));
+
+                
+            }
+        }
+        return $this->redirect(['/site/index']);
+    }
+
+    public function actionCall(){
+        if(!empty($_POST['name']) && !empty($_POST['phone'])){
+            Notifications::notify(Settings::get('admin_email'),
+                'Вам пришла заявка на перезвон. Имя - ' . $_POST['name'] . ', телефон - ' . $_POST['phone']
+            );
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Call saved'));
+
+        } else{
+            Yii::$app->session->setFlash('danger', Yii::t('app', 'Fill in the fields name and phone.'));
+        }
+        return $this->redirect(['/site/index']);
+    }
+
     public function actionView($slug, $lang = 'uk')
     {
         if(false != ($model = Posts::findOne(['slug' => $slug]))){
@@ -64,7 +121,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $model =  new WindowCalculate();
+        return $this->render('index', ['model' => $model]);
     }
 
     public function actionAbout()
@@ -108,9 +166,7 @@ class SiteController extends Controller
         return $this->actionCart();
     }
 
-    public function actionCalculate(){
-        return $this->render('calculate');
-    }
+
 
     public function actionImport(){
         $file = fopen(__DIR__ . '/entries.csv', 'r');
