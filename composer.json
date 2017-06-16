@@ -25,7 +25,10 @@
         "leandrogehlen/yii2-treegrid": "^1.0",
         "yiisoft/yii2-imagine": "^2.0",
         "kartik-v/yii2-widget-sidenav": "*",
-        "kartik-v/yii2-nav-x": "*"
+        "kartik-v/yii2-nav-x": "*",
+        "mihaildev/yii2-ckeditor": "*",
+        "mihaildev/yii2-elfinder": "*",
+        "kartik-v/yii2-slider": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

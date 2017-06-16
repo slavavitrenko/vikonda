@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>WinDoors Calculator</title>
+
+    <!-- Bootstrap 3 -->
+    <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">-->
+    <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <!-- JQueryUI -->
+    <link rel="stylesheet" href="./jquery-ui/themes/flick/jquery-ui.min.css">
+    <link rel="stylesheet" href="./jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.min.css">
+
+    <!-- Custom && Media-Screens -->
+    <!--<link rel="stylesheet" href="assets/css/custom.min.css">
+    <link rel="stylesheet" href="assets/css/media-screens.min.css">-->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="wcalc">
+
+      <ul class="wcalc__icons">
+        <li><h4 class="wcalc__heading">Тип<br>окна</h4></li>
+        <li rel="wcalc__box--1" class="checked-icon gal-icon wcalc-icon--1">
+          <img src="./images/fn1.png" alt="">
+        </li>
+        <li rel="wcalc__box--2" class="gal-icon wcalc-icon--2">
+          <img src="./images/fn2.png" alt="">
+        </li>
+        <li rel="wcalc__box--3" class="gal-icon wcalc-icon--3">
+          <img src="./images/fn3.png" alt="">
+        </li>
+        <li rel="wcalc__box--4" class="gal-icon wcalc-icon--4">
+          <img src="./images/fn4.png" alt="">
+        </li>
+        <li rel="wcalc__box--5" class="gal-icon wcalc-icon--5">
+          <img src="./images/fn5.png" alt="">
+        </li>
+        <li rel="wcalc__box--6" class="gal-icon wcalc-icon--6">
+          <img src="./images/fn6.png" alt="">
+        </li>
+      </ul>
+
+      <div class="wcalc__profile">
+        <h4 class="wcalc__heading">Выбор профиля</h4>
+        <div class="wcalc__profcontainer">
+          <div class="wcalc__profitem">
+            <span class="col-xs-5 colour--grey">Стандарт</span>
+            <div class="col-xs-6 col-xs-offset-1 wcalc__description-call back-hover--grey">
+              <p>Rehau Blitz</p>
+            </div>
+            <div class="wcalc__profdescription">
+              <h3><strong>Rehau Blitz</strong></h3>
+              <div class="col-xs-6">
+                <img src="./images/blitz.jpg" alt="">
+              </div>
+              <span class="col-xs-6 wcalc__profmarks">
+                <ul class="wcalc__blitz">
+                  <li>Тепло: 7/10<span></span></li>
+                  <li>Шум: 7/10<span></span></li>
+                  <li>Свет: 8/10<span></span></li>
+                </ul>
+              </span>
+              <ul class="col-xs-12">
+                <li>Стеклопакет: 32мм, 2 камеры</li>
+                <li>Формула: 4х10х4х10х4</li>
+                <li>Фурнитура: Siegenia-Aubi, Favorit</li>
+                <li>Базовый цвет: белый</li>
+                <li>Уплотнитель: черный</li>
+              </ul>
+            </div>
+          </div>
+          <div class="wcalc__profitem">
+            <span class="col-xs-5 colour--blue">Комфорт</span>
+            <div class="col-xs-6 col-xs-offset-1 wcalc__description-call back-hover--blue">
+              <p>Rehau Delight</p>
+            </div>
+            <div class="wcalc__profdescription">
+              <h3><strong>Rehau Delight</strong></h3>
+              <div class="col-xs-6">
+                <img src="./images/delight.jpg" alt="">
+              </div>
+              <span class="col-xs-6 wcalc__profmarks">
+                <ul class="wcalc__delight">
+                  <li>Тепло: 8/10<span></span></li>
+                  <li>Шум: 9/10<span></span></li>
+                  <li>Свет: 8/10<span></span></li>
+                </ul>
+              </span>
+              <ul class="col-xs-12">
+                <li>Стеклопакет: 32мм, 2 камеры</li>
+                <li>Формула: 4х10х4х10х4</li>
+                <li>Фурнитура: Siegenia-Aubi, Favorit</li>
+                <li>Базовый цвет: белый</li>
+                <li>Уплотнитель: черный</li>
+              </ul>
+            </div>
+          </div>
+          <div class="wcalc__profitem">
+            <span class="col-xs-5 colour--green">Премиум</span>
+            <div class="col-xs-6 col-xs-offset-1 wcalc__description-call back-hover--green">
+              <p>Rehau Brillant</p>
+            </div>
+            <div class="wcalc__profdescription">
+              <h3><strong>Rehau Brillant</strong></h3>
+              <div class="col-xs-6">
+                <img src="./images/brillant.jpg" alt="">
+              </div>
+              <span class="col-xs-6 wcalc__profmarks wcalc__brillant">
+                <ul>
+                  <li>Тепло: 9/10<span></span></li>
+                  <li>Шум: 10/10<span></span></li>
+                  <li>Свет: 9/10<span></span></li>
+                </ul>
+              </span>
+              <ul class="col-xs-12">
+                <li>Стеклопакет: 32мм, 2 камеры</li>
+                <li>Формула: 4х10х4х10х4</li>
+                <li>Фурнитура: Siegenia-Aubi, TITAN AF</li>
+                <li>Базовый цвет: белый</li>
+                <li>Уплотнитель: черный</li>
+              </ul>
+            </div>
+          </div>
+          <div class="wcalc__profitem">
+            <span class="col-xs-5 colour--orange">Эксклюзив</span>
+            <div class="col-xs-6 col-xs-offset-1 wcalc__description-call back-hover--orange">
+              <p>Rehau Geneo</p>
+            </div>
+            <div class="wcalc__profdescription">
+              <h3><strong>Rehau Geneo</strong></h3>
+              <div class="col-xs-6">
+                <img src="./images/geneo.jpg" alt="">
+              </div>
+              <span class="col-xs-6 wcalc__profmarks wcalc__geneo">
+                <ul>
+                  <li>Тепло: 10/10<span></span></li>
+                  <li>Шум: 10/10<span></span></li>
+                  <li>Свет: 10/10<span></span></li>
+                </ul>
+              </span>
+              <ul class="col-xs-12">
+                <li>Стеклопакет: 32мм, 2 камеры</li>
+                <li>Формула: 4х10х4х10х4</li>
+                <li>Фурнитура: Siegenia-Aubi, TITAN AF + iСтекло</li>
+                <li>Базовый цвет: белый</li>
+                <li>Уплотнитель: черный</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wcalc__measures">
+        <div class="wcalc__size">
+          <h4 class="wcalc__heading">Размеры</h4>
+          <ul>
+            <li>
+              <form action="">
+                <p>Высота</p>
+                <input type="text" size="4" name="" value="">&nbsp мм
+                <p>Ширина</p>
+                <input type="text" size="4" name="" value="">&nbsp мм
+              </form>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <form action="">
+                <p><input type="checkbox" name="" id=""><b>Монтаж</b><br>
+                  <span>+3462 руб.</span></p>
+                <p><input type="checkbox" name="" id=""><b>Подоконник</b><br>
+                  <span>+1559 руб.</span></p>
+                <p><input type="checkbox" name="" id=""><b>Откосы</b><br>
+                  <span>+2702 руб.</span></p>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="wcalc__models">
+        <h4 class="wcalc__heading">
+          Тип открывания
+        </h4>
+
+        <div id="sliderVone" class="slider left-float noframe"></div>
+        <div id="sliderVtwo" class="slider left-float noframe"></div>
+        <div id="sliderVthree" class="slider left-float noframe"></div>
+
+        <div class="wcalc__box wcalc__box--1 isframe">
+          <div class="wcalc__frame wcalc__frame--1">
+            <img class="pic" src="./images/f42.png" alt="">
+            <div class="wcalc__option wcalc__option--1">
+              <p class="closed checked">глухое</p>
+              <p class="turn-right">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--2">
+          <div class="wcalc__frame wcalc__frame--2 left-float">
+            <img class="pic-rev" src="./images/f41.png" alt="">
+            <div class="wcalc__option wcalc__option--1">
+              <p class="closed-rev checked">глухое</p>
+              <p class="turn-left">поворотное</p>
+              <p class="turn-down-rev">поворотно-откидное</p>
+            </div>
+          </div>
+          <div class="wcalc__frame wcalc__frame--1">
+            <img class="pic" src="./images/f42.png" alt="">
+            <div class="wcalc__option wcalc__option--2">
+              <p class="closed checked">глухое</p>
+              <p class="turn-right">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--3">
+          <div class="wcalc__frame wcalc__frame--3">
+            <img class="pic-third" src="./images/f33.png" alt="">
+            <div class="wcalc__option wcalc__option--1">
+              <p class="closed-third checked">глухое</p>
+              <p class="turn-down-third">поворотное</p>
+            </div>
+          </div>
+          <div class="wcalc__frame wcalc__frame--2 left-float">
+            <img class="pic-rev" src="./images/f31.png" alt="">
+            <div class="wcalc__option wcalc__option--1">
+              <p class="closed-rev checked">глухое</p>
+              <p class="turn-left">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+          <div class="wcalc__frame wcalc__frame--1">
+            <img class="pic" src="./images/f32.png" alt="">
+            <div class="wcalc__option wcalc__option--2">
+              <p class="closed checked">глухое</p>
+              <p class="turn-right">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--4">
+          <div class="wcalc__frame wcalc__frame--2 left-float">
+            <img class="pic-rev" src="./images/f41.png" alt="">
+            <div class="wcalc__option wcalc__option--1">
+              <p class="closed-rev checked" class="checked">глухое</p>
+              <p class="turn-left">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+          <div class="wcalc__frame wcalc__frame--2 left-float">
+            <img class="pic-sec" src="./images/f41.png" alt="">
+            <div class="wcalc__option wcalc__option--2">
+              <p class="closed-sec checked">глухое</p>
+              <p class="turn-left-sec">поворотное</p>
+              <p class="turn-down-sec">поворотно-откидное</p>
+            </div>
+          </div>
+          <div class="wcalc__frame wcalc__frame--1">
+            <img class="pic" src="./images/f42.png" alt="">
+            <div class="wcalc__option wcalc__option--2">
+              <p class="closed checked">глухое</p>
+              <p class="turn-right">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wcalc__box wcalc__box--5">
+
+        </div>
+
+        <div class="wcalc__box wcalc__box--6">
+          <div class="wcalc__frame wcalc__frame--2 left-float">
+            <img class="pic-rev" src="./images/f31.png" alt="">
+            <div class="wcalc__option wcalc__option--1">
+              <p class="closed-rev checked">глухое</p>
+              <p class="turn-left">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+          <div class="wcalc__frame wcalc__frame--1">
+            <img class="pic" src="./images/f32.png" alt="">
+            <div class="wcalc__option wcalc__option--3">
+              <p class="closed checked">глухое</p>
+              <p class="turn-right">поворотное</p>
+              <p class="turn-down">поворотно-откидное</p>
+            </div>
+          </div>
+        </div>
+
+      <div id="sliderHone" class="slider noframe"></div>
+      <div id="sliderHtwo" class="slider noframe"></div>
+      <div id="sliderHthree" class="slider noframe"></div>
+      <div id="sliderHfour" class="slider noframe"></div>
+      <div id="sliderHfive" class="slider noframe"></div>
+
+      </div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./jquery-ui/jquery-ui.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
+    <!-- include the jQuery and jQuery UI scripts -->
+
+
+    <!-- Scripts JS -->
+    <script src="./js/scripts.js"></script>
+
+</body>
+
+</html>

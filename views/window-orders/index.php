@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'attribute' => 'type_id',
-                    'value' => function($model){ return $model->type->name; },
+                    'value' => function($model){ return $model->type->id; },
                     'filter' => Html::activeDropdownList($searchModel, 'type_id', ArrayHelper::map(WindowTypes::find()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => ''/*Yii::t('app', 'Choose...')*/])
                 ],
                 // 'width',

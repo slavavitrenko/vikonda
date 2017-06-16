@@ -7,6 +7,7 @@ use yii\bootstrap\NavBar;
 use app\models\Settings;
 
 use kartik\nav\NavX;
+use app\models\Categoriesblog;
 
 ?>
 
@@ -15,50 +16,29 @@ $itemsRight = [];
 
 
 $catItems = [];
-$catItems = \app\models\Categories::getCatItems();
-// foreach(\app\models\Categories::find()->where(['visible' => '1', 'parent' => 0])->all() as $category){
-//     $catItem = ['label' => $category->name, 'url' => ['/products/category/', 'id' => $category->id]];
-//     if($category->child){
-//         // unset($catItem['url']);
-//         // $catItem['url'] = '#';
-//         foreach($category->child as $child){
-//             $catItem['items'][] = ['label' => $child->name, 'url' => ['/products/category/', 'id' => $category->id]];
-//         }
-//     }
-//     $catItems[] = $catItem;
-//     $catItems[] = '<li class="divider"></li>';
-// }
-// array_pop($catItems);
+foreach(\app\models\Categories::find()->where(['visible' => '1', 'parent' => 0])->all() as $category){
+    $catItem = ['label' => $category->name, 'url' => ['/products/category/', 'id' => $category->id]];
+    if($category->child){
+        // unset($catItem['url']);
+        // $catItem['url'] = '#';
+        foreach($category->child as $child){
+            $catItem['items'][] = ['label' => $child->name, 'url' => ['/products/category/', 'id' => $category->id]];
+        }
+    }
+    $itemsLeft[] = $catItem;
+    $itemsLeft[] = '<li class="divider"></li>';
+}
+array_pop($itemsLeft);
 
-
-$itemsRight[] = Yii::$app->user->getIsGuest() ?
-    ['label' => Yii::t('app', 'Login'), 'url' => ['/user/login'], 'linkOptions' => ['class' => 'btn btn-default']]
-    :
-    ['label' => Yii::t('app', 'Logout'), 'url' => ['/user/logout'],
-        'linkOptions' => ['data-method' => 'post', 'class' => 'btn btn-default']
-    ];
-
-$itemsRight[] = ['label' => '<i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;'
-.
-Yii::$app->cart->status
-, 'url' => ['/site/cart'], 'linkOptions' => ['class' => Yii::$app->user->isGuest ? 'btn btn-default btn-cart' : ' hidden', 'data-pjax' => 0]];
-
-$itemsLeft[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/']];
-
-$itemsLeft[] = ['label' => Yii::t('app', 'Products'), 'items' => $catItems];
-
-$itemsLeft[] = ['label' => Yii::t('app', 'Calculator'), 'items' => [
-    ['label' => Yii::t('app', 'Calculate Windows'), 'url' => ['/site/calculate/window']],
-    '<li class="divider"></li>',
-    ['label' => Yii::t('app', 'Calculate Doors'), 'url' => ['/site/calculate/door']]
-]];
-
-$itemsLeft[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about'], 'active' => false];
+foreach (Categoriesblog::find()->all() as $category) :
+    $itemsLeft[] = ['label' => Yii::t('app', $category->title), 'url' => ['/categoriesblog/category', 'slug' => $category->slug]];
+endforeach;
 
 if(!Yii::$app->user->isGuest){
     $itemsLeft[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/orders/index'], 'active' => false];
 }
 
+$itemsLeft[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about'], 'active' => false];
 ?>
 
 <header>
@@ -101,24 +81,24 @@ if(!Yii::$app->user->isGuest){
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <?php
-                  echo NavX::widget([
+                <?php
+                echo NavX::widget([
                     'activateParents' => true,
                     'encodeLabels' => false,
                     'options' => ['class' => 'nav navbar-nav nav-pills navbar-left'],
                     'items' => $itemsLeft
-                    ]);
-                  ?>
+                ]);
+                ?>
 
-              <?php \yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1, 'linkSelector' => false]);
-                  echo Nav::widget([
+                <?php \yii\widgets\Pjax::begin(['id' => 'cart-container', 'timeout' => 1, 'linkSelector' => false]);
+                echo Nav::widget([
                     'activateParents' => true,
                     'encodeLabels' => false,
                     'options' => ['class' => 'nav navbar-nav navbar-right'],
                     'items' => $itemsRight
-                  ]);
-                  \yii\widgets\Pjax::end();
-              ?>
+                ]);
+                \yii\widgets\Pjax::end();
+                ?>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

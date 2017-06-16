@@ -1,0 +1,282 @@
+$black: #212121;
+$blue: #0156B4;
+$green: #0CB539;
+$grey: #95989A;
+$purple: #3D444E;
+$red: #ff012d;
+
+* {
+  outline: 0;
+  transition: all 0.3s;
+}
+
+body {}
+
+// Start media queries
+@media only screen and (max-width: 767px) {
+  .calculator {
+    h1 {
+      font-size: 25px;
+    }
+  }
+
+  .col {
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  .order {
+    text-align: center;
+    h1 {
+      font-size: 26px;
+    }
+  }
+
+  footer {
+    text-align: center;
+    a {
+      font-size: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  footer {
+    text-align: center;
+    a {
+      font-size: 20px;
+    }
+  }
+}
+
+// End media queries
+
+.header {
+  padding: 60px 0 40px;
+
+  img {
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: $grey;
+    margin-bottom: 10px;
+  }
+}
+
+.top-menu {
+  padding: 0;
+
+  div {
+    background-color: $purple;
+
+    &:hover {
+      background-color: darken($purple, 5%);
+    }
+  }
+
+  a {
+    font-size: 20px;
+    color: #fff;
+  }
+}
+
+.announce {
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+
+  &__item {
+    max-height: 405px;
+  }
+}
+
+.call-up {
+  background: $purple;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  h3 {
+    color: $red;
+  }
+
+  p {
+    font-size: 18px;
+    color: #fff;
+  }
+}
+
+.calculator {
+  margin-bottom: 40px;
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: $grey;
+  }
+
+  h2 {
+    margin-bottom: 40px;
+    color: $grey;
+  }
+
+  img {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+.bordered {
+  padding: 6px 4px;
+  border: 1px solid $grey;
+}
+
+.show-numbers {
+  border-bottom: 1px dashed;
+  color: $blue;
+}
+
+.form-custom {
+  button,
+  input {
+    background-color: $grey;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: 28px;
+    border-radius: 20px !important;
+  }
+
+  button {
+    background: $green;
+    color: #fff;
+    border: 0;
+
+    &:focus {
+      background: darken($green, 10%);
+    }
+  }
+}
+// .btn {
+//   &-call {
+//     background-color: $green;
+//   }
+// }
+/* Readjusted Bootstrap Styles */
+.form-inline {
+  button,
+  input {
+    border-radius: 0;
+  }
+}
+
+.jumbotron {
+  padding: 0;
+}
+
+.carousel {
+  width: 100%;
+
+  .carousel-item {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+.btn.btn-calculate {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 17px;
+  border-radius: 20px !important;
+  background: $green;
+  color: #fff;
+}
+// Start Block Order
+.order {
+  margin: 27px;
+  margin-top: 100px;
+
+  h1 {
+    color: $grey;
+    font-weight: normal;
+  }
+}
+
+.form-order {
+  button,
+  input,
+  select {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: 28px;
+    border-left: 0;
+    border-radius: 20px;
+  }
+
+  button {
+    background: $green;
+    color: #fff;
+    border: 0;
+    width: 100%;
+
+    &:focus {
+      background: darken($green, 10%);
+    }
+  }
+}
+
+.input-group-addon {
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+select.custom-select {
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.custom-select {
+  font-size: 28px;
+  background: url('../images/Union 3.png') no-repeat;
+  background-position: 20px;
+  padding-left: 75px;
+  height: auto;
+  width: 100%;
+}
+// End Block Order
+
+// Start Footer
+.footer {
+  font-size: 20px;
+  border-top: 1px solid $grey;
+  padding-top: 60px;
+  margin-bottom: 37px;
+
+  a {
+    color: $grey;
+    text-decoration: none;
+    margin-bottom: 18px;
+  }
+}
+
+.social-group {
+  margin-top: 30px;
+
+  a {
+    color: #337ab7;
+
+    i {
+      margin-right: 30px;
+    }
+  }
+}
+
+.contacts i {
+  color: #337ab7;
+}
+// End Footer

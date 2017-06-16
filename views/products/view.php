@@ -5,7 +5,6 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use app\assets\SlickAsset;
 
-SlickAsset::register($this);
 
 
 $this->title = $model->name;
